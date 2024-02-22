@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cailang.auth.mapper.PermissionMapper">
+    <resultMap id="baseMap" type="permission">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="descs" column="descs"/>
+        <result property="url" column="url"/>
+        <result property="sn" column="sn"/>
+        <result property="parentId" column="parent_id"/>
+        <association property="parent" javaType="permission">
+            <id property="id" column="parent_id"/>
+            <result property="name" column="pname"/>
+        </association>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into t_auth_permission(`name`,
+                                      descs,
+                                      url,
+                                      sn,
+                                      parent_id)
+        values (#{name}, #{descs}, #{url}, #{sn}, #{parentId})
+    </insert>
+    <delete id="deleteAll">
+        delete from t_auth_permission
+    </delete>
+    <sql id="baseSelCols">
+        select
+            c.*,
+            p.name pname
+        from t_auth_permission c
+                 left join t_auth_permission p on c.parent_id = p.id
+    </sql>
+    <select id="selectAll" resultMap="baseMap">
+        <include refid="baseSelCols"></include>
+    </select>
+    <sql id="keywordWhere">
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                c.name like concat('%',#{keyword},'%')
+                or c.url like concat('%',#{keyword},'%')
+                or c.descs like concat('%',#{keyword},'%')
+            </if>
+        </where>
+    </sql>
+    <select id="queryTotal" resultType="java.lang.Long">
+        select
+            count(*)
+        from t_auth_permission c
+        left join t_auth_permission p on c.parent_id = p.id
+        <include refid="keywordWhere"></include>
+    </select>
+    <select id="queryPageList" resultMap="baseMap">
+        <include refid="baseSelCols"></include>
+        <include refid="keywordWhere"></include>
+        limit #{start},#{pageSize}
+    </select>
+    <select id="querySnsByEmployeeId" resultType="java.lang.String">
+        select rp.permission_sn from t_auth_employee_role er
+        left join t_auth_role_permission rp on er.role_id = rp.role_id
+        where er.employee_id = #{employeeId}
+    </select>
+</mapper>

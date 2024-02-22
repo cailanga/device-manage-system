@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cailang.goods.mapper.GoodsMapper">
+    <!--保存对象-->
+    <insert id="insert" parameterType="Goods" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into t_goods(
+                            `name`,
+                            `price`,
+                            `count`,
+                            `description`,
+                            `resource`,
+                            `type_id`,
+                            `sellerId`
+        ) values(
+                                   #{name},
+                                   #{price},
+                                   #{count},
+                                   #{description},
+                                   #{resource},
+                                   #{typeId},
+                 #{sellerId}
+        )
+    </insert>
+    <!--删除对象-->
+    <delete id="deleteById" parameterType="long">
+        delete from t_goods where id = #{id}
+    </delete>
+
+    <!--更新对象-->
+    <update id="update" parameterType="Goods">
+        update t_goods
+        set
+
+                            `name` =#{name},
+                            `price` =#{price},
+                            `count` =#{count},
+                            `useCount` =#{useCount},
+                            `description` =#{description},
+                            `resource` =#{resource},
+                            `type_id` =#{typeId},
+                            `sellerId` =#{sellerId}
+        where id = #{id}
+    </update>
+    <!--加载对象-->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="long">
+        select * from t_goods where id = #{id}
+    </select>
+    <!--加载所有对象-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from t_goods
+    </select>
+    <!--//查询总数=参数（查询对象），返回值：long-->
+    <select id="queryTotal" parameterType="GoodsQuery" resultType="long">
+        select count(*) from t_goods p
+        left join t_goods_type t on p.type_id = t.id
+        <include refid="whereSql"/>
+    </select>
+    <!--//查询当前页数据=参数（查询对象），返回值:List-->
+    <select id="queryPageList" parameterType="GoodsQuery" resultMap="BaseResultMap">
+        select
+            p.*,
+            t.id tid,
+            t.name tname,
+            s.id sid,
+            s.name sname
+        from t_goods p
+        left join t_goods_type t  on p.type_id = t.id
+        left join t_seller s on s.id = p.sellerId
+        <include refid="whereSql"/>
+        limit #{start},#{pageSize}
+    </select>
+
+
+    <sql id="whereSql">
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                and (p.name like concat('%',#{keyword},'%') or p.description like concat('%',#{keyword},'%'))
+            </if>
+        </where>
+    </sql>
+
+    <!--//批量删除-->
+    <delete id="batchDelete" parameterType="arraylist">
+        delete from t_goods where id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.cailang.goods.domain.Goods">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="price" property="price" />
+        <result column="count" property="count" />
+        <result column="useCount" property="useCount" />
+        <result column="description" property="description" />
+        <result column="resource" property="resource" />
+        <result column="type_id" property="typeId" />
+        <result column="sid" property="sellerId" />
+        <association property="type" javaType="GoodsType">
+            <id column="tid" property="id"/>
+            <result column="tname" property="name"/>
+        </association>
+        <association property="seller" javaType="Seller">
+            <id column="sid" property="id"/>
+            <result column="sname" property="name"/>
+        </association>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, price, count,useCount,description, resource, type_id AS typeId,sellerId
+    </sql>
+
+</mapper>

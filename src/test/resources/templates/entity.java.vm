@@ -1,0 +1,50 @@
+package ${package.Entity};
+
+import java.math.BigDecimal;
+import java.util.Date;
+import cn.cailang.base.domain.BaseDomain;
+
+import lombok.Data;
+
+
+/**
+ * <p>
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Data
+#if(${superEntityClass})
+public class ${entity} extends ${superEntityClass}{
+#elseif(${activeRecord})
+public class ${entity} extends Model<${entity}> {
+#else
+public class ${entity} implements Serializable {
+#end
+
+    private static final long serialVersionUID = 1L;
+
+## ----------  BEGIN 字段循环遍历  ----------
+#foreach($field in ${table.fields})
+#if(${field.keyFlag})
+#set($keyPropertyName=${field.propertyName})
+#end
+#if("$!field.comment" != "")
+    /**
+     * ${field.comment}
+     */
+#end
+## 乐观锁注解
+#if(${versionFieldName}==${field.name})
+    @Version
+#end
+## 逻辑删除注解
+#if(${logicDeleteFieldName}==${field.name})
+    @TableLogic
+#end
+    private ${field.propertyType} ${field.propertyName};
+#end
+## ----------  END 字段循环遍历  ----------
+}

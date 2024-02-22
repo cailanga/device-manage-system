@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cailang.auth.mapper.MenuMapper">
+    <insert id="insert">
+        insert into t_auth_menu(name,url,icon,parent_id) values (#{name},#{url},#{icon},#{parent.id})
+    </insert>
+    <update id="update">
+        update t_auth_menu
+        set name = #{name},
+            url = #{url},
+            icon = #{icon},
+            parent_id = #{parent.id}
+        where id = #{id}
+    </update>
+    <delete id="deleteById">
+        delete from t_auth_menu where id = #{id}
+    </delete>
+
+    <delete id="batchDelete">
+        delete from t_auth_menu where id in
+            <foreach collection="list" item="id" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+    </delete>
+    <select id="selectAll" resultType="cn.cailang.auth.domain.Menu">
+        select * from t_auth_menu
+    </select>
+    <sql id="keywordWhere">
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                c.name like concat('%',#{keyword},'%')
+                or c.url like concat('%',#{keyword},'%')
+            </if>
+        </where>
+    </sql>
+    <select id="queryTotal" resultType="java.lang.Long">
+        select count(*)
+        from t_auth_menu c
+        left join t_auth_menu p on c.parent_id=p.id
+        <include refid="keywordWhere"></include>
+    </select>
+    <select id="queryPageList" resultMap="baseMap">
+        select
+            c.*,
+            p.id pid,
+            p.name pname,
+            p.url purl,
+            p.parent_id pparent_id,
+            p.icon picon
+        from t_auth_menu c
+        left join t_auth_menu p on c.parent_id=p.id
+        <include refid="keywordWhere"></include>
+        limit #{start},#{pageSize}
+    </select>
+    <select id="selectById" resultType="cn.cailang.auth.domain.Menu">
+        select * from t_auth_menu
+        where id = #{id}
+    </select>
+    <select id="selectByName" resultType="cn.cailang.auth.domain.Menu">
+        select * from t_auth_menu where name = #{name}
+    </select>
+    <select id="selectByUrl" resultType="cn.cailang.auth.domain.Menu">
+        select * from t_auth_menu where url = #{url}
+    </select>
+
+    <resultMap id="baseMap" type="cn.cailang.auth.domain.Menu">
+        <id property="id" column="id"/>
+        <result column="name" property="name"/>
+        <result property="url" column="url"/>
+        <result property="icon" column="icon"/>
+        <result property="parentId" column="parent_id"/>
+        <association property="parent" javaType="menu">
+            <id property="id" column="pid"/>
+            <result property="name" column="pname"/>
+            <result property="icon" column="picon"/>
+            <result property="parentId" column="pparent_id"/>
+            <result property="url" column="purl"/>
+        </association>
+    </resultMap>
+    <resultMap id="baseMapForTree" type="cn.cailang.auth.domain.Menu">
+        <id property="id" column="id"/>
+        <result column="name" property="name"/>
+        <result property="url" column="url"/>
+        <result property="icon" column="icon"/>
+        <result property="parentId" column="parent_id"/>
+        <collection property="children" ofType="menu">
+            <id property="id" column="cid"/>
+            <result property="name" column="cname"/>
+            <result property="icon" column="cicon"/>
+            <result property="url" column="curl"/>
+        </collection>
+    </resultMap>
+    <select id="selectMenuTreeByEmployeeId" resultMap="baseMapForTree">
+        select
+            p.*,
+            c.id cid,
+            c.name cname,
+            c.url curl,
+            c.icon cicon
+        from
+            t_auth_employee_role er
+                join t_auth_role_menu rm on er.role_id = rm.role_id
+                join t_auth_menu p on p.id = rm.menu_id
+                left join t_auth_menu c on p.id = c.parent_id
+                and c.id in (
+                    select rm1.menu_id from t_auth_employee_role er1
+                                                left join t_auth_role_menu rm1 on rm1.role_id = er1.role_id
+                    where er1.employee_id = #{employeeId}
+                )
+        where er.employee_id = #{employeeId} and (p.parent_id is null || p.parent_id = 0)
+    </select>
+</mapper>

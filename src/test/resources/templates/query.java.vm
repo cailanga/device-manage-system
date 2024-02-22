@@ -1,0 +1,10 @@
+package ${cfg.parent}.query;
+import cn.cailang.base.query.BaseQuery;
+
+/**
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+public class ${table.entityName}Query extends BaseQuery{
+}

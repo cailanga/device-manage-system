@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: dev
+  # 格式化全局时间字段
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    # 指定时间区域类型
+    time-zone: GMT+8
+  jpa:
+    show-sql: true
+mybatis:
+  type-aliases-package: cn.cailang.*.domain,cn.cailang.*.query
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+auth:
+  permission:
+    controller-package: cn.cailang.org.controller,cn.cailang.auth.controller
