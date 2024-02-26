@@ -31,4 +31,6 @@ public class Devices extends BaseDomain{
     private DevicesType type;
     private Long sellerId;
     private Seller seller;
+
+    private Date createTime;
 }

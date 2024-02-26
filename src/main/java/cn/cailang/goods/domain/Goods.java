@@ -5,6 +5,7 @@ import cn.cailang.seller.domain.Seller;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 
 @Data
@@ -26,4 +27,6 @@ public class Goods extends BaseDomain{
     private GoodsType type;
     private Long sellerId;
     private Seller seller;
+
+    private Date createTime;
 }

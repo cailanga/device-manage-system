@@ -13,7 +13,8 @@
                             `type_id`,
                             `sellerId`,
                             `dateofmanufacture`,
-                            `qualityguaranteeperiod`
+                            `qualityguaranteeperiod`,
+                             `createTime`
         ) values(
                                    #{name},
                                    #{price},
@@ -24,7 +25,8 @@
                                    #{typeId},
                                    #{sellerId},
                                    #{dateofmanufacture},
-                                   #{qualityguaranteeperiod}
+                                   #{qualityguaranteeperiod},
+                 #{createTime}
         )
     </insert>
     <!--删除对象-->
@@ -107,6 +109,7 @@
         <result column="sellerId" property="sellerId" />
         <result column="dateofmanufacture" property="dateofmanufacture" />
         <result column="qualityguaranteeperiod" property="qualityguaranteeperiod" />
+        <result column="createTime" property="createTime"/>
         <association property="type" javaType="DevicesType">
             <id column="tid" property="id"/>
             <result column="tname" property="name"/>
@@ -119,7 +122,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, price,count,useCount, description, resource, type_id AS typeId,sellerId,dateofmanufacture,qualityguaranteeperiod
+        id, name, price,count,useCount, description, resource, type_id AS typeId,sellerId,dateofmanufacture,qualityguaranteeperiod,createTime
     </sql>
 
 </mapper>
