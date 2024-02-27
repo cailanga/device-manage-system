@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cailang.sys.mapper.BackupOperatorLogMapper">
+    <!--保存对象-->
+    <insert id="insert" parameterType="BackupOperatorLog" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into t_sys_backup_operator_log(
+                            `description`,
+                            `time`,
+                            `operatorId`,
+                            `operatorName`
+        ) values(
+                                   #{description},
+                                   #{time},
+                                   #{operatorId},
+                                   #{operatorName}
+        )
+    </insert>
+    <!--删除对象-->
+    <delete id="deleteById" parameterType="long">
+        delete from t_sys_backup_operator_log where id = #{id}
+    </delete>
+
+    <!--更新对象-->
+    <update id="update" parameterType="BackupOperatorLog">
+        update t_sys_backup_operator_log
+        set
+
+                            `description` =#{description},
+                            `time` =#{time},
+                            `operatorId` =#{operatorId},
+                            `operatorName` =#{operatorName}
+        where id = #{id}
+    </update>
+    <!--加载对象-->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="long">
+        select * from t_sys_backup_operator_log where id = #{id}
+    </select>
+    <!--加载所有对象-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from t_sys_backup_operator_log
+    </select>
+    <!--//查询总数=参数（查询对象），返回值：long-->
+    <select id="queryTotal" parameterType="BackupOperatorLogQuery" resultType="long">
+        select count(*) from t_sys_backup_operator_log bol
+        <include refid="whereSql"/>
+    </select>
+    <!--//查询当前页数据=参数（查询对象），返回值:List-->
+    <select id="queryPageList" parameterType="BackupOperatorLogQuery" resultMap="BaseResultMap">
+        select bol.*,te.username tename from t_sys_backup_operator_log bol left join t_org_employee te on bol.operatorId = te.id
+        <include refid="whereSql"/>
+        limit #{start},#{pageSize}
+    </select>
+
+
+    <sql id="whereSql">
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                and (bol.description like concat('%',#{keyword},'%') or bol.operatorName like concat('%',#{keyword},'%'))
+            </if>
+        </where>
+    </sql>
+
+    <!--//批量删除-->
+    <delete id="batchDelete" parameterType="arraylist">
+        delete from t_sys_backup_operator_log where id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.cailang.sys.domain.BackupOperatorLog">
+        <id column="id" property="id" />
+        <result column="description" property="description" />
+        <result column="time" property="time" />
+        <result column="operatorId" property="operatorId" />
+        <result column="operatorName" property="operatorName" />
+        <association property="operator" javaType="employee">
+            <id column="operatorId" property="id"/>
+            <result column="tename" property="username"/>
+        </association>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, description, `time`, operatorId, operatorName
+    </sql>
+
+</mapper>

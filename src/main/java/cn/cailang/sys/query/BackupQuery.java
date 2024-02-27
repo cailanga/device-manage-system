@@ -4,7 +4,7 @@ import cn.cailang.base.query.BaseQuery;
 /**
  *
  * @author cailang
- * @since 2023-05-09
+ * @since 2024-02-27
  */
-public class DictionaryQuery extends BaseQuery{
+public class BackupQuery extends BaseQuery{
 }

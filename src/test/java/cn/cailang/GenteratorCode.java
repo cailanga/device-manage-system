@@ -41,7 +41,7 @@ public class GenteratorCode {
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setTablePrefix(new String[] {
-                "t_order",
+                "t_sys",
 //                "t_mkt",
 //                "t_customer",
 //                "t_finance",
@@ -67,16 +67,19 @@ public class GenteratorCode {
 //                "t_mkt_clue_remark",
 //                "t_customer_customer",
 //                "t_customer_customer_remark",
-                "t_order_contract",
-                "t_order_contract_remark",
-                "t_order_order",
-                "t_order_order_activity",
-                "t_order_order_product",
+//                "t_order_contract",
+//                "t_order_contract_remark",
+//                "t_order_order",
+//                "t_order_order_activity",
+//                "t_order_order_product",
 //                "t_prod_product",
 //                "t_prod_product_type",
 //                "t_sys_config",
 //                "t_sys_dictionary",
 //                "t_sys_dictionaryitem"
+//                "t_maintain",
+                "t_sys_backup",
+                "t_sys_backup_operator_log"
         }); // 需要生成的表
         strategy.setSuperEntityClass("cn.cailang.base.domain.BaseDomain");
         strategy.setSuperServiceClass("cn.cailang.base.service.IBaseService");

@@ -1,6 +1,6 @@
 package cn.cailang.sys.mapper;
 
-import cn.cailang.sys.domain.Dictionary;
+import cn.cailang.sys.domain.Backup;
 import cn.cailang.base.mapper.BaseMapper;
 
 /**
@@ -9,8 +9,8 @@ import cn.cailang.base.mapper.BaseMapper;
  * </p>
  *
  * @author cailang
- * @since 2023-05-09
+ * @since 2024-02-27
  */
-public interface DictionaryMapper extends BaseMapper<Dictionary> {
+public interface BackupMapper extends BaseMapper<Backup> {
 
 }

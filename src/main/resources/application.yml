@@ -16,3 +16,5 @@ mybatis:
 auth:
   permission:
     controller-package: cn.cailang.org.controller,cn.cailang.auth.controller
+backup:
+  filePath: D:\\device_manager_system_backup\\

@@ -1,8 +1,8 @@
 package cn.cailang.sys.controller;
 
-import cn.cailang.sys.service.IDictionaryService;
-import cn.cailang.sys.domain.Dictionary;
-import cn.cailang.sys.query.DictionaryQuery;
+import cn.cailang.sys.service.IBackupOperatorLogService;
+import cn.cailang.sys.domain.BackupOperatorLog;
+import cn.cailang.sys.query.BackupOperatorLogQuery;
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.PageList;
 import io.swagger.annotations.ApiOperation;
@@ -12,25 +12,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/dictionary")
-public class DictionaryController {
+@RequestMapping("/backupOperaterLog")
+public class BackupOperatorLogController {
     @Autowired
-    public IDictionaryService dictionaryService;
+    public IBackupOperatorLogService backupOperatorLogService;
 
 
     /**
      * 保存和修改公用的
-     * @param dictionary  传递的实体
+     * @param backupOperatorLog  传递的实体
      * @return Ajaxresult转换结果
      */
     @PutMapping
-    public AjaxResult addOrUpdate(@RequestBody Dictionary dictionary){
+    public AjaxResult addOrUpdate(@RequestBody BackupOperatorLog backupOperatorLog){
         try {
-            if( dictionary.getId()!=null){
-                    dictionaryService.update(dictionary);
+            if( backupOperatorLog.getId()!=null){
+                    backupOperatorLogService.update(backupOperatorLog);
             }
             else{
-                    dictionaryService.insert(dictionary);
+                    backupOperatorLogService.insert(backupOperatorLog);
             }
             return AjaxResult.me();
         } catch (Exception e) {
@@ -46,7 +46,7 @@ public class DictionaryController {
     @DeleteMapping(value="/{id}")
     public AjaxResult delete(@PathVariable("id") Long id){
         try {
-            dictionaryService.deleteById(id);
+            backupOperatorLogService.deleteById(id);
             return AjaxResult.me();
         } catch (Exception e) {
         e.printStackTrace();
@@ -62,7 +62,7 @@ public class DictionaryController {
     @PatchMapping()
     public AjaxResult batchDelete(@RequestBody List<Long> ids){
         try {
-                dictionaryService.batchDelete(ids);
+                backupOperatorLogService.batchDelete(ids);
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,8 +75,8 @@ public class DictionaryController {
     public AjaxResult get(@PathVariable("id")Long id)
     {
         try {
-            Dictionary dictionary = dictionaryService.selectById(id);
-            return AjaxResult.me().setResultObject(dictionary);
+            BackupOperatorLog backupOperatorLog = backupOperatorLogService.selectById(id);
+            return AjaxResult.me().setResultObject(backupOperatorLog);
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResult.me().setSuccess(false).setMessage("获取一个失败！"+e.getMessage());
@@ -92,7 +92,7 @@ public class DictionaryController {
     public AjaxResult list(){
 
         try {
-            List< Dictionary> list = dictionaryService.selectAll();
+            List< BackupOperatorLog> list = backupOperatorLogService.selectAll();
             return AjaxResult.me().setResultObject(list);
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,10 +108,10 @@ public class DictionaryController {
     * @return PageList 分页对象
     */
     @PostMapping
-    public AjaxResult json(@RequestBody DictionaryQuery query)
+    public AjaxResult json(@RequestBody BackupOperatorLogQuery query)
     {
         try {
-            PageList<Dictionary> pageList = dictionaryService.pageList(query);
+            PageList<BackupOperatorLog> pageList = backupOperatorLogService.pageList(query);
             return AjaxResult.me().setResultObject(pageList);
         } catch (Exception e) {
             e.printStackTrace();

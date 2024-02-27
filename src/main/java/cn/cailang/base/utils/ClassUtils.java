@@ -42,4 +42,17 @@ public class ClassUtils {
         }
         return result;
     }
+
+    /**
+     * 通过cronKey获取正确的class路径(要么直接是正确的路径，要么是@加其他结尾的路径，只需取@前的即可)
+     * @param cronKey
+     * @return
+     */
+    public  static String getCorrectClassPath(String cronKey){
+        if (cronKey.contains("@")) {
+            return cronKey.substring(0,cronKey.indexOf("@"));
+        }else {
+            return cronKey;
+        }
+    }
 }

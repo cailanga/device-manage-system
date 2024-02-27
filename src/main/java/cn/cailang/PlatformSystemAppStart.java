@@ -5,6 +5,8 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -17,13 +19,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  **/
 @SpringBootApplication
 @MapperScan("cn.cailang.*.mapper")
+@EnableScheduling //开启定时任务
 //扫描实现servlet的监听器包
 //@ServletComponentScan("cn.cailang.auth.listener")
 public class PlatformSystemAppStart implements WebMvcConfigurer {
     @Autowired
     private AuthPermInterceptor authPermInterceptor;
+    public static ConfigurableApplicationContext context = null;
     public static void main(String[] args) {
-        SpringApplication.run(PlatformSystemAppStart.class,args);
+
+        context = SpringApplication.run(PlatformSystemAppStart.class,args);
     }
 
     @Override
