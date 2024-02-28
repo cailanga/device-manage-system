@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 22/02/2024 14:54:11
+ Date: 28/02/2024 13:16:11
 */
 
 SET NAMES utf8mb4;
@@ -48,7 +48,7 @@ CREATE TABLE `t_auth_menu`  (
   `parent_id` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK24897F76799044`(`parent_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 54 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 57 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_auth_menu
@@ -61,9 +61,6 @@ INSERT INTO `t_auth_menu` VALUES (25, '组织机构管理', '/', 'fa fa-bar-char
 INSERT INTO `t_auth_menu` VALUES (26, '员工管理', '/employee', '', 25);
 INSERT INTO `t_auth_menu` VALUES (27, '部门管理', '/department', '', 25);
 INSERT INTO `t_auth_menu` VALUES (28, '系统管理', '/', 'fa fa-bar-chart', NULL);
-INSERT INTO `t_auth_menu` VALUES (29, '系统配置', '/config', '', 28);
-INSERT INTO `t_auth_menu` VALUES (30, '数据字典', '/dictionary', '', 28);
-INSERT INTO `t_auth_menu` VALUES (31, '数据字典明细', '/dictionaryitem', '', 28);
 INSERT INTO `t_auth_menu` VALUES (39, '物资设备', '/', 'fa fa-bar-chart', NULL);
 INSERT INTO `t_auth_menu` VALUES (40, '采购入库', '/procure', '', 39);
 INSERT INTO `t_auth_menu` VALUES (41, '物资', '/goods', '', 39);
@@ -79,6 +76,9 @@ INSERT INTO `t_auth_menu` VALUES (50, '商家管理', '/seller', '', 25);
 INSERT INTO `t_auth_menu` VALUES (51, '商家类型', '/sellerType', '', 25);
 INSERT INTO `t_auth_menu` VALUES (52, '统计信息', '/', 'fa fa-bar-chart', NULL);
 INSERT INTO `t_auth_menu` VALUES (53, '通知管理', '/', 'fa fa-bar-chart', NULL);
+INSERT INTO `t_auth_menu` VALUES (54, '系统备份', '/backup', '', 28);
+INSERT INTO `t_auth_menu` VALUES (55, '备份记录', '/backupRecord', '', 28);
+INSERT INTO `t_auth_menu` VALUES (56, '备份操作日志', '/backupOperatorLog', '', 28);
 
 -- ----------------------------
 -- Table structure for t_auth_permission
@@ -175,7 +175,7 @@ CREATE TABLE `t_auth_role_menu`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `role_id`(`role_id`) USING BTREE,
   INDEX `menu_id`(`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 72 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 99 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_auth_role_menu
@@ -186,33 +186,33 @@ INSERT INTO `t_auth_role_menu` VALUES (8, 2, 24);
 INSERT INTO `t_auth_role_menu` VALUES (9, 5, 32);
 INSERT INTO `t_auth_role_menu` VALUES (10, 5, 33);
 INSERT INTO `t_auth_role_menu` VALUES (11, 5, 34);
-INSERT INTO `t_auth_role_menu` VALUES (45, 1, 20);
-INSERT INTO `t_auth_role_menu` VALUES (46, 1, 21);
-INSERT INTO `t_auth_role_menu` VALUES (47, 1, 22);
-INSERT INTO `t_auth_role_menu` VALUES (48, 1, 23);
-INSERT INTO `t_auth_role_menu` VALUES (49, 1, 24);
-INSERT INTO `t_auth_role_menu` VALUES (50, 1, 25);
-INSERT INTO `t_auth_role_menu` VALUES (51, 1, 26);
-INSERT INTO `t_auth_role_menu` VALUES (52, 1, 27);
-INSERT INTO `t_auth_role_menu` VALUES (53, 1, 50);
-INSERT INTO `t_auth_role_menu` VALUES (54, 1, 51);
-INSERT INTO `t_auth_role_menu` VALUES (55, 1, 29);
-INSERT INTO `t_auth_role_menu` VALUES (56, 1, 28);
-INSERT INTO `t_auth_role_menu` VALUES (57, 1, 30);
-INSERT INTO `t_auth_role_menu` VALUES (58, 1, 31);
-INSERT INTO `t_auth_role_menu` VALUES (59, 1, 39);
-INSERT INTO `t_auth_role_menu` VALUES (60, 1, 40);
-INSERT INTO `t_auth_role_menu` VALUES (61, 1, 41);
-INSERT INTO `t_auth_role_menu` VALUES (62, 1, 42);
-INSERT INTO `t_auth_role_menu` VALUES (63, 1, 43);
-INSERT INTO `t_auth_role_menu` VALUES (64, 1, 44);
-INSERT INTO `t_auth_role_menu` VALUES (65, 1, 45);
-INSERT INTO `t_auth_role_menu` VALUES (66, 1, 46);
-INSERT INTO `t_auth_role_menu` VALUES (67, 1, 47);
-INSERT INTO `t_auth_role_menu` VALUES (68, 1, 48);
-INSERT INTO `t_auth_role_menu` VALUES (69, 1, 49);
-INSERT INTO `t_auth_role_menu` VALUES (70, 1, 52);
-INSERT INTO `t_auth_role_menu` VALUES (71, 1, 53);
+INSERT INTO `t_auth_role_menu` VALUES (72, 1, 20);
+INSERT INTO `t_auth_role_menu` VALUES (73, 1, 21);
+INSERT INTO `t_auth_role_menu` VALUES (74, 1, 22);
+INSERT INTO `t_auth_role_menu` VALUES (75, 1, 23);
+INSERT INTO `t_auth_role_menu` VALUES (76, 1, 24);
+INSERT INTO `t_auth_role_menu` VALUES (77, 1, 25);
+INSERT INTO `t_auth_role_menu` VALUES (78, 1, 26);
+INSERT INTO `t_auth_role_menu` VALUES (79, 1, 27);
+INSERT INTO `t_auth_role_menu` VALUES (80, 1, 50);
+INSERT INTO `t_auth_role_menu` VALUES (81, 1, 51);
+INSERT INTO `t_auth_role_menu` VALUES (82, 1, 39);
+INSERT INTO `t_auth_role_menu` VALUES (83, 1, 40);
+INSERT INTO `t_auth_role_menu` VALUES (84, 1, 41);
+INSERT INTO `t_auth_role_menu` VALUES (85, 1, 42);
+INSERT INTO `t_auth_role_menu` VALUES (86, 1, 43);
+INSERT INTO `t_auth_role_menu` VALUES (87, 1, 44);
+INSERT INTO `t_auth_role_menu` VALUES (88, 1, 45);
+INSERT INTO `t_auth_role_menu` VALUES (89, 1, 46);
+INSERT INTO `t_auth_role_menu` VALUES (90, 1, 47);
+INSERT INTO `t_auth_role_menu` VALUES (91, 1, 48);
+INSERT INTO `t_auth_role_menu` VALUES (92, 1, 49);
+INSERT INTO `t_auth_role_menu` VALUES (93, 1, 52);
+INSERT INTO `t_auth_role_menu` VALUES (94, 1, 53);
+INSERT INTO `t_auth_role_menu` VALUES (95, 1, 54);
+INSERT INTO `t_auth_role_menu` VALUES (96, 1, 28);
+INSERT INTO `t_auth_role_menu` VALUES (97, 1, 55);
+INSERT INTO `t_auth_role_menu` VALUES (98, 1, 56);
 
 -- ----------------------------
 -- Table structure for t_auth_role_permission
@@ -345,17 +345,13 @@ CREATE TABLE `t_device`  (
   `qualityguaranteeperiod` int(2) NULL DEFAULT NULL COMMENT '保质期(月)',
   `count` int(11) NULL DEFAULT 0 COMMENT '数量',
   `useCount` int(11) NULL DEFAULT 0 COMMENT '使用数量',
+  `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_device
 -- ----------------------------
-INSERT INTO `t_device` VALUES (1, '天上人间8栋808', 2000000.00, '天上人间8栋808，精装大套丝', NULL, 7, NULL, NULL, NULL, 1, 0);
-INSERT INTO `t_device` VALUES (2, '融创公馆101号', 1000000.00, '融创公馆101号', NULL, 7, NULL, NULL, NULL, 1, 0);
-INSERT INTO `t_device` VALUES (3, '1111', 1000000.00, '1000000', NULL, 4, NULL, NULL, NULL, 1, 0);
-INSERT INTO `t_device` VALUES (4, '11', 11.00, '11', NULL, 7, NULL, '2024-02-06 00:00:00', 11, 1, 0);
-INSERT INTO `t_device` VALUES (5, '2221', 0.00, '222', NULL, 8, 3, '2024-02-08 00:00:00', 2, 1, 1);
 
 -- ----------------------------
 -- Table structure for t_device_no_warehousing
@@ -373,17 +369,18 @@ CREATE TABLE `t_device_no_warehousing`  (
   `qualityguaranteeperiod` int(2) NULL DEFAULT NULL COMMENT '保质期(月)',
   `count` int(11) NULL DEFAULT NULL COMMENT '数量',
   `status` int(255) NULL DEFAULT 0 COMMENT '状态（未入库0，审批中1，已入库2，审批未通过-1）',
+  `createTime` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_device_no_warehousing
 -- ----------------------------
-INSERT INTO `t_device_no_warehousing` VALUES (1, '天上人间8栋808', 2000000.00, '天上人间8栋808，精装大套丝', NULL, 7, NULL, NULL, NULL, NULL, 1);
-INSERT INTO `t_device_no_warehousing` VALUES (2, '融创公馆101号', 1000000.00, '融创公馆101号', NULL, 7, NULL, NULL, NULL, NULL, 0);
-INSERT INTO `t_device_no_warehousing` VALUES (3, '1111', 1000000.00, '1000000', NULL, 4, NULL, NULL, NULL, NULL, 0);
-INSERT INTO `t_device_no_warehousing` VALUES (5, '2221', 0.00, '222', NULL, 8, 3, '2024-02-08 00:00:00', 2, 1, 2);
-INSERT INTO `t_device_no_warehousing` VALUES (6, '3434', 0.00, '3343', NULL, 8, 3, '2024-02-09 00:00:00', 32, 1, 0);
+INSERT INTO `t_device_no_warehousing` VALUES (1, '设备1', 2000000.00, '设备1', NULL, 7, NULL, NULL, NULL, 1, 0, '2024-02-27 13:48:01');
+INSERT INTO `t_device_no_warehousing` VALUES (2, '设备2', 1000000.00, '设备2', NULL, 7, NULL, NULL, NULL, 1, 0, '2024-02-27 13:48:05');
+INSERT INTO `t_device_no_warehousing` VALUES (3, '设备3', 1000000.00, '设备3', NULL, 4, NULL, NULL, NULL, 1, 0, '2024-02-27 13:48:07');
+INSERT INTO `t_device_no_warehousing` VALUES (5, '设备4', 0.00, '设备4', NULL, 8, 3, '2024-02-08 00:00:00', 2, 1, 0, '2024-02-27 13:48:10');
+INSERT INTO `t_device_no_warehousing` VALUES (6, '设备5', 0.00, '设备5', NULL, 8, 3, '2024-02-09 00:00:00', 32, 1, 0, '2024-02-27 13:48:13');
 
 -- ----------------------------
 -- Table structure for t_device_operater_log
@@ -406,11 +403,6 @@ CREATE TABLE `t_device_operater_log`  (
 -- ----------------------------
 -- Records of t_device_operater_log
 -- ----------------------------
-INSERT INTO `t_device_operater_log` VALUES (4, '入库', '批量入库设备，设备d为[1]', 1, 'admin', '2024-02-08 21:28:10', NULL, NULL, 1, '天上人间8栋808');
-INSERT INTO `t_device_operater_log` VALUES (5, '入库', '批量入库设备，设备id为1', 1, 'admin', '2024-02-08 21:35:58', NULL, NULL, 1, '天上人间8栋808');
-INSERT INTO `t_device_operater_log` VALUES (6, '入库', '批量入库设备，设备id为1', 1, 'admin', '2024-02-08 21:39:16', NULL, NULL, 1, '天上人间8栋808');
-INSERT INTO `t_device_operater_log` VALUES (7, '入库', '批量入库设备，设备id为5', 1, 'admin', '2024-02-09 10:49:55', NULL, NULL, 5, '2221');
-INSERT INTO `t_device_operater_log` VALUES (8, '审批', '111', 1, 'admin', '2024-02-09 10:50:13', NULL, NULL, 5, '2221');
 
 -- ----------------------------
 -- Table structure for t_device_type
@@ -427,14 +419,33 @@ CREATE TABLE `t_device_type`  (
 -- ----------------------------
 -- Records of t_device_type
 -- ----------------------------
-INSERT INTO `t_device_type` VALUES (1, '商品房', '商品房', NULL);
-INSERT INTO `t_device_type` VALUES (2, '别墅', '别墅', 1);
-INSERT INTO `t_device_type` VALUES (3, '跃层', '跃层', 1);
-INSERT INTO `t_device_type` VALUES (4, '公寓', '公寓', NULL);
-INSERT INTO `t_device_type` VALUES (5, '住宅公寓', '住宅公寓', 4);
-INSERT INTO `t_device_type` VALUES (6, '商办公寓', '商办公寓', 4);
-INSERT INTO `t_device_type` VALUES (7, '普通商品房', '普通商品房', 1);
-INSERT INTO `t_device_type` VALUES (8, '222', '222', 4);
+INSERT INTO `t_device_type` VALUES (1, '设备类型1', '设备类型1', NULL);
+INSERT INTO `t_device_type` VALUES (2, '设备类型2', '设备类型2', 1);
+INSERT INTO `t_device_type` VALUES (3, '设备类型3', '设备类型3', 1);
+INSERT INTO `t_device_type` VALUES (4, '设备类型4', '设备类型4', NULL);
+INSERT INTO `t_device_type` VALUES (5, '设备类型5', '设备类型5', 4);
+INSERT INTO `t_device_type` VALUES (6, '设备类型6', '设备类型6', 4);
+INSERT INTO `t_device_type` VALUES (7, '设备类型7', '设备类型7', 1);
+INSERT INTO `t_device_type` VALUES (8, '设备类型8', '设备类型8', 4);
+
+-- ----------------------------
+-- Table structure for t_disable
+-- ----------------------------
+DROP TABLE IF EXISTS `t_disable`;
+CREATE TABLE `t_disable`  (
+  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `goodsId` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '维修设备id',
+  `cause` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '维修原因',
+  `description` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
+  `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `date` datetime NULL DEFAULT NULL COMMENT '报废时间',
+  `operatorId` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '操作者id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '维修记录表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_disable
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_goods
@@ -450,20 +461,13 @@ CREATE TABLE `t_goods`  (
   `sellerId` int(11) NULL DEFAULT NULL,
   `count` int(11) NULL DEFAULT NULL COMMENT '数量',
   `useCount` int(11) NULL DEFAULT 0 COMMENT '使用数量',
+  `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_goods
 -- ----------------------------
-INSERT INTO `t_goods` VALUES (1, '天上人间8栋808', 2000000.00, '天上人间8栋808，精装大套丝', NULL, 7, NULL, 1, 0);
-INSERT INTO `t_goods` VALUES (2, '融创公馆101号', 1000000.00, '融创公馆101号', NULL, 7, NULL, 1, 0);
-INSERT INTO `t_goods` VALUES (3, '1111', 1000000.00, '1000000', NULL, 4, NULL, 1, 0);
-INSERT INTO `t_goods` VALUES (4, '天上人间8栋808', 2000000.00, '天上人间8栋808，精装大套丝', NULL, 7, NULL, 1, 0);
-INSERT INTO `t_goods` VALUES (5, '天上人间8栋808', 2000000.00, '天上人间8栋808，精装大套丝', NULL, 7, NULL, 1, 0);
-INSERT INTO `t_goods` VALUES (6, '天上人间8栋808', 2000000.00, '天上人间8栋808，精装大套丝', NULL, 7, NULL, 1, 0);
-INSERT INTO `t_goods` VALUES (7, '33334', 0.00, '3333', NULL, 7, NULL, 1, 1);
-INSERT INTO `t_goods` VALUES (8, '融创公馆101号', 1000000.00, '融创公馆101号', NULL, 7, NULL, 1, 0);
 
 -- ----------------------------
 -- Table structure for t_goods_no_warehousing
@@ -479,16 +483,17 @@ CREATE TABLE `t_goods_no_warehousing`  (
   `sellerId` int(11) NULL DEFAULT NULL,
   `count` int(11) NULL DEFAULT NULL COMMENT '数量',
   `status` int(11) NULL DEFAULT 0 COMMENT '状态（未入库0，审批中1，已入库2）',
+  `createTime` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_goods_no_warehousing
 -- ----------------------------
-INSERT INTO `t_goods_no_warehousing` VALUES (1, '天上人间8栋808', 2000000.00, '天上人间8栋808，精装大套丝', NULL, 7, NULL, 1, 2);
-INSERT INTO `t_goods_no_warehousing` VALUES (2, '融创公馆101号', 1000000.00, '融创公馆101号', NULL, 7, NULL, 1, 2);
-INSERT INTO `t_goods_no_warehousing` VALUES (3, '1111', 1000000.00, '1000000', NULL, 4, NULL, 1, 0);
-INSERT INTO `t_goods_no_warehousing` VALUES (5, '333343', 0.00, '3333', NULL, 7, 3, 1, 2);
+INSERT INTO `t_goods_no_warehousing` VALUES (1, '物资1', 2000000.00, '物资1', NULL, 7, 3, 1, 0, '2024-02-27 13:49:11');
+INSERT INTO `t_goods_no_warehousing` VALUES (2, '物资2', 1000000.00, '物资2', NULL, 7, 3, 1, 0, '2024-02-27 13:49:15');
+INSERT INTO `t_goods_no_warehousing` VALUES (3, '物资3', 1000000.00, '物资3', NULL, 4, 3, 1, 0, '2024-02-27 13:49:18');
+INSERT INTO `t_goods_no_warehousing` VALUES (5, '物资4', 0.00, '物资4', NULL, 7, 3, 1, 0, '2024-02-27 13:49:21');
 
 -- ----------------------------
 -- Table structure for t_goods_operater_log
@@ -511,16 +516,6 @@ CREATE TABLE `t_goods_operater_log`  (
 -- ----------------------------
 -- Records of t_goods_operater_log
 -- ----------------------------
-INSERT INTO `t_goods_operater_log` VALUES (1, '入库', '批量入库物资，物资id为[1]', 1, 'admin', '2024-02-08 18:36:22', NULL, NULL, NULL, NULL);
-INSERT INTO `t_goods_operater_log` VALUES (2, '审批', '可以入库', 1, 'admin', NULL, NULL, NULL, 1, '天上人间8栋808');
-INSERT INTO `t_goods_operater_log` VALUES (3, '审批', '可以入库', 1, 'admin', '2024-02-08 20:36:40', NULL, NULL, 1, '天上人间8栋808');
-INSERT INTO `t_goods_operater_log` VALUES (4, '审批', '111', 1, 'admin', '2024-02-08 21:38:54', NULL, NULL, 1, '天上人间8栋808');
-INSERT INTO `t_goods_operater_log` VALUES (5, '入库', '批量入库物资，物资id为5', 1, 'admin', '2024-02-08 23:01:08', NULL, NULL, 5, '33334');
-INSERT INTO `t_goods_operater_log` VALUES (6, '审批', '不能入库', 1, 'admin', '2024-02-08 23:03:43', NULL, NULL, 5, '33334');
-INSERT INTO `t_goods_operater_log` VALUES (7, '入库', '批量入库物资，物资id为5', 1, 'admin', '2024-02-08 23:04:02', NULL, NULL, 5, '33334');
-INSERT INTO `t_goods_operater_log` VALUES (8, '审批', '允许入库', 1, 'admin', '2024-02-08 23:04:18', NULL, NULL, 5, '33334');
-INSERT INTO `t_goods_operater_log` VALUES (9, '入库', '批量入库物资，物资id为2', 1, 'admin', '2024-02-10 11:40:43', NULL, NULL, 2, '融创公馆101号');
-INSERT INTO `t_goods_operater_log` VALUES (10, '审批', '111', 1, 'admin', '2024-02-10 11:40:59', NULL, NULL, 2, '融创公馆101号');
 
 -- ----------------------------
 -- Table structure for t_goods_type
@@ -537,14 +532,14 @@ CREATE TABLE `t_goods_type`  (
 -- ----------------------------
 -- Records of t_goods_type
 -- ----------------------------
-INSERT INTO `t_goods_type` VALUES (1, '商品房', '商品房', NULL);
-INSERT INTO `t_goods_type` VALUES (2, '别墅', '别墅', 1);
-INSERT INTO `t_goods_type` VALUES (3, '跃层', '跃层', 1);
-INSERT INTO `t_goods_type` VALUES (4, '公寓', '公寓', NULL);
-INSERT INTO `t_goods_type` VALUES (5, '住宅公寓', '住宅公寓', 4);
-INSERT INTO `t_goods_type` VALUES (6, '商办公寓', '商办公寓', 4);
-INSERT INTO `t_goods_type` VALUES (7, '普通商品房', '普通商品房', 1);
-INSERT INTO `t_goods_type` VALUES (8, '112', '11', 1);
+INSERT INTO `t_goods_type` VALUES (1, '物资类型1', '物资类型1', NULL);
+INSERT INTO `t_goods_type` VALUES (2, '物资类型2', '物资类型2', 1);
+INSERT INTO `t_goods_type` VALUES (3, '物资类型3', '物资类型3', 1);
+INSERT INTO `t_goods_type` VALUES (4, '物资类型4', '物资类型4', NULL);
+INSERT INTO `t_goods_type` VALUES (5, '物资类型5', '物资类型5', 4);
+INSERT INTO `t_goods_type` VALUES (6, '物资类型6', '物资类型6', 4);
+INSERT INTO `t_goods_type` VALUES (7, '物资类型7', '物资类型7', 1);
+INSERT INTO `t_goods_type` VALUES (8, '物资类型8', '物资类型8', 1);
 
 -- ----------------------------
 -- Table structure for t_goods_use_record
@@ -566,8 +561,25 @@ CREATE TABLE `t_goods_use_record`  (
 -- ----------------------------
 -- Records of t_goods_use_record
 -- ----------------------------
-INSERT INTO `t_goods_use_record` VALUES (9, 1, 7, 1, 2, 1, '/1/2', '111', 1);
-INSERT INTO `t_goods_use_record` VALUES (10, 1, 5, 1, 18, 1, '/18', '111', 2);
+
+-- ----------------------------
+-- Table structure for t_maintain
+-- ----------------------------
+DROP TABLE IF EXISTS `t_maintain`;
+CREATE TABLE `t_maintain`  (
+  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `goodsId` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '维修设备id',
+  `cause` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '维修原因',
+  `description` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
+  `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `date` datetime NULL DEFAULT NULL COMMENT '维修时间',
+  `operatorId` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '操作者id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '维修记录表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_maintain
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_org_department
@@ -619,12 +631,12 @@ CREATE TABLE `t_org_employee`  (
   `department_id` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK4AFD4ACE851EFECF`(`department_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_org_employee
 -- ----------------------------
-INSERT INTO `t_org_employee` VALUES (1, 'admin', '123', 'admin@ronghuanet.com', '/images/head/avatar.png', 34, 1);
+INSERT INTO `t_org_employee` VALUES (1, 'admin', '123456', '11@qq.com', '/images/head/avatar.png', 33, 1);
 INSERT INTO `t_org_employee` VALUES (2, 'menuAdmin', '123', 'roleAdmin@ronghuanet.com', '/images/head/avatar1.png', 25, 1);
 INSERT INTO `t_org_employee` VALUES (3, 'admin1', '123', 'amdin1@ronghuanet.com', '/images/head/avatar2.png', 25, 1);
 INSERT INTO `t_org_employee` VALUES (4, 'admin2', '123', 'amdin2@ronghuanet.com', NULL, 25, 2);
@@ -656,6 +668,8 @@ INSERT INTO `t_org_employee` VALUES (29, 'admin27', '123', 'amdin27@ronghuanet.c
 INSERT INTO `t_org_employee` VALUES (30, 'admin28', '123', 'amdin28@ronghuanet.com', '/images/head/avatar3.png', 25, 3);
 INSERT INTO `t_org_employee` VALUES (31, 'admin29', '123', 'amdin29@ronghuanet.com', '/images/head/avatar3.png', 25, 1);
 INSERT INTO `t_org_employee` VALUES (32, 'admin30', '123', 'amdin30@ronghuanet.com', '/images/head/avatar3.png', 25, 1);
+INSERT INTO `t_org_employee` VALUES (33, '', '123456', '', NULL, 34, NULL);
+INSERT INTO `t_org_employee` VALUES (34, '', '123456', '', NULL, 34, NULL);
 
 -- ----------------------------
 -- Table structure for t_seller
@@ -701,71 +715,146 @@ INSERT INTO `t_seller_type` VALUES (5, '商家5', '商家5....', 4);
 INSERT INTO `t_seller_type` VALUES (6, '商家6', '商家6....', 4);
 
 -- ----------------------------
--- Table structure for t_sys_config
+-- Table structure for t_sys_backup
 -- ----------------------------
-DROP TABLE IF EXISTS `t_sys_config`;
-CREATE TABLE `t_sys_config`  (
+DROP TABLE IF EXISTS `t_sys_backup`;
+CREATE TABLE `t_sys_backup`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `key` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '配置信息的key',
-  `value` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '配置信息的值',
-  `type` bigint(255) NULL DEFAULT NULL,
-  `intro` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '简介',
+  `backupFileName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备份文件名',
+  `backupTime` datetime NULL DEFAULT NULL COMMENT '备份时间',
+  `operatorId` bigint(20) NULL DEFAULT NULL COMMENT '备份人',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 42 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of t_sys_config
+-- Records of t_sys_backup
 -- ----------------------------
-INSERT INTO `t_sys_config` VALUES (1, 'key1', 'value1', 1, '');
-INSERT INTO `t_sys_config` VALUES (3, 'key2', 'value2', NULL, NULL);
-INSERT INTO `t_sys_config` VALUES (4, 'key3', 'value3', NULL, NULL);
+INSERT INTO `t_sys_backup` VALUES (41, '2024-02-28_04-46-56_pzhxy_device_manager.sql', '2024-02-28 04:46:57', 1, 'test');
 
 -- ----------------------------
--- Table structure for t_sys_dictionary
+-- Table structure for t_sys_backup_operator_log
 -- ----------------------------
-DROP TABLE IF EXISTS `t_sys_dictionary`;
-CREATE TABLE `t_sys_dictionary`  (
+DROP TABLE IF EXISTS `t_sys_backup_operator_log`;
+CREATE TABLE `t_sys_backup_operator_log`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `sn` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标识',
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标题',
-  `intro` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
-  `status` int(11) NULL DEFAULT NULL COMMENT '状态1=启用 0=禁用',
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `sn`(`sn`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
+  `time` datetime NULL DEFAULT NULL COMMENT '操作时间',
+  `operatorId` bigint(20) NULL DEFAULT NULL COMMENT '操作人',
+  `operatorName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作名称',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 90 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of t_sys_dictionary
+-- Records of t_sys_backup_operator_log
 -- ----------------------------
-INSERT INTO `t_sys_dictionary` VALUES (1, '标识1', '标题1', '', 1);
-INSERT INTO `t_sys_dictionary` VALUES (2, '标识2', '标题2', '', 1);
-INSERT INTO `t_sys_dictionary` VALUES (3, '标识3', '标题3', '', 1);
-INSERT INTO `t_sys_dictionary` VALUES (4, '标识4', '标题4', '', 1);
-INSERT INTO `t_sys_dictionary` VALUES (5, '标识5', '标题5', '', 1);
-INSERT INTO `t_sys_dictionary` VALUES (6, '标识6', '标题6', '', 1);
+INSERT INTO `t_sys_backup_operator_log` VALUES (1, '禁用CRON:0 0 2 * * ?', '2024-02-27 19:44:55', 1, '禁用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (2, '更新CRON:0 0 2 * * ?->0 0 2 * * ?', '2024-02-27 19:46:41', 1, '更新CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (3, '添加CRON:0 0 2 * * ?', '2024-02-27 19:51:56', 1, '添加CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (4, '更新CRON:0 0 2 * * ?->0 0 2 * * ?', '2024-02-27 19:54:27', 1, '更新CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (5, '添加CRON:0 0 20 * * ?', '2024-02-27 19:58:55', 1, '添加CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (6, '启用CRON:0 0 20 * * ?', '2024-02-27 19:59:40', 1, '启用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (7, '禁用CRON:0 0 20 * * ?', '2024-02-27 20:05:29', 1, '禁用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (8, '添加CRON:0 0 20 * * ?', '2024-02-27 20:08:50', 1, '添加CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (9, 'test', '2024-02-27 20:14:13', 1, '手动备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (10, '更新CRON:0 19 20 * * ?->0 19 20 * * ?', '2024-02-27 20:17:40', 1, '更新CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (11, '启用CRON:0 19 20 * * ?', '2024-02-27 20:17:48', 1, '启用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (12, '更新CRON:0 0/5 * * * ?->0 0/5 * * * ?', '2024-02-27 20:30:39', 1, '更新CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (13, '更新CRON:0 0/5 * * * ?->0 0/2 * * * ?', '2024-02-27 20:32:12', 1, '更新CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (14, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 21:12:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (15, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 21:13:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (16, '更新CRON:0 0/1 * * * ?->0 0/5 * * * ?', '2024-02-27 21:13:57', 1, '更新CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (17, '系统定时任务备份,执行规则：0 0/5 * * * ?', '2024-02-27 21:14:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (18, '系统定时任务备份,执行规则：0 0/5 * * * ?', '2024-02-27 21:15:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (19, '系统定时任务备份,执行规则：0 0/5 * * * ?', '2024-02-27 21:20:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (20, '禁用CRON:0 0/5 * * * ?', '2024-02-27 21:21:05', 1, '禁用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (21, '添加CRON:0 0/1 * * * ?', '2024-02-27 21:27:34', 1, '添加CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (22, '启用CRON:0 0/1 * * * ?', '2024-02-27 21:49:07', 1, '启用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (23, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:14:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (24, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:15:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (25, '系统定时任务备份,执行规则：0 0/5 * * * ?', '2024-02-27 22:15:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (26, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:16:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (27, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:17:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (28, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:18:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (29, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:19:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (30, '启用CRON:0 0/5 * * * ?', '2024-02-27 22:19:33', 1, '启用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (31, '系统定时任务备份,执行规则：0 0/5 * * * ?', '2024-02-27 22:20:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (32, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:20:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (33, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:21:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (34, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:22:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (35, '添加CRON:10 0/1 * * * ?', '2024-02-27 22:22:16', 1, '添加CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (36, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:23:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (37, '系统定时任务备份,执行规则：10 0/1 * * * ?', '2024-02-27 22:23:10', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (38, '禁用CRON:10 0/1 * * * ?', '2024-02-27 22:23:54', 1, '禁用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (39, '禁用CRON:0 0/1 * * * ?', '2024-02-27 22:23:55', 1, '禁用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (40, '禁用CRON:0 0/5 * * * ?', '2024-02-27 22:23:56', 1, '禁用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (41, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:24:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (42, '系统定时任务备份,执行规则：10 0/1 * * * ?', '2024-02-27 22:24:10', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (43, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:25:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (44, '系统定时任务备份,执行规则：0 0/5 * * * ?', '2024-02-27 22:25:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (45, '系统定时任务备份,执行规则：10 0/1 * * * ?', '2024-02-27 22:25:10', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (46, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:26:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (47, '系统定时任务备份,执行规则：10 0/1 * * * ?', '2024-02-27 22:26:10', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (48, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:27:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (49, '系统定时任务备份,执行规则：10 0/1 * * * ?', '2024-02-27 22:27:10', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (50, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:28:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (51, '系统定时任务备份,执行规则：10 0/1 * * * ?', '2024-02-27 22:28:10', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (52, '启用CRON:0 0/1 * * * ?', '2024-02-27 22:31:20', 1, '启用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (53, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:41:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (54, '启用CRON:10 0/1 * * * ?', '2024-02-27 22:41:46', 1, '启用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (55, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:42:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (56, '系统定时任务备份,执行规则：10 0/1 * * * ?', '2024-02-27 22:42:10', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (57, '系统定时任务备份,执行规则：0 0/1 * * * ?', '2024-02-27 22:43:00', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (58, '系统定时任务备份,执行规则：10 0/1 * * * ?', '2024-02-27 22:43:10', -1, '系统备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (59, '禁用CRON:0 0/1 * * * ?', '2024-02-27 22:43:18', 1, '禁用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (60, '禁用CRON:10 0/1 * * * ?', '2024-02-27 22:43:19', 1, '禁用CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (61, 'test', '2024-02-27 23:06:21', 1, '手动备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (62, 'admin删除了备份文件：2024-02-27_22-43-00_pzhxy_device_manager.sql', '2024-02-27 23:58:04', 1, '删除备份文件');
+INSERT INTO `t_sys_backup_operator_log` VALUES (63, 'admin删除了备份文件：2024-02-27_22-43-00_pzhxy_device_manager.sql', '2024-02-28 00:00:26', 1, '删除备份文件');
+INSERT INTO `t_sys_backup_operator_log` VALUES (64, 'admin删除了定时任务,任务信息：null', '2024-02-28 00:04:07', 1, '删除定时任务');
+INSERT INTO `t_sys_backup_operator_log` VALUES (65, 'test', '2024-02-28 00:04:29', 1, '手动备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (66, 'admin删除了定时任务,任务信息：null', '2024-02-28 00:04:57', 1, '删除定时任务');
+INSERT INTO `t_sys_backup_operator_log` VALUES (67, 'admin根据备份文件：D:/device_manager_system_backup/2024-02-28_00-04-28_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 00:05:06', 1, '根据备份文件恢复');
+INSERT INTO `t_sys_backup_operator_log` VALUES (68, '添加CRON:0 0/1 * * * ?', '2024-02-28 00:09:32', 1, '添加CRON表达式');
+INSERT INTO `t_sys_backup_operator_log` VALUES (69, 'admin根据备份文件：2024-02-28_00-04-28_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 00:10:15', 1, '根据备份文件恢复');
+INSERT INTO `t_sys_backup_operator_log` VALUES (70, 'admin根据备份文件：2024-02-28_00-04-28_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 00:11:55', 1, '根据备份文件恢复');
+INSERT INTO `t_sys_backup_operator_log` VALUES (71, 'admin根据备份文件：2024-02-28_00-04-28_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 00:15:34', 1, '根据备份文件恢复失败');
+INSERT INTO `t_sys_backup_operator_log` VALUES (72, 'admin根据备份文件：2024-02-28_00-04-28_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 00:19:31', 1, '根据备份文件恢复失败');
+INSERT INTO `t_sys_backup_operator_log` VALUES (73, 'admin根据备份文件：2024-02-28_00-04-28_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 00:24:44', 1, '根据备份文件恢复失败');
+INSERT INTO `t_sys_backup_operator_log` VALUES (74, 'admin根据备份文件：2024-02-28_00-04-28_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 00:28:22', 1, '根据备份文件恢复失败');
+INSERT INTO `t_sys_backup_operator_log` VALUES (75, 'admin根据备份文件：2024-02-28_00-04-28_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 00:31:41', 1, '根据备份文件恢复失败');
+INSERT INTO `t_sys_backup_operator_log` VALUES (76, 'admin根据备份文件：2024-02-28_00-04-28_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 01:11:23', 1, '根据备份文件恢复失败');
+INSERT INTO `t_sys_backup_operator_log` VALUES (77, 'admin根据备份文件：2024-02-28_00-04-28_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 01:13:24', 1, '根据备份文件恢复失败');
+INSERT INTO `t_sys_backup_operator_log` VALUES (78, 'admin根据备份文件：2024-02-28_00-04-28_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 01:16:47', 1, '根据备份文件恢复失败');
+INSERT INTO `t_sys_backup_operator_log` VALUES (79, 'admin根据备份文件：2024-02-28_00-04-28_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 01:26:55', 1, '根据备份文件恢复失败');
+INSERT INTO `t_sys_backup_operator_log` VALUES (80, 'test', '2024-02-28 01:33:09', 1, '手动备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (81, 'admin根据备份文件：2024-02-28_01-33-08_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 01:33:18', 1, '根据备份文件恢复失败');
+INSERT INTO `t_sys_backup_operator_log` VALUES (82, '', '2024-02-28 01:38:58', 1, '手动备份');
+INSERT INTO `t_sys_backup_operator_log` VALUES (83, 'admin根据备份文件：2024-02-28_01-38-58_pzhxy_device_manager.sql进行了数据库恢复', '2024-02-28 04:46:03', 1, '根据备份文件恢复成功');
+INSERT INTO `t_sys_backup_operator_log` VALUES (84, 'admin删除了备份文件：2024-02-27_22-43-10_pzhxy_device_manager.sql', '2024-02-28 04:46:36', 1, '删除备份文件');
+INSERT INTO `t_sys_backup_operator_log` VALUES (85, 'admin删除了备份文件：2024-02-27_23-06-20_pzhxy_device_manager.sql', '2024-02-28 04:46:38', 1, '删除备份文件');
+INSERT INTO `t_sys_backup_operator_log` VALUES (86, 'admin删除了备份文件：2024-02-28_00-04-28_pzhxy_device_manager.sql', '2024-02-28 04:46:40', 1, '删除备份文件');
+INSERT INTO `t_sys_backup_operator_log` VALUES (87, 'admin删除了备份文件：2024-02-28_01-33-08_pzhxy_device_manager.sql', '2024-02-28 04:46:42', 1, '删除备份文件');
+INSERT INTO `t_sys_backup_operator_log` VALUES (88, 'admin删除了备份文件：2024-02-28_01-38-58_pzhxy_device_manager.sql', '2024-02-28 04:46:44', 1, '删除备份文件');
+INSERT INTO `t_sys_backup_operator_log` VALUES (89, 'test', '2024-02-28 04:46:57', 1, '手动备份');
 
 -- ----------------------------
--- Table structure for t_sys_dictionaryitem
+-- Table structure for t_sys_scheduledcron
 -- ----------------------------
-DROP TABLE IF EXISTS `t_sys_dictionaryitem`;
-CREATE TABLE `t_sys_dictionaryitem`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `sequence` int(11) NULL DEFAULT NULL,
-  `intro` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `parent_id` bigint(20) NULL DEFAULT NULL COMMENT '数据字典类型id',
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `FKA19398F8B4C06BAA`(`parent_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+DROP TABLE IF EXISTS `t_sys_scheduledcron`;
+CREATE TABLE `t_sys_scheduledcron`  (
+  `cronId` int(11) NOT NULL AUTO_INCREMENT,
+  `cronKey` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '定时任务完整类名',
+  `cronExpression` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'corn表达式',
+  `taskExplain` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '任务描述',
+  `taskStatus` int(1) NULL DEFAULT NULL COMMENT '状态：1：正常，2:停用',
+  PRIMARY KEY (`cronId`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of t_sys_dictionaryitem
+-- Records of t_sys_scheduledcron
 -- ----------------------------
-INSERT INTO `t_sys_dictionaryitem` VALUES (1, '标题1', '', 1, '', 1);
-INSERT INTO `t_sys_dictionaryitem` VALUES (2, '标题2', NULL, 2, '', 1);
-INSERT INTO `t_sys_dictionaryitem` VALUES (3, '标题3', NULL, 3, '', 1);
-INSERT INTO `t_sys_dictionaryitem` VALUES (4, '标题4', NULL, 4, '', 1);
-INSERT INTO `t_sys_dictionaryitem` VALUES (5, '标题5', NULL, 5, '', 1);
+INSERT INTO `t_sys_scheduledcron` VALUES (12, 'cn.cailang.sys.Scheduled.DBBackupTask@2', '10 0/1 * * * ?', 'test', 2);
+INSERT INTO `t_sys_scheduledcron` VALUES (13, 'cn.cailang.sys.Scheduled.DBBackupTask', '0 0/1 * * * ?', 'test', 2);
 
 SET FOREIGN_KEY_CHECKS = 1;
