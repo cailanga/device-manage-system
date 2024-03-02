@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 28/02/2024 13:16:11
+ Date: 02/03/2024 12:23:52
 */
 
 SET NAMES utf8mb4;
@@ -48,7 +48,7 @@ CREATE TABLE `t_auth_menu`  (
   `parent_id` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK24897F76799044`(`parent_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 57 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_auth_menu
@@ -79,6 +79,7 @@ INSERT INTO `t_auth_menu` VALUES (53, '通知管理', '/', 'fa fa-bar-chart', NU
 INSERT INTO `t_auth_menu` VALUES (54, '系统备份', '/backup', '', 28);
 INSERT INTO `t_auth_menu` VALUES (55, '备份记录', '/backupRecord', '', 28);
 INSERT INTO `t_auth_menu` VALUES (56, '备份操作日志', '/backupOperatorLog', '', 28);
+INSERT INTO `t_auth_menu` VALUES (57, '设备信息统计', '/deviceShow', '', 52);
 
 -- ----------------------------
 -- Table structure for t_auth_permission
@@ -175,7 +176,7 @@ CREATE TABLE `t_auth_role_menu`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `role_id`(`role_id`) USING BTREE,
   INDEX `menu_id`(`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 99 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 127 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_auth_role_menu
@@ -186,33 +187,34 @@ INSERT INTO `t_auth_role_menu` VALUES (8, 2, 24);
 INSERT INTO `t_auth_role_menu` VALUES (9, 5, 32);
 INSERT INTO `t_auth_role_menu` VALUES (10, 5, 33);
 INSERT INTO `t_auth_role_menu` VALUES (11, 5, 34);
-INSERT INTO `t_auth_role_menu` VALUES (72, 1, 20);
-INSERT INTO `t_auth_role_menu` VALUES (73, 1, 21);
-INSERT INTO `t_auth_role_menu` VALUES (74, 1, 22);
-INSERT INTO `t_auth_role_menu` VALUES (75, 1, 23);
-INSERT INTO `t_auth_role_menu` VALUES (76, 1, 24);
-INSERT INTO `t_auth_role_menu` VALUES (77, 1, 25);
-INSERT INTO `t_auth_role_menu` VALUES (78, 1, 26);
-INSERT INTO `t_auth_role_menu` VALUES (79, 1, 27);
-INSERT INTO `t_auth_role_menu` VALUES (80, 1, 50);
-INSERT INTO `t_auth_role_menu` VALUES (81, 1, 51);
-INSERT INTO `t_auth_role_menu` VALUES (82, 1, 39);
-INSERT INTO `t_auth_role_menu` VALUES (83, 1, 40);
-INSERT INTO `t_auth_role_menu` VALUES (84, 1, 41);
-INSERT INTO `t_auth_role_menu` VALUES (85, 1, 42);
-INSERT INTO `t_auth_role_menu` VALUES (86, 1, 43);
-INSERT INTO `t_auth_role_menu` VALUES (87, 1, 44);
-INSERT INTO `t_auth_role_menu` VALUES (88, 1, 45);
-INSERT INTO `t_auth_role_menu` VALUES (89, 1, 46);
-INSERT INTO `t_auth_role_menu` VALUES (90, 1, 47);
-INSERT INTO `t_auth_role_menu` VALUES (91, 1, 48);
-INSERT INTO `t_auth_role_menu` VALUES (92, 1, 49);
-INSERT INTO `t_auth_role_menu` VALUES (93, 1, 52);
-INSERT INTO `t_auth_role_menu` VALUES (94, 1, 53);
-INSERT INTO `t_auth_role_menu` VALUES (95, 1, 54);
-INSERT INTO `t_auth_role_menu` VALUES (96, 1, 28);
-INSERT INTO `t_auth_role_menu` VALUES (97, 1, 55);
-INSERT INTO `t_auth_role_menu` VALUES (98, 1, 56);
+INSERT INTO `t_auth_role_menu` VALUES (99, 1, 20);
+INSERT INTO `t_auth_role_menu` VALUES (100, 1, 21);
+INSERT INTO `t_auth_role_menu` VALUES (101, 1, 22);
+INSERT INTO `t_auth_role_menu` VALUES (102, 1, 23);
+INSERT INTO `t_auth_role_menu` VALUES (103, 1, 24);
+INSERT INTO `t_auth_role_menu` VALUES (104, 1, 25);
+INSERT INTO `t_auth_role_menu` VALUES (105, 1, 26);
+INSERT INTO `t_auth_role_menu` VALUES (106, 1, 27);
+INSERT INTO `t_auth_role_menu` VALUES (107, 1, 50);
+INSERT INTO `t_auth_role_menu` VALUES (108, 1, 51);
+INSERT INTO `t_auth_role_menu` VALUES (109, 1, 39);
+INSERT INTO `t_auth_role_menu` VALUES (110, 1, 40);
+INSERT INTO `t_auth_role_menu` VALUES (111, 1, 41);
+INSERT INTO `t_auth_role_menu` VALUES (112, 1, 42);
+INSERT INTO `t_auth_role_menu` VALUES (113, 1, 43);
+INSERT INTO `t_auth_role_menu` VALUES (114, 1, 44);
+INSERT INTO `t_auth_role_menu` VALUES (115, 1, 45);
+INSERT INTO `t_auth_role_menu` VALUES (116, 1, 46);
+INSERT INTO `t_auth_role_menu` VALUES (117, 1, 47);
+INSERT INTO `t_auth_role_menu` VALUES (118, 1, 48);
+INSERT INTO `t_auth_role_menu` VALUES (119, 1, 49);
+INSERT INTO `t_auth_role_menu` VALUES (120, 1, 52);
+INSERT INTO `t_auth_role_menu` VALUES (121, 1, 53);
+INSERT INTO `t_auth_role_menu` VALUES (122, 1, 54);
+INSERT INTO `t_auth_role_menu` VALUES (123, 1, 28);
+INSERT INTO `t_auth_role_menu` VALUES (124, 1, 55);
+INSERT INTO `t_auth_role_menu` VALUES (125, 1, 56);
+INSERT INTO `t_auth_role_menu` VALUES (126, 1, 57);
 
 -- ----------------------------
 -- Table structure for t_auth_role_permission
@@ -347,7 +349,7 @@ CREATE TABLE `t_device`  (
   `useCount` int(11) NULL DEFAULT 0 COMMENT '使用数量',
   `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_device
@@ -398,7 +400,7 @@ CREATE TABLE `t_device_operater_log`  (
   `deviceId` int(11) NULL DEFAULT NULL COMMENT '处理的物品的id',
   `deviceName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_device_operater_log
@@ -441,7 +443,7 @@ CREATE TABLE `t_disable`  (
   `date` datetime NULL DEFAULT NULL COMMENT '报废时间',
   `operatorId` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '操作者id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '维修记录表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '维修记录表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_disable
@@ -463,7 +465,7 @@ CREATE TABLE `t_goods`  (
   `useCount` int(11) NULL DEFAULT 0 COMMENT '使用数量',
   `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_goods
@@ -511,7 +513,7 @@ CREATE TABLE `t_goods_operater_log`  (
   `goodsId` int(11) NULL DEFAULT NULL COMMENT '处理的物品的id',
   `goodsName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_goods_operater_log
@@ -556,7 +558,7 @@ CREATE TABLE `t_goods_use_record`  (
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   `type` int(11) NULL DEFAULT NULL COMMENT '1物资，2设备',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_goods_use_record
@@ -575,7 +577,7 @@ CREATE TABLE `t_maintain`  (
   `date` datetime NULL DEFAULT NULL COMMENT '维修时间',
   `operatorId` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '操作者id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '维修记录表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '维修记录表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_maintain
@@ -702,7 +704,7 @@ CREATE TABLE `t_seller_type`  (
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `parent_id` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_seller_type
