@@ -76,6 +76,7 @@ public class WarehousingDevicesServiceImpl extends BaseServiceImpl<WarehousingDe
             Devices goods = new Devices();
             BeanUtils.copyProperties(warehousingGoods,goods);
             goods.setUseCount(0);
+            goods.setCreateTime(new Date());
             goodsMapper.insert(goods);
         }else if (dto.getOperateTypeId()==2){
             //驳回

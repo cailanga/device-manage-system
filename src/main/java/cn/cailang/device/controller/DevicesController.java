@@ -8,6 +8,7 @@ import cn.cailang.device.service.IDevicesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,6 +30,7 @@ public class DevicesController {
                     productService.update(product);
             }
             else{
+                product.setCreateTime(new Date());
                     productService.insert(product);
             }
             return AjaxResult.me();
@@ -79,6 +81,18 @@ public class DevicesController {
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResult.me().setSuccess(false).setMessage("获取一个失败！"+e.getMessage());
+        }
+    }
+
+    @GetMapping("/devicesByTypeId/{id}")
+    public AjaxResult getByTypeId(@PathVariable("id")Long id)
+    {
+        try {
+            List<Devices> list = productService.selectByTypeId(id);
+            return AjaxResult.me().setResultObject(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AjaxResult.me().setSuccess(false).setMessage("获取失败！"+e.getMessage());
         }
     }
 

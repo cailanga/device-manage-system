@@ -2,12 +2,14 @@ package cn.cailang.goods.controller;
 
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.PageList;
+import cn.cailang.device.domain.Devices;
 import cn.cailang.goods.domain.Goods;
 import cn.cailang.goods.query.GoodsQuery;
 import cn.cailang.goods.service.IGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,6 +31,7 @@ public class GoodsController {
                     productService.update(product);
             }
             else{
+                product.setCreateTime(new Date());
                     productService.insert(product);
             }
             return AjaxResult.me();
@@ -82,6 +85,17 @@ public class GoodsController {
         }
     }
 
+    @GetMapping("/goodsByTypeId/{id}")
+    public AjaxResult getByTypeId(@PathVariable("id")Long id)
+    {
+        try {
+            List<Goods> list = productService.selectByTypeId(id);
+            return AjaxResult.me().setResultObject(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AjaxResult.me().setSuccess(false).setMessage("获取失败！"+e.getMessage());
+        }
+    }
 
     /**
     * 查看所有的信息

@@ -71,6 +71,9 @@
         <include refid="whereSql"/>
         limit #{start},#{pageSize}
     </select>
+    <select id="selectByTypeId" resultType="cn.cailang.goods.domain.Goods">
+        select * from t_goods where type_id = #{typeId}
+    </select>
 
 
     <sql id="whereSql">
