@@ -64,7 +64,7 @@ public class WarehousingDevicesServiceImpl extends BaseServiceImpl<WarehousingDe
         DevicesOperaterLog goodsOperaterLog = new DevicesOperaterLog();
         goodsOperaterLog.setType("审批");
         goodsOperaterLog.setOperatorId(userInfo.getId());
-        goodsOperaterLog.setDescription(description);
+//        goodsOperaterLog.setDescription(description);
         goodsOperaterLog.setOperatorName(userInfo.getUsername());
         goodsOperaterLog.setDeviceId(dto.getDeviceId());
         WarehousingDevices warehousingGoods = warehousingGoodsMapper.selectById(goodsId);
@@ -78,9 +78,11 @@ public class WarehousingDevicesServiceImpl extends BaseServiceImpl<WarehousingDe
             goods.setUseCount(0);
             goods.setCreateTime(new Date());
             goodsMapper.insert(goods);
+            goodsOperaterLog.setDescription("审批通过："+description);
         }else if (dto.getOperateTypeId()==2){
             //驳回
             warehousingGoods.setStatus(-1);
+            goodsOperaterLog.setDescription("审批驳回："+description);
         }
         warehousingGoodsMapper.update(warehousingGoods);
         goodsOperaterLogMapper.insert(goodsOperaterLog);

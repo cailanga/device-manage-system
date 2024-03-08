@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cailang.notice.mapper.NoticeMapper">
+    <!--保存对象-->
+    <insert id="insert" parameterType="Notice" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into t_notice(
+                            `title`,
+                            `content`,
+                            `operatorId`,
+                            `createTime`,
+                            `status`
+        ) values(
+                                   #{title},
+                                   #{content},
+                                   #{operatorId},
+                                   #{createTime},
+                                   #{status}
+        )
+    </insert>
+    <!--删除对象-->
+    <delete id="deleteById" parameterType="long">
+        delete from t_notice where id = #{id}
+    </delete>
+
+    <!--更新对象-->
+    <update id="update" parameterType="Notice">
+        update t_notice
+        set
+
+                            `title` =#{title},
+                            `content` =#{content},
+                            `operatorId` =#{operatorId},
+                            `createTime` =#{createTime},
+                            `status` =#{status}
+        where id = #{id}
+    </update>
+    <insert id="setNoticeRole">
+        insert into t_notice_role(noticeId,roleId)
+        values
+        <foreach collection="roleIds" item="roleId" separator=",">
+            (#{noticeId},#{roleId})
+        </foreach>
+    </insert>
+    <!--加载对象-->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="long">
+        select tn.*,te.username from t_notice tn left join t_org_employee te on tn.operatorId = te.id where tn.id = #{id}
+    </select>
+    <!--加载所有对象-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select tn.*,te.username from t_notice tn left join t_org_employee te on tn.operatorId = te.id
+    </select>
+    <!--//查询总数=参数（查询对象），返回值：long-->
+    <select id="queryTotal" parameterType="NoticeQuery" resultType="long">
+        select count(*) from t_notice
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                and (title like concat('%',#{keyword},'%')
+                or content like concat('%',#{keyword},'%'))
+            </if>
+        </where>
+    </select>
+    <!--//查询当前页数据=参数（查询对象），返回值:List-->
+    <select id="queryPageList" parameterType="NoticeQuery" resultMap="BaseResultMap">
+        select tn.*,te.username from t_notice tn left join t_org_employee te on tn.operatorId = te.id
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                and (tn.title like concat('%',#{keyword},'%')
+                or tn.content like concat('%',#{keyword},'%'))
+            </if>
+        </where>
+        limit #{start},#{pageSize}
+    </select>
+
+    <select id="queryTotalForChecking" parameterType="NoticeQuery" resultType="long">
+        select count(*) from t_notice
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                and (title like concat('%',#{keyword},'%') or content like concat('%',#{keyword},'%'))
+            </if>
+            and status = 1
+        </where>
+    </select>
+    <select id="queryPageListForChecking" parameterType="NoticeQuery" resultMap="BaseResultMap">
+        select
+        p.*,
+        s.username
+        from t_notice p
+        left join t_org_employee s on s.id = p.operatorId
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                and (p.title like concat('%',#{keyword},'%') or p.content like concat('%',#{keyword},'%'))
+            </if>
+            and p.status = 1
+        </where>
+        limit #{start},#{pageSize}
+    </select>
+    <select id="getNoticeRolesByNoticeId" resultType="java.lang.Long">
+        select roleId from t_notice_role where noticeId = #{id}
+    </select>
+    <select id="selectNoticeByRoleId" resultType="cn.cailang.notice.domain.Notice">
+        select distinct tn.* from t_notice tn left join t_notice_role tnr on tn.id = tnr.noticeId
+        where tnr.roleId in (
+        <foreach collection="roleIds" item="roleId" separator=",">
+            #{roleId}
+        </foreach>
+            )
+            order by tn.createTime desc
+        limit #{query.start},#{query.pageSize}
+    </select>
+
+    <select id="selectNoticeCountByRoleId" resultType="java.lang.Long">
+        select count(distinct tn.id) from t_notice tn left join t_notice_role tnr on tn.id = tnr.noticeId
+        where tnr.roleId in (
+        <foreach collection="roleIds" item="roleId" separator=",">
+            #{roleId}
+        </foreach>
+        )
+    </select>
+
+
+    <sql id="whereSql">
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                and (name like concat('%',#{keyword},'%'))
+            </if>
+        </where>
+    </sql>
+
+    <!--//批量删除-->
+    <delete id="batchDelete" parameterType="arraylist">
+        delete from t_notice where id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="deleteNoticeRoleByNoticeId">
+        delete from t_notice_role where noticeId = #{noticeId}
+    </delete>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.cailang.notice.domain.Notice">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="operatorId" property="operatorId" />
+        <result column="createTime" property="createTime" />
+        <result column="status" property="status" />
+        <association property="operator" javaType="Employee">
+            <result column="username" property="username" />
+        </association>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, title, content, operatorId, createTime, status
+    </sql>
+
+</mapper>
