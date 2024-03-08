@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 02/03/2024 12:23:52
+ Date: 08/03/2024 22:18:49
 */
 
 SET NAMES utf8mb4;
@@ -48,7 +48,7 @@ CREATE TABLE `t_auth_menu`  (
   `parent_id` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK24897F76799044`(`parent_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 63 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_auth_menu
@@ -80,6 +80,10 @@ INSERT INTO `t_auth_menu` VALUES (54, '系统备份', '/backup', '', 28);
 INSERT INTO `t_auth_menu` VALUES (55, '备份记录', '/backupRecord', '', 28);
 INSERT INTO `t_auth_menu` VALUES (56, '备份操作日志', '/backupOperatorLog', '', 28);
 INSERT INTO `t_auth_menu` VALUES (57, '设备信息统计', '/deviceShow', '', 52);
+INSERT INTO `t_auth_menu` VALUES (58, '物资信息统计', '/goodsShow', '', 52);
+INSERT INTO `t_auth_menu` VALUES (59, '通知信息', '/notice', '', 53);
+INSERT INTO `t_auth_menu` VALUES (61, '待审核通知', '/checkingNotice', '', 53);
+INSERT INTO `t_auth_menu` VALUES (62, '通知操作日志', '/noticeOperaterLog', '', 53);
 
 -- ----------------------------
 -- Table structure for t_auth_permission
@@ -176,7 +180,7 @@ CREATE TABLE `t_auth_role_menu`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `role_id`(`role_id`) USING BTREE,
   INDEX `menu_id`(`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 127 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 282 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_auth_role_menu
@@ -187,34 +191,38 @@ INSERT INTO `t_auth_role_menu` VALUES (8, 2, 24);
 INSERT INTO `t_auth_role_menu` VALUES (9, 5, 32);
 INSERT INTO `t_auth_role_menu` VALUES (10, 5, 33);
 INSERT INTO `t_auth_role_menu` VALUES (11, 5, 34);
-INSERT INTO `t_auth_role_menu` VALUES (99, 1, 20);
-INSERT INTO `t_auth_role_menu` VALUES (100, 1, 21);
-INSERT INTO `t_auth_role_menu` VALUES (101, 1, 22);
-INSERT INTO `t_auth_role_menu` VALUES (102, 1, 23);
-INSERT INTO `t_auth_role_menu` VALUES (103, 1, 24);
-INSERT INTO `t_auth_role_menu` VALUES (104, 1, 25);
-INSERT INTO `t_auth_role_menu` VALUES (105, 1, 26);
-INSERT INTO `t_auth_role_menu` VALUES (106, 1, 27);
-INSERT INTO `t_auth_role_menu` VALUES (107, 1, 50);
-INSERT INTO `t_auth_role_menu` VALUES (108, 1, 51);
-INSERT INTO `t_auth_role_menu` VALUES (109, 1, 39);
-INSERT INTO `t_auth_role_menu` VALUES (110, 1, 40);
-INSERT INTO `t_auth_role_menu` VALUES (111, 1, 41);
-INSERT INTO `t_auth_role_menu` VALUES (112, 1, 42);
-INSERT INTO `t_auth_role_menu` VALUES (113, 1, 43);
-INSERT INTO `t_auth_role_menu` VALUES (114, 1, 44);
-INSERT INTO `t_auth_role_menu` VALUES (115, 1, 45);
-INSERT INTO `t_auth_role_menu` VALUES (116, 1, 46);
-INSERT INTO `t_auth_role_menu` VALUES (117, 1, 47);
-INSERT INTO `t_auth_role_menu` VALUES (118, 1, 48);
-INSERT INTO `t_auth_role_menu` VALUES (119, 1, 49);
-INSERT INTO `t_auth_role_menu` VALUES (120, 1, 52);
-INSERT INTO `t_auth_role_menu` VALUES (121, 1, 53);
-INSERT INTO `t_auth_role_menu` VALUES (122, 1, 54);
-INSERT INTO `t_auth_role_menu` VALUES (123, 1, 28);
-INSERT INTO `t_auth_role_menu` VALUES (124, 1, 55);
-INSERT INTO `t_auth_role_menu` VALUES (125, 1, 56);
-INSERT INTO `t_auth_role_menu` VALUES (126, 1, 57);
+INSERT INTO `t_auth_role_menu` VALUES (250, 1, 20);
+INSERT INTO `t_auth_role_menu` VALUES (251, 1, 21);
+INSERT INTO `t_auth_role_menu` VALUES (252, 1, 22);
+INSERT INTO `t_auth_role_menu` VALUES (253, 1, 23);
+INSERT INTO `t_auth_role_menu` VALUES (254, 1, 24);
+INSERT INTO `t_auth_role_menu` VALUES (255, 1, 25);
+INSERT INTO `t_auth_role_menu` VALUES (256, 1, 26);
+INSERT INTO `t_auth_role_menu` VALUES (257, 1, 27);
+INSERT INTO `t_auth_role_menu` VALUES (258, 1, 50);
+INSERT INTO `t_auth_role_menu` VALUES (259, 1, 51);
+INSERT INTO `t_auth_role_menu` VALUES (260, 1, 39);
+INSERT INTO `t_auth_role_menu` VALUES (261, 1, 40);
+INSERT INTO `t_auth_role_menu` VALUES (262, 1, 41);
+INSERT INTO `t_auth_role_menu` VALUES (263, 1, 42);
+INSERT INTO `t_auth_role_menu` VALUES (264, 1, 43);
+INSERT INTO `t_auth_role_menu` VALUES (265, 1, 44);
+INSERT INTO `t_auth_role_menu` VALUES (266, 1, 45);
+INSERT INTO `t_auth_role_menu` VALUES (267, 1, 46);
+INSERT INTO `t_auth_role_menu` VALUES (268, 1, 47);
+INSERT INTO `t_auth_role_menu` VALUES (269, 1, 48);
+INSERT INTO `t_auth_role_menu` VALUES (270, 1, 49);
+INSERT INTO `t_auth_role_menu` VALUES (271, 1, 52);
+INSERT INTO `t_auth_role_menu` VALUES (272, 1, 53);
+INSERT INTO `t_auth_role_menu` VALUES (273, 1, 54);
+INSERT INTO `t_auth_role_menu` VALUES (274, 1, 28);
+INSERT INTO `t_auth_role_menu` VALUES (275, 1, 55);
+INSERT INTO `t_auth_role_menu` VALUES (276, 1, 56);
+INSERT INTO `t_auth_role_menu` VALUES (277, 1, 57);
+INSERT INTO `t_auth_role_menu` VALUES (278, 1, 58);
+INSERT INTO `t_auth_role_menu` VALUES (279, 1, 59);
+INSERT INTO `t_auth_role_menu` VALUES (280, 1, 61);
+INSERT INTO `t_auth_role_menu` VALUES (281, 1, 62);
 
 -- ----------------------------
 -- Table structure for t_auth_role_permission
@@ -349,11 +357,13 @@ CREATE TABLE `t_device`  (
   `useCount` int(11) NULL DEFAULT 0 COMMENT '使用数量',
   `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_device
 -- ----------------------------
+INSERT INTO `t_device` VALUES (1, '设备4', 0.00, '设备4', NULL, 8, 3, '2024-02-08 00:00:00', 2, 1, 0, '2024-03-04 21:40:30');
+INSERT INTO `t_device` VALUES (2, '设备5', 0.00, '设备5', NULL, 8, 3, '2024-02-09 00:00:00', 32, 1, 0, '2024-03-03 23:31:15');
 
 -- ----------------------------
 -- Table structure for t_device_no_warehousing
@@ -381,8 +391,8 @@ CREATE TABLE `t_device_no_warehousing`  (
 INSERT INTO `t_device_no_warehousing` VALUES (1, '设备1', 2000000.00, '设备1', NULL, 7, NULL, NULL, NULL, 1, 0, '2024-02-27 13:48:01');
 INSERT INTO `t_device_no_warehousing` VALUES (2, '设备2', 1000000.00, '设备2', NULL, 7, NULL, NULL, NULL, 1, 0, '2024-02-27 13:48:05');
 INSERT INTO `t_device_no_warehousing` VALUES (3, '设备3', 1000000.00, '设备3', NULL, 4, NULL, NULL, NULL, 1, 0, '2024-02-27 13:48:07');
-INSERT INTO `t_device_no_warehousing` VALUES (5, '设备4', 0.00, '设备4', NULL, 8, 3, '2024-02-08 00:00:00', 2, 1, 0, '2024-02-27 13:48:10');
-INSERT INTO `t_device_no_warehousing` VALUES (6, '设备5', 0.00, '设备5', NULL, 8, 3, '2024-02-09 00:00:00', 32, 1, 0, '2024-02-27 13:48:13');
+INSERT INTO `t_device_no_warehousing` VALUES (5, '设备4', 0.00, '设备4', NULL, 8, 3, '2024-02-08 00:00:00', 2, 1, 2, '2024-03-04 21:32:37');
+INSERT INTO `t_device_no_warehousing` VALUES (6, '设备5', 0.00, '设备5', NULL, 8, 3, '2024-02-09 00:00:00', 32, 1, 2, '2024-03-04 23:28:01');
 
 -- ----------------------------
 -- Table structure for t_device_operater_log
@@ -400,11 +410,15 @@ CREATE TABLE `t_device_operater_log`  (
   `deviceId` int(11) NULL DEFAULT NULL COMMENT '处理的物品的id',
   `deviceName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_device_operater_log
 -- ----------------------------
+INSERT INTO `t_device_operater_log` VALUES (1, '入库', '批量入库设备，设备id为5', 1, 'admin', '2024-03-04 21:30:56', NULL, NULL, 5, '设备4');
+INSERT INTO `t_device_operater_log` VALUES (2, '审批', 'test', 1, 'admin', '2024-03-04 21:32:38', NULL, NULL, 5, '设备4');
+INSERT INTO `t_device_operater_log` VALUES (3, '入库', '批量入库设备，设备id为6', 1, 'admin', '2024-03-04 23:27:50', NULL, NULL, 6, '设备5');
+INSERT INTO `t_device_operater_log` VALUES (4, '审批', '', 1, 'admin', '2024-03-04 23:28:02', NULL, NULL, 6, '设备5');
 
 -- ----------------------------
 -- Table structure for t_device_type
@@ -436,12 +450,12 @@ INSERT INTO `t_device_type` VALUES (8, '设备类型8', '设备类型8', 4);
 DROP TABLE IF EXISTS `t_disable`;
 CREATE TABLE `t_disable`  (
   `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `goodsId` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '维修设备id',
-  `cause` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '维修原因',
+  `goodsId` bigint(20) NOT NULL COMMENT '报废设备id',
+  `cause` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '报废原因',
   `description` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
   `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `date` datetime NULL DEFAULT NULL COMMENT '报废时间',
-  `operatorId` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '操作者id',
+  `operatorId` bigint(20) NULL DEFAULT NULL COMMENT '操作者id',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '维修记录表' ROW_FORMAT = Dynamic;
 
@@ -465,11 +479,12 @@ CREATE TABLE `t_goods`  (
   `useCount` int(11) NULL DEFAULT 0 COMMENT '使用数量',
   `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_goods
 -- ----------------------------
+INSERT INTO `t_goods` VALUES (1, '物资1', 2000000.00, '物资1', NULL, 7, 3, 1, 0, '2024-03-07 09:07:25');
 
 -- ----------------------------
 -- Table structure for t_goods_no_warehousing
@@ -492,7 +507,7 @@ CREATE TABLE `t_goods_no_warehousing`  (
 -- ----------------------------
 -- Records of t_goods_no_warehousing
 -- ----------------------------
-INSERT INTO `t_goods_no_warehousing` VALUES (1, '物资1', 2000000.00, '物资1', NULL, 7, 3, 1, 0, '2024-02-27 13:49:11');
+INSERT INTO `t_goods_no_warehousing` VALUES (1, '物资1', 2000000.00, '物资1', NULL, 7, 3, 1, 2, '2024-03-07 09:07:24');
 INSERT INTO `t_goods_no_warehousing` VALUES (2, '物资2', 1000000.00, '物资2', NULL, 7, 3, 1, 0, '2024-02-27 13:49:15');
 INSERT INTO `t_goods_no_warehousing` VALUES (3, '物资3', 1000000.00, '物资3', NULL, 4, 3, 1, 0, '2024-02-27 13:49:18');
 INSERT INTO `t_goods_no_warehousing` VALUES (5, '物资4', 0.00, '物资4', NULL, 7, 3, 1, 0, '2024-02-27 13:49:21');
@@ -513,11 +528,13 @@ CREATE TABLE `t_goods_operater_log`  (
   `goodsId` int(11) NULL DEFAULT NULL COMMENT '处理的物品的id',
   `goodsName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_goods_operater_log
 -- ----------------------------
+INSERT INTO `t_goods_operater_log` VALUES (1, '入库', '批量入库物资，物资id为1', 1, 'admin', '2024-03-07 09:07:12', NULL, NULL, 1, '物资1');
+INSERT INTO `t_goods_operater_log` VALUES (2, '审批', '', 1, 'admin', '2024-03-07 09:07:25', NULL, NULL, 1, '物资1');
 
 -- ----------------------------
 -- Table structure for t_goods_type
@@ -582,6 +599,75 @@ CREATE TABLE `t_maintain`  (
 -- ----------------------------
 -- Records of t_maintain
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_notice
+-- ----------------------------
+DROP TABLE IF EXISTS `t_notice`;
+CREATE TABLE `t_notice`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '通知标题',
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '通知内容',
+  `operatorId` bigint(20) NULL DEFAULT NULL COMMENT '发布人id',
+  `createTime` datetime NULL DEFAULT NULL COMMENT '发布时间',
+  `status` int(11) NULL DEFAULT NULL COMMENT '状态：1 未审核 ，2 驳回 ，3 审核通过',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_notice
+-- ----------------------------
+INSERT INTO `t_notice` VALUES (2, '通知1', '通知1内容', 1, '2024-03-08 16:41:01', 3);
+INSERT INTO `t_notice` VALUES (3, '通知2', '通知2内容', 1, '2024-03-08 22:12:34', 3);
+
+-- ----------------------------
+-- Table structure for t_notice_operater_log
+-- ----------------------------
+DROP TABLE IF EXISTS `t_notice_operater_log`;
+CREATE TABLE `t_notice_operater_log`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '操作类型：删除，审核...',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
+  `operatorId` int(11) NULL DEFAULT NULL COMMENT '操作人id',
+  `operatorName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作人名字',
+  `updateTime` datetime NULL DEFAULT NULL COMMENT '操作时间',
+  `originId` int(11) NULL DEFAULT NULL COMMENT '审批数据来源提交人',
+  `originName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `noticeId` int(11) NULL DEFAULT NULL COMMENT '处理的通知的id',
+  `noticeTitle` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of t_notice_operater_log
+-- ----------------------------
+INSERT INTO `t_notice_operater_log` VALUES (5, '审批', '11', 1, 'admin', '2024-03-08 17:40:27', NULL, NULL, 2, '通知1');
+INSERT INTO `t_notice_operater_log` VALUES (6, '设置通知可见', '通知可见：Notice(id=2, title=通知1, content=通知1内容, operatorId=1, operator=Employee(username=admin, password=null, email=null, headImage=null, age=null, department=null, departmentId=null), createTime=Fri Mar 08 16:41:01 CST 2024, status=3) 可见角色id:[0]', 1, 'admin', '2024-03-08 19:15:14', NULL, NULL, 2, '通知1');
+INSERT INTO `t_notice_operater_log` VALUES (7, '设置通知可见', '通知可见：Notice(id=2, title=通知1, content=通知1内容, operatorId=1, operator=Employee(username=admin, password=null, email=null, headImage=null, age=null, department=null, departmentId=null), createTime=Fri Mar 08 16:41:01 CST 2024, status=3) 可见角色id:[0, 1]', 1, 'admin', '2024-03-08 19:15:33', NULL, NULL, 2, '通知1');
+INSERT INTO `t_notice_operater_log` VALUES (8, '设置通知可见', '通知可见：Notice(id=2, title=通知1, content=通知1内容, operatorId=1, operator=Employee(username=admin, password=null, email=null, headImage=null, age=null, department=null, departmentId=null), createTime=Fri Mar 08 16:41:01 CST 2024, status=3) 可见角色id:[0]', 1, 'admin', '2024-03-08 19:18:49', NULL, NULL, 2, '通知1');
+INSERT INTO `t_notice_operater_log` VALUES (9, '设置通知可见', '通知可见：Notice(id=2, title=通知1, content=通知1内容, operatorId=1, operator=Employee(username=admin, password=null, email=null, headImage=null, age=null, department=null, departmentId=null), createTime=Fri Mar 08 16:41:01 CST 2024, status=3) 可见角色id:[0, 1]', 1, 'admin', '2024-03-08 19:19:00', NULL, NULL, 2, '通知1');
+INSERT INTO `t_notice_operater_log` VALUES (10, '审批', '审批通过：', 1, 'admin', '2024-03-08 22:12:59', NULL, NULL, 3, '通知2');
+INSERT INTO `t_notice_operater_log` VALUES (11, '设置通知可见', '通知可见：Notice(id=3, title=通知2, content=通知2内容, operatorId=1, operator=Employee(username=admin, password=null, email=null, headImage=null, age=null, department=null, departmentId=null), createTime=Fri Mar 08 22:12:34 CST 2024, status=3) 可见角色id:[5]', 1, 'admin', '2024-03-08 22:13:11', NULL, NULL, 3, '通知2');
+INSERT INTO `t_notice_operater_log` VALUES (12, '设置通知可见', '通知可见：Notice(id=3, title=通知2, content=通知2内容, operatorId=1, operator=Employee(username=admin, password=null, email=null, headImage=null, age=null, department=null, departmentId=null), createTime=Fri Mar 08 22:12:34 CST 2024, status=3) 可见角色id:[0]', 1, 'admin', '2024-03-08 22:13:23', NULL, NULL, 3, '通知2');
+INSERT INTO `t_notice_operater_log` VALUES (13, '设置通知可见', '通知可见：Notice(id=3, title=通知2, content=通知2内容, operatorId=1, operator=Employee(username=admin, password=null, email=null, headImage=null, age=null, department=null, departmentId=null), createTime=Fri Mar 08 22:12:34 CST 2024, status=3) 可见角色id:[1]', 1, 'admin', '2024-03-08 22:14:32', NULL, NULL, 3, '通知2');
+
+-- ----------------------------
+-- Table structure for t_notice_role
+-- ----------------------------
+DROP TABLE IF EXISTS `t_notice_role`;
+CREATE TABLE `t_notice_role`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `noticeId` bigint(20) NOT NULL COMMENT '通知id',
+  `roleId` bigint(20) NOT NULL COMMENT '角色id，如果为0，则是所有角色',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_notice_role
+-- ----------------------------
+INSERT INTO `t_notice_role` VALUES (5, 2, 0);
+INSERT INTO `t_notice_role` VALUES (6, 2, 1);
+INSERT INTO `t_notice_role` VALUES (9, 3, 1);
 
 -- ----------------------------
 -- Table structure for t_org_department
