@@ -1,6 +1,6 @@
 package cn.cailang.base.interceptors;
 
-import cn.cailang.auth.annotation.RonghuaPermission;
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.LoginConstant;
 import cn.cailang.org.domain.Employee;
@@ -14,7 +14,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.invoke.MethodHandle;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,7 +53,7 @@ public class AuthPermInterceptor implements HandlerInterceptor {
         Employee employee = (Employee) loginUser;
         if (handler instanceof HandlerMethod){
             HandlerMethod handlerMethod = (HandlerMethod)handler;
-            RonghuaPermission annotation = handlerMethod.getMethod().getAnnotation(RonghuaPermission.class);
+            JiaXinPermission annotation = handlerMethod.getMethod().getAnnotation(JiaXinPermission.class);
             if(Objects.isNull(annotation)){
                 //如果为空，则说明当前访问资源不需要权限,直接放行
                 return true;

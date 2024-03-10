@@ -1,5 +1,6 @@
 package cn.cailang.notice.controller;
 
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.base.utils.LoginUtil;
 import cn.cailang.device.dto.DevicesHandleDTO;
 import cn.cailang.notice.dto.NoticeHandleDTO;
@@ -10,13 +11,16 @@ import cn.cailang.notice.query.NoticeQuery;
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.PageList;
 import cn.cailang.org.domain.Employee;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
-
+@JiaXinPermission(name = "通知管理权限",description = "通知管理权限")
+@Api(value = "通知管理",description="通知相关的功能")
 @RestController
 @RequestMapping("/notice")
 public class NoticeController {
@@ -30,6 +34,8 @@ public class NoticeController {
      * @param notice 传递的实体
      * @return Ajaxresult转换结果
      */
+    @ApiOperation("通知新增或修改")
+    @JiaXinPermission(name = "通知新增或修改权限",description = "通知新增或修改权限")
     @PutMapping
     public AjaxResult addOrUpdate(@RequestBody Notice notice, HttpServletRequest request) {
         try {
@@ -55,6 +61,8 @@ public class NoticeController {
      * @param id
      * @return
      */
+    @ApiOperation("通知删除")
+    @JiaXinPermission(name = "通知删除权限",description = "通知删除权限")
     @DeleteMapping(value = "/{id}")
     public AjaxResult delete(@PathVariable("id") Long id, HttpServletRequest request) {
         try {
@@ -72,6 +80,8 @@ public class NoticeController {
      * @param ids
      * @return
      */
+    @ApiOperation("通知批量删除")
+    @JiaXinPermission(name = "通知批量删除权限",description = "通知批量删除权限")
     @PatchMapping()
     public AjaxResult batchDelete(@RequestBody List<Long> ids) {
         try {
@@ -84,6 +94,8 @@ public class NoticeController {
     }
 
     //获取用户
+    @ApiOperation("通知信息根据id获取")
+//    @JiaXinPermission(name = "通知信息根据id获取权限",description = "通知信息根据id获取权限")
     @GetMapping("/{id}")
     public AjaxResult get(@PathVariable("id") Long id) {
         try {
@@ -101,6 +113,8 @@ public class NoticeController {
      *
      * @return
      */
+    @ApiOperation("通知所有信息获取")
+//    @JiaXinPermission(name = "通知所有信息获取权限",description = "通知所有信息获取权限")
     @GetMapping
     public AjaxResult list() {
 
@@ -120,6 +134,8 @@ public class NoticeController {
      * @param query 查询对象
      * @return PageList 分页对象
      */
+    @ApiOperation("通知关键字分页查询")
+    @JiaXinPermission(name = "通知关键字分页查询权限",description = "通知关键字分页查询权限")
     @PostMapping
     public AjaxResult json(@RequestBody NoticeQuery query) {
         try {
@@ -130,7 +146,8 @@ public class NoticeController {
             return AjaxResult.me().setSuccess(false).setMessage("获取分页数据失败！" + e.getMessage());
         }
     }
-
+    @ApiOperation("通知待审核查询")
+    @JiaXinPermission(name = "通知待审核查询权限",description = "通知待审核查询权限")
     @PostMapping("/checking")
     public AjaxResult jsonForChecking(@RequestBody NoticeQuery query) {
         try {
@@ -141,7 +158,8 @@ public class NoticeController {
             return AjaxResult.me().setSuccess(false).setMessage("获取分页数据失败！" + e.getMessage());
         }
     }
-
+    @ApiOperation("通知待审核处理")
+    @JiaXinPermission(name = "通知待审核处理权限",description = "通知待审核处理权限")
     @PostMapping("/handle")
     public AjaxResult handle(@RequestBody NoticeHandleDTO dto, HttpServletRequest request) {
         try {
@@ -152,7 +170,8 @@ public class NoticeController {
             return AjaxResult.me().setSuccess(false).setMessage("处理失败！" + e.getMessage());
         }
     }
-
+    @ApiOperation("获取通知可见的角色信息")
+    @JiaXinPermission(name = "获取通知可见的角色信息权限",description = "获取通知可见的角色信息权限")
     @GetMapping("/noticeRolesByNoticeId/{id}")
     public AjaxResult noticeRolesByNoticeId(@PathVariable("id") Long id) {
         try {
@@ -163,7 +182,8 @@ public class NoticeController {
             return AjaxResult.me().setSuccess(false).setMessage("获取失败！" + e.getMessage());
         }
     }
-
+    @ApiOperation("设置通知可见的角色")
+    @JiaXinPermission(name = "设置通知可见的角色权限",description = "设置通知可见的角色权限")
     @PostMapping("/setNoticeRole")
     public AjaxResult setNoticeRole(@RequestBody NoticeRoleDTO dto,HttpServletRequest request) {
         try {
@@ -174,7 +194,8 @@ public class NoticeController {
             return AjaxResult.me().setSuccess(false).setMessage("设置通知角色可见失败！" + e.getMessage());
         }
     }
-
+    @ApiOperation("获取个人可见通知")
+//    @JiaXinPermission(name = "获取个人可见通知权限",description = "获取个人可见通知权限")
     @PostMapping("/noticeByPerson")
     public AjaxResult noticeByPerson(@RequestBody NoticeQuery query,HttpServletRequest request) {
         try {

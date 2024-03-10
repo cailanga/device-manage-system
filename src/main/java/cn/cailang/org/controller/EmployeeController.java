@@ -1,9 +1,8 @@
 package cn.cailang.org.controller;
 
-import cn.cailang.auth.annotation.RonghuaPermission;
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.FileUtils;
-import cn.cailang.base.utils.LoginConstant;
 import cn.cailang.base.utils.PageList;
 import cn.cailang.org.domain.Employee;
 import cn.cailang.org.query.EmployeeQuery;
@@ -29,7 +28,7 @@ import java.util.*;
  * @Date: 2023/4/23 16:13
  * @Version 1.0
  **/
-@RonghuaPermission(name = "员工管理",description = "员工管理权限")
+@JiaXinPermission(name = "员工管理",description = "员工管理权限")
 @Api(value = "员工管理",description="员工相关的CRUD功能")
 @RestController
 @RequestMapping("/employee")
@@ -45,7 +44,7 @@ public class EmployeeController {
     @ApiOperation("通过id查询员工信息")
     @ApiImplicitParam(name = "id", value = "员工ID", required = true, dataType = "Long",paramType = "path")
     @GetMapping("/{id}")
-    @RonghuaPermission(name = "通过id查询员工信息",description = "通过id查询员工信息")
+//    @JiaXinPermission(name = "通过id查询员工信息",description = "通过id查询员工信息")
     public AjaxResult selectById(
             @ApiParam(name = "主键",required = true)
             @PathVariable("id") Long id) {
@@ -64,7 +63,7 @@ public class EmployeeController {
      */
     @ApiOperation("查询所有员工信息")
     @GetMapping
-    @RonghuaPermission(name = "查询所有员工信息",description = "查询所有员工信息")
+//    @JiaXinPermission(name = "查询所有员工信息",description = "查询所有员工信息")
     public AjaxResult selectAll() {
         try {
             List<Employee> employees = employeeService.selectAll();
@@ -83,7 +82,7 @@ public class EmployeeController {
     @ApiOperation("根据id删除员工信息")
     @ApiImplicitParam(name = "id", value = "员工ID", required = true, dataType = "Long",paramType = "path")
     @DeleteMapping("/{id}")
-    @RonghuaPermission(name = "根据id删除员工信息",description = "根据id删除员工信息")
+    @JiaXinPermission(name = "删除员工信息权限",description = "删除员工信息权限")
     public AjaxResult deleteById(
             @ApiParam(name = "主键",required = true)
             @PathVariable("id") Long id){
@@ -98,7 +97,7 @@ public class EmployeeController {
 
     @ApiOperation("根据ids批量删除员工信息")
     @PatchMapping
-    @RonghuaPermission(name = "根据ids批量删除员工信息",description = "根据ids批量删除员工信息")
+    @JiaXinPermission(name = "批量删除员工信息权限",description = "批量删除员工信息权限")
     public AjaxResult batchDelete(
             @ApiParam(name = "id集合",required = true)
              @RequestBody List<Long> ids){
@@ -118,7 +117,7 @@ public class EmployeeController {
      */
     @ApiOperation("新增或修改员工信息")
     @PutMapping
-    @RonghuaPermission(name = "新增或修改员工信息",description = "新增或修改员工信息")
+    @JiaXinPermission(name = "新增或修改员工信息权限",description = "新增或修改员工信息权限")
     public AjaxResult addOrUpdate(@RequestBody Employee employee){
         try {
             if (Objects.nonNull(employee.getId())){
@@ -142,7 +141,7 @@ public class EmployeeController {
      */
     @ApiOperation("根据关键字进行分页查询")
     @PostMapping
-    @RonghuaPermission(name = "根据关键字进行分页查询",description = "根据关键字进行分页查询")
+    @JiaXinPermission(name = "根据关键字进行分页查询权限",description = "根据关键字进行分页查询权限")
     public AjaxResult queryDataByKeyword(@RequestBody EmployeeQuery query){
         try {
             PageList<Employee> pageList = employeeService.pageList(query);
@@ -158,8 +157,8 @@ public class EmployeeController {
      * @param file 上传的文件对象
      * @return AjaxResult
      */
-    @ApiOperation("头像图片文件上传")
-    @RonghuaPermission(name = "头像图片文件上传",description = "头像图片文件上传")
+//    @ApiOperation("头像图片文件上传")
+//    @JiaXinPermission(name = "头像图片文件上传",description = "头像图片文件上传")
     @PostMapping("/uploadHeadImage")
     public AjaxResult uploadHeadImage(@RequestParam("file") MultipartFile file, HttpServletRequest request){
         // 判断文件是否为空
@@ -206,8 +205,8 @@ public class EmployeeController {
      * @param map 文件名map
      * @return AjaxResult
      */
-    @ApiOperation("头像图片删除")
-    @RonghuaPermission(name = "头像图片删除",description = "头像图片删除")
+//    @ApiOperation("头像图片删除")
+//    @JiaXinPermission(name = "头像图片删除",description = "头像图片删除")
     @PostMapping("/deleteHeadImage")
     public AjaxResult deleteFile(@RequestBody Map map){
         String fileName = (String) map.get("fileName");
@@ -238,7 +237,7 @@ public class EmployeeController {
      */
     @PostMapping("/setEmployeeRole")
     @ApiOperation("设置员工角色")
-    @RonghuaPermission(name = "设置员工角色",description = "设置员工角色")
+    @JiaXinPermission(name = "设置员工角色权限",description = "设置员工角色权限")
     public AjaxResult setEmployeeRole(@RequestBody Map map){
         try {
             Long employeeId = Long.parseLong(map.get("employeeId").toString());
@@ -258,7 +257,7 @@ public class EmployeeController {
      * @return AjaxResult
      */
     @ApiOperation("根据员工id获取其角色ids")
-    @RonghuaPermission(name = "根据员工id获取其角色ids",description = "根据员工id获取其角色ids")
+//    @JiaXinPermission(name = "根据员工id获取其角色ids",description = "根据员工id获取其角色ids")
     @GetMapping("/getEmpRolesByEmplId/{employeeId}")
     public AjaxResult getEmpRolesByEmplId(@PathVariable("employeeId")Long employeeId){
         try {

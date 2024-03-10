@@ -1,6 +1,6 @@
 package cn.cailang.auth.controller;
 
-import cn.cailang.auth.annotation.RonghuaPermission;
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.auth.domain.Permission;
 import cn.cailang.auth.query.PermissionQuery;
 import cn.cailang.auth.service.IPermissionService;
@@ -23,7 +23,7 @@ import java.util.List;
 @Api(description = "权限管理")
 @RestController
 @RequestMapping("/permission")
-@RonghuaPermission(name = "权限管理",description = "权限管理")
+@JiaXinPermission(name = "权限管理权限",description = "权限管理权限")
 public class PermissionController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class PermissionController {
      * @return AjaxResult
      */
     @ApiOperation("根据关键字进行分页查询")
-    @RonghuaPermission(name = "根据关键字进行分页查询",description = "根据关键字进行分页查询")
+    @JiaXinPermission(name = "根据关键字进行分页查询权限",description = "根据关键字进行分页查询权限")
     @PostMapping("/pageList")
     public AjaxResult pageList(@RequestBody PermissionQuery query){
         try {
@@ -52,7 +52,7 @@ public class PermissionController {
      * @param employeeId 员工id
      * @return AjaxResult
      */
-    @RonghuaPermission(name = "通过员工id获取权限")
+//    @JiaXinPermission(name = "通过员工id获取权限")
     @ApiOperation("通过员工id获取权限")
     @GetMapping("/getPermissionsByEmployeeId/{employeeId}")
     public AjaxResult getPermissionsByEmployeeId(@PathVariable("employeeId") Long employeeId){

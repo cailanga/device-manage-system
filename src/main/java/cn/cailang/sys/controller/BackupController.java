@@ -1,5 +1,6 @@
 package cn.cailang.sys.controller;
 
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.base.utils.LoginUtil;
 import cn.cailang.org.domain.Employee;
 import cn.cailang.sys.domain.BackupOperatorLog;
@@ -10,6 +11,7 @@ import cn.cailang.sys.domain.Backup;
 import cn.cailang.sys.query.BackupQuery;
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.PageList;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
-
+@JiaXinPermission(name = "系统备份管理权限",description = "系统备份管理权限")
+@Api(value = "系统备份管理",description="系统备份相关功能")
 @RestController
 @RequestMapping("/backup")
 public class BackupController {
@@ -61,6 +64,8 @@ public class BackupController {
      * @param backup  传递的实体
      * @return Ajaxresult转换结果
      */
+    @ApiOperation("手动备份")
+    @JiaXinPermission(name = "手动备份权限",description = "手动备份权限")
     @PutMapping("/manual")
     public AjaxResult back(@RequestBody Backup backup){
         try {
@@ -76,6 +81,8 @@ public class BackupController {
     * @param id
     * @return
     */
+    @ApiOperation("删除备份")
+    @JiaXinPermission(name = "删除备份权限",description = "删除备份权限")
     @DeleteMapping(value="/{id}")
     public AjaxResult delete(@PathVariable("id") Long id, HttpServletRequest request){
         try {
@@ -107,6 +114,8 @@ public class BackupController {
      * @param id
      * @return
      */
+    @ApiOperation("恢复备份")
+    @JiaXinPermission(name = "恢复备份权限",description = "恢复备份权限")
     @PostMapping(value="/restore/{id}")
     public AjaxResult restore(@PathVariable("id") Long id,HttpServletRequest request){
         try {
@@ -174,6 +183,8 @@ public class BackupController {
     * @param query 查询对象
     * @return PageList 分页对象
     */
+    @ApiOperation("备份关键字分页查询")
+    @JiaXinPermission(name = "备份关键字分页查询权限",description = "备份关键字分页查询权限")
     @PostMapping
     public AjaxResult json(@RequestBody BackupQuery query)
     {

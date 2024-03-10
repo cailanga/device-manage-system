@@ -1,7 +1,6 @@
 package cn.cailang.auth.controller;
 
-import cn.cailang.auth.annotation.RonghuaPermission;
-import cn.cailang.auth.domain.Permission;
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.auth.domain.Menu;
 import cn.cailang.auth.query.MenuQuery;
 import cn.cailang.auth.service.IMenuService;
@@ -15,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -25,7 +23,7 @@ import java.util.Objects;
  * @Date: 2023/4/23 16:13
  * @Version 1.0
  **/
-@RonghuaPermission(name = "菜单管理",description = "菜单管理权限")
+@JiaXinPermission(name = "菜单管理权限",description = "菜单管理权限")
 @Api(value = "菜单管理",description="菜单相关的CRUD功能")
 @RestController
 @RequestMapping("/menu")
@@ -41,7 +39,7 @@ public class MenuController {
     @ApiOperation("通过id查询菜单信息")
     @ApiImplicitParam(name = "id", value = "菜单ID", required = true, dataType = "Long",paramType = "path")
     @GetMapping("/{id}")
-    @RonghuaPermission(name = "通过id查询菜单信息",description = "通过id查询菜单信息")
+//    @JiaXinPermission(name = "通过id查询菜单信息",description = "通过id查询菜单信息")
     public AjaxResult selectById(
             @ApiParam(name = "主键",required = true)
             @PathVariable("id") Long id) {
@@ -60,7 +58,7 @@ public class MenuController {
      */
     @ApiOperation("查询所有菜单信息")
     @GetMapping
-    @RonghuaPermission(name = "查询所有菜单信息",description = "查询所有菜单信息")
+//    @JiaXinPermission(name = "查询所有菜单信息权限",description = "查询所有菜单信息权限")
     public AjaxResult selectAll() {
         try {
             List<Menu> menus = menuService.selectAll();
@@ -76,10 +74,10 @@ public class MenuController {
      * @param id 菜单id
      * @return AjaxResult对象
      */
-    @ApiOperation("根据id删除菜单信息")
+    @ApiOperation("删除菜单信息")
     @ApiImplicitParam(name = "id", value = "菜单ID", required = true, dataType = "Long",paramType = "path")
     @DeleteMapping("/{id}")
-    @RonghuaPermission(name = "根据id删除菜单信息",description = "根据id删除菜单信息")
+    @JiaXinPermission(name = "删除菜单信息权限",description = "删除菜单信息权限")
     public AjaxResult deleteById(
             @ApiParam(name = "主键",required = true)
             @PathVariable("id") Long id){
@@ -92,9 +90,9 @@ public class MenuController {
         }
     }
 
-    @ApiOperation("根据ids批量删除菜单信息")
+    @ApiOperation("批量删除菜单信息")
     @PatchMapping
-    @RonghuaPermission(name = "根据ids批量删除菜单信息",description = "根据ids批量删除菜单信息")
+    @JiaXinPermission(name = "批量删除菜单信息权限",description = "批量删除菜单信息权限")
     public AjaxResult batchDelete(
             @ApiParam(name = "id集合",required = true)
              @RequestBody List<Long> ids){
@@ -114,7 +112,7 @@ public class MenuController {
      */
     @ApiOperation("新增或修改菜单信息")
     @PutMapping
-    @RonghuaPermission(name = "新增或修改菜单信息",description = "新增或修改菜单信息")
+    @JiaXinPermission(name = "新增或修改菜单信息权限",description = "新增或修改菜单信息权限")
     public AjaxResult addOrUpdate(@RequestBody Menu menu){
         try {
             if (Objects.nonNull(menu.getId())){
@@ -138,7 +136,7 @@ public class MenuController {
      */
     @ApiOperation("根据关键字进行分页查询")
     @PostMapping
-    @RonghuaPermission(name = "根据关键字进行分页查询",description = "根据关键字进行分页查询")
+    @JiaXinPermission(name = "根据关键字进行分页查询权限",description = "根据关键字进行分页查询权限")
     public AjaxResult queryDataByKeyword(@RequestBody MenuQuery query){
         try {
             PageList<Menu> pageList = menuService.pageList(query);
@@ -150,7 +148,7 @@ public class MenuController {
     }
 
     @ApiOperation("根据员工id获取菜单树")
-    @RonghuaPermission(name = "根据员工id获取菜单树")
+//    @JiaXinPermission(name = "根据员工id获取菜单树")
     @GetMapping("/getMenuTree/{employeeId}")
     public AjaxResult getMenuTreeByEmpId(@PathVariable("employeeId")Long employeeId){
         try {

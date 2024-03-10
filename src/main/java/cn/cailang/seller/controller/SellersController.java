@@ -1,15 +1,19 @@
 package cn.cailang.seller.controller;
 
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.PageList;
 import cn.cailang.seller.domain.Seller;
 import cn.cailang.seller.query.SellerQuery;
 import cn.cailang.seller.service.ISellerService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@JiaXinPermission(name = "商家管理权限",description = "商家管理权限")
+@Api(value = "商家管理",description="商家相关的CRUD功能")
 @RestController
 @RequestMapping("/seller")
 public class SellersController {
@@ -22,6 +26,8 @@ public class SellersController {
      * @param product  传递的实体
      * @return Ajaxresult转换结果
      */
+    @ApiOperation("商家新增或修改")
+    @JiaXinPermission(name = "商家新增或修改权限",description = "商家新增或修改权限")
     @PutMapping
     public AjaxResult addOrUpdate(@RequestBody Seller product){
         try {
@@ -42,6 +48,8 @@ public class SellersController {
     * @param id
     * @return
     */
+    @ApiOperation("商家删除")
+    @JiaXinPermission(name = "商家删除权限",description = "商家删除权限")
     @DeleteMapping(value="/{id}")
     public AjaxResult delete(@PathVariable("id") Long id){
         try {
@@ -58,6 +66,8 @@ public class SellersController {
     * @param ids
     * @return
     */
+    @ApiOperation("商家批量删除")
+    @JiaXinPermission(name = "商家批量删除权限",description = "商家批量删除权限")
     @PatchMapping()
     public AjaxResult batchDelete(@RequestBody List<Long> ids){
         try {
@@ -106,6 +116,8 @@ public class SellersController {
     * @param query 查询对象
     * @return PageList 分页对象
     */
+    @ApiOperation("商家关键词分页查询")
+    @JiaXinPermission(name = "商家关键词分页查询权限",description = "商家关键词分页查询权限")
     @PostMapping
     public AjaxResult json(@RequestBody SellerQuery query)
     {

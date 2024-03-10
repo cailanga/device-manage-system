@@ -1,16 +1,20 @@
 package cn.cailang.record.controller;
 
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.record.service.IMaintainService;
 import cn.cailang.record.domain.Maintain;
 import cn.cailang.record.query.MaintainQuery;
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.PageList;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-
+@JiaXinPermission(name = "维修记录管理权限",description = "维修记录管理权限")
+@Api(value = "维修记录管理",description="维修记录相关的功能")
 @RestController
 @RequestMapping("/maintain")
 public class MaintainController {
@@ -23,6 +27,8 @@ public class MaintainController {
      * @param maintain  传递的实体
      * @return Ajaxresult转换结果
      */
+    @ApiOperation("维修记录新增或修改")
+    @JiaXinPermission(name = "维修记录新增或修改权限",description = "维修记录新增或修改权限")
     @PutMapping
     public AjaxResult addOrUpdate(@RequestBody Maintain maintain){
         try {
@@ -108,6 +114,8 @@ public class MaintainController {
     * @param query 查询对象
     * @return PageList 分页对象
     */
+    @ApiOperation("维修记录关键字分页查询")
+    @JiaXinPermission(name = "维修记录关键字分页查询权限",description = "维修记录关键字分页查询权限")
     @PostMapping
     public AjaxResult json(@RequestBody MaintainQuery query)
     {

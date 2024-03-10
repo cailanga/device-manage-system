@@ -1,16 +1,19 @@
 package cn.cailang.notice.controller;
 
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.notice.service.INoticeOperaterLogService;
 import cn.cailang.notice.domain.NoticeOperaterLog;
 import cn.cailang.notice.query.NoticeOperaterLogQuery;
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.PageList;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@JiaXinPermission(name = "通知操作日志管理权限",description = "通知操作日志管理权限")
+@Api(value = "通知操作日志管理",description="通知操作日志相关的功能")
 @RestController
 @RequestMapping("/noticeOperaterLog")
 public class NoticeOperaterLogController {
@@ -23,6 +26,8 @@ public class NoticeOperaterLogController {
      * @param noticeOperaterLog  传递的实体
      * @return Ajaxresult转换结果
      */
+    @ApiOperation("通知操作日志新增或修改")
+//    @JiaXinPermission(name = "通知操作日志新增或修改权限",description = "通知操作日志新增或修改权限")
     @PutMapping
     public AjaxResult addOrUpdate(@RequestBody NoticeOperaterLog noticeOperaterLog){
         try {
@@ -43,6 +48,8 @@ public class NoticeOperaterLogController {
     * @param id
     * @return
     */
+    @ApiOperation("通知操作日志删除")
+//    @JiaXinPermission(name = "通知操作日志删除权限",description = "通知操作日志删除权限")
     @DeleteMapping(value="/{id}")
     public AjaxResult delete(@PathVariable("id") Long id){
         try {
@@ -59,6 +66,8 @@ public class NoticeOperaterLogController {
     * @param ids
     * @return
     */
+    @ApiOperation("通知操作日志批量删除")
+//    @JiaXinPermission(name = "通知操作日志批量删除权限",description = "通知操作日志批量删除权限")
     @PatchMapping()
     public AjaxResult batchDelete(@RequestBody List<Long> ids){
         try {
@@ -71,6 +80,8 @@ public class NoticeOperaterLogController {
     }
 	
     //获取用户
+    @ApiOperation("通知操作日志根据id获取")
+//    @JiaXinPermission(name = "通知操作日志根据id获取权限",description = "通知操作日志根据id获取权限")
     @GetMapping("/{id}")
     public AjaxResult get(@PathVariable("id")Long id)
     {
@@ -88,6 +99,8 @@ public class NoticeOperaterLogController {
     * 查看所有的员工信息
     * @return
     */
+    @ApiOperation("通知操作日志所有信息获取")
+//    @JiaXinPermission(name = "通知操作日志所有信息获取权限",description = "通知操作日志所有信息获取权限")
     @GetMapping
     public AjaxResult list(){
 
@@ -107,6 +120,8 @@ public class NoticeOperaterLogController {
     * @param query 查询对象
     * @return PageList 分页对象
     */
+    @ApiOperation("通知操作日志关键字分页查询")
+    @JiaXinPermission(name = "通知操作日志关键字分页查询权限",description = "通知操作日志关键字分页查询权限")
     @PostMapping
     public AjaxResult json(@RequestBody NoticeOperaterLogQuery query)
     {

@@ -1,16 +1,20 @@
 package cn.cailang.record.controller;
 
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.record.service.IDisableService;
 import cn.cailang.record.domain.Disable;
 import cn.cailang.record.query.DisableQuery;
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.PageList;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-
+@JiaXinPermission(name = "报废记录管理权限",description = "报废记录管理权限")
+@Api(value = "报废记录管理",description="报废记录相关的功能")
 @RestController
 @RequestMapping("/disable")
 public class DisableController {
@@ -23,6 +27,8 @@ public class DisableController {
      * @param disable  传递的实体
      * @return Ajaxresult转换结果
      */
+    @ApiOperation("报废记录新增或修改")
+    @JiaXinPermission(name = "报废记录新增或修改权限",description = "报废记录新增或修改权限")
     @PutMapping
     public AjaxResult addOrUpdate(@RequestBody Disable disable){
         try {
@@ -44,6 +50,8 @@ public class DisableController {
     * @param id
     * @return
     */
+    @ApiOperation("报废记录删除")
+//    @JiaXinPermission(name = "报废记录删除权限",description = "报废记录删除权限")
     @DeleteMapping(value="/{id}")
     public AjaxResult delete(@PathVariable("id") Long id){
         try {
@@ -60,6 +68,8 @@ public class DisableController {
     * @param ids
     * @return
     */
+    @ApiOperation("报废记录批量删除")
+//    @JiaXinPermission(name = "报废记录批量删除权限",description = "报废记录批量删除权限")
     @PatchMapping()
     public AjaxResult batchDelete(@RequestBody List<Long> ids){
         try {
@@ -108,6 +118,8 @@ public class DisableController {
     * @param query 查询对象
     * @return PageList 分页对象
     */
+    @ApiOperation("报废记录关键字分页查询")
+    @JiaXinPermission(name = "报废记录关键字分页查询权限",description = "报废记录关键字分页查询权限")
     @PostMapping
     public AjaxResult json(@RequestBody DisableQuery query)
     {

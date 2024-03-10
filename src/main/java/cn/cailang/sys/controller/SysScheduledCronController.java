@@ -1,6 +1,7 @@
 package cn.cailang.sys.controller;
 
 
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.ClassUtils;
 import cn.cailang.base.utils.LoginUtil;
@@ -13,6 +14,8 @@ import cn.cailang.sys.domain.SysScheduledCron;
 import cn.cailang.sys.mapper.SysScheduledCronMapper;
 import cn.cailang.sys.query.SysScheduledCronQuery;
 import cn.cailang.sys.service.IBackupOperatorLogService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -30,6 +33,8 @@ import java.util.regex.Pattern;
  * 定时任务控制器
  *
  */
+@JiaXinPermission(name = "备份定时任务管理权限",description = "备份定时任务管理权限")
+@Api(value = "备份定时任务管理",description="备份定时任务相关的功能")
 @Controller
 @RequestMapping("/task")
 public class SysScheduledCronController {
@@ -44,6 +49,8 @@ public class SysScheduledCronController {
     private SysScheduledCronMapper sysScheduledCronMapper;
     @Autowired
     private IBackupOperatorLogService backupOperatorLogService;
+    @ApiOperation("定时任务列表查看")
+    @JiaXinPermission(name = "定时任务列表查看权限",description = "定时任务列表查看权限")
     @RequestMapping("taskList")
     @ResponseBody
     public AjaxResult taskList(@RequestBody SysScheduledCronQuery query) {
@@ -53,6 +60,8 @@ public class SysScheduledCronController {
     }
 
     //编辑Cron表达式
+    @ApiOperation("更新定时任务")
+    @JiaXinPermission(name = "更新定时任务权限",description = "更新定时任务权限")
     @RequestMapping("updateTask")
     @ResponseBody
     public AjaxResult updateTask(@RequestBody SysScheduledCron sysScheduledCron,HttpServletRequest request) {
@@ -82,6 +91,8 @@ public class SysScheduledCronController {
      * @param id
      * @return
      */
+    @ApiOperation("删除定时任务")
+    @JiaXinPermission(name = "删除定时任务权限",description = "删除定时任务权限")
     @DeleteMapping(value="/{id}")
     @ResponseBody
     public AjaxResult delete(@PathVariable("id") Long id,HttpServletRequest request){
@@ -108,6 +119,8 @@ public class SysScheduledCronController {
     /**
      * 执行定时任务
      */
+    @ApiOperation("执行定时任务")
+//    @JiaXinPermission(name = "执行定时任务权限",description = "执行定时任务权限")
     @ResponseBody
     @RequestMapping("runTaskCron")
     public AjaxResult runTaskCron(@RequestParam(value = "cronKey") String cronKey,HttpServletRequest request) throws ClassNotFoundException {
@@ -126,6 +139,8 @@ public class SysScheduledCronController {
     /**
      * 启用或禁用定时任务
      */
+    @ApiOperation("启用或禁用定时任务")
+    @JiaXinPermission(name = "启用或禁用定时任务权限",description = "启用或禁用定时任务权限")
     @ResponseBody
     @RequestMapping("changeStatusTaskCron")
     public AjaxResult changeStatusTaskCron(
@@ -159,6 +174,8 @@ public class SysScheduledCronController {
     /**
      * 添加定时任务
      */
+    @ApiOperation("添加定时任务")
+    @JiaXinPermission(name = "添加定时任务权限",description = "添加定时任务权限")
     @ResponseBody
     @RequestMapping("addTask")
     public AjaxResult changeStatusTaskCron(

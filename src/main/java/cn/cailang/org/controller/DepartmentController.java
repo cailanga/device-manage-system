@@ -1,6 +1,6 @@
 package cn.cailang.org.controller;
 
-import cn.cailang.auth.annotation.RonghuaPermission;
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.PageList;
 import cn.cailang.org.domain.Department;
@@ -26,7 +26,7 @@ import java.util.Objects;
 @Api(value = "部门管理",description="部门相关的CRUD功能")
 @RestController
 @RequestMapping("/department")
-@RonghuaPermission(name = "部门管理",description = "部门管理权限")
+@JiaXinPermission(name = "部门管理",description = "部门管理权限")
 public class DepartmentController {
     @Autowired
     private IDepartmentService departmentService;
@@ -36,7 +36,7 @@ public class DepartmentController {
      * @param id 部门id
      * @return AjaxResult对象
      */
-    @RonghuaPermission(name = "通过id查询部门信息",description = "通过id查询部门信息")
+//    @JiaXinPermission(name = "通过id查询部门信息",description = "通过id查询部门信息")
     @ApiOperation("通过id查询部门信息")
     @ApiImplicitParam(name = "id", value = "部门ID", required = true, dataType = "Long",paramType = "path")
     @GetMapping("/{id}")
@@ -56,7 +56,7 @@ public class DepartmentController {
      * 查询所有部门信息
      * @return AjaxResult对象
      */
-    @RonghuaPermission(name = "查询所有部门信息",description = "查询所有部门信息")
+//    @JiaXinPermission(name = "查询所有部门信息",description = "查询所有部门信息")
     @ApiOperation("查询所有部门信息")
     @GetMapping
     public AjaxResult selectAll() {
@@ -74,7 +74,7 @@ public class DepartmentController {
      * @param id 部门id
      * @return AjaxResult对象
      */
-    @RonghuaPermission(name = "根据id删除部门信息",description = "根据id删除部门信息")
+    @JiaXinPermission(name = "删除部门信息权限",description = "删除部门信息权限")
     @ApiOperation("根据id删除部门信息")
     @ApiImplicitParam(name = "id", value = "部门ID", required = true, dataType = "Long",paramType = "path")
     @DeleteMapping("/{id}")
@@ -95,7 +95,7 @@ public class DepartmentController {
      * @param ids id集合
      * @return AjaxResult对象
      */
-    @RonghuaPermission(name = "批量删除",description = "批量删除")
+    @JiaXinPermission(name = "批量删除权限",description = "批量删除权限")
     @ApiOperation("根据ids批量删除部门信息")
     @PatchMapping
     public AjaxResult batchDelete(
@@ -115,7 +115,7 @@ public class DepartmentController {
      * @param department 部门信息
      * @return AjaxResult对象
      */
-    @RonghuaPermission(name = "新增或修改部门信息",description = "新增或修改部门信息")
+    @JiaXinPermission(name = "新增或修改部门信息权限",description = "新增或修改部门信息权限")
     @ApiOperation("新增或修改部门信息")
     @PutMapping
     public AjaxResult addOrUpdate(@RequestBody Department department){
@@ -139,7 +139,7 @@ public class DepartmentController {
      * @param query 查询条件对象
      * @return AjaxResult对象
      */
-    @RonghuaPermission(name = "根据关键字进行分页查询",description = "根据关键字进行分页查询")
+    @JiaXinPermission(name = "根据关键字进行分页查询权限",description = "根据关键字进行分页查询权限")
     @ApiOperation("根据关键字进行分页查询")
     @PostMapping
     public AjaxResult queryDataByKeyword(@RequestBody DepartmentQuery query){
@@ -156,7 +156,7 @@ public class DepartmentController {
      * 查询部门树
      * @return 一级部门及其子部门数据
      */
-    @RonghuaPermission(name = "查询部门树",description = "查询部门树")
+//    @JiaXinPermission(name = "查询部门树",description = "查询部门树")
     @ApiOperation("查询所有一级部门信息及其子部门信息")
     @GetMapping("/tree")
     public AjaxResult queryFirstDeptAndChildren(){

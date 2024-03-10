@@ -1,6 +1,6 @@
 package cn.cailang.auth.controller;
 
-import cn.cailang.auth.annotation.RonghuaPermission;
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.auth.domain.Menu;
 import cn.cailang.auth.domain.Permission;
 import cn.cailang.auth.domain.Role;
@@ -25,7 +25,7 @@ import java.util.Objects;
  * @Date: 2023/4/23 16:13
  * @Version 1.0
  **/
-@RonghuaPermission(name = "角色管理",description = "角色管理权限")
+@JiaXinPermission(name = "角色管理权限",description = "角色管理权限")
 @Api(value = "角色管理",description="角色相关的CRUD功能")
 @RestController
 @RequestMapping("/role")
@@ -41,7 +41,7 @@ public class RoleController {
     @ApiOperation("通过id查询角色信息")
     @ApiImplicitParam(name = "id", value = "角色ID", required = true, dataType = "Long",paramType = "path")
     @GetMapping("/{id}")
-    @RonghuaPermission(name = "通过id查询角色信息",description = "通过id查询角色信息")
+//    @JiaXinPermission(name = "通过id查询角色信息",description = "通过id查询角色信息")
     public AjaxResult selectById(
             @ApiParam(name = "主键",required = true)
             @PathVariable("id") Long id) {
@@ -60,7 +60,7 @@ public class RoleController {
      */
     @ApiOperation("查询所有角色信息")
     @GetMapping
-    @RonghuaPermission(name = "查询所有角色信息",description = "查询所有角色信息")
+//    @JiaXinPermission(name = "查询所有角色信息权限",description = "查询所有角色信息权限")
     public AjaxResult selectAll() {
         try {
             List<Role> roles = roleService.selectAll();
@@ -76,10 +76,10 @@ public class RoleController {
      * @param id 角色id
      * @return AjaxResult对象
      */
-    @ApiOperation("根据id删除角色信息")
+    @ApiOperation("删除角色信息")
     @ApiImplicitParam(name = "id", value = "角色ID", required = true, dataType = "Long",paramType = "path")
     @DeleteMapping("/{id}")
-    @RonghuaPermission(name = "根据id删除角色信息",description = "根据id删除角色信息")
+    @JiaXinPermission(name = "删除角色信息权限",description = "删除角色信息权限")
     public AjaxResult deleteById(
             @ApiParam(name = "主键",required = true)
             @PathVariable("id") Long id){
@@ -92,9 +92,9 @@ public class RoleController {
         }
     }
 
-    @ApiOperation("根据ids批量删除角色信息")
+    @ApiOperation("批量删除角色信息")
     @PatchMapping
-    @RonghuaPermission(name = "根据ids批量删除角色信息",description = "根据ids批量删除角色信息")
+    @JiaXinPermission(name = "批量删除角色信息权限",description = "批量删除角色信息权限")
     public AjaxResult batchDelete(
             @ApiParam(name = "id集合",required = true)
              @RequestBody List<Long> ids){
@@ -114,7 +114,7 @@ public class RoleController {
      */
     @ApiOperation("新增或修改角色信息")
     @PutMapping
-    @RonghuaPermission(name = "新增或修改角色信息",description = "新增或修改角色信息")
+    @JiaXinPermission(name = "新增或修改角色信息权限",description = "新增或修改角色信息权限")
     public AjaxResult addOrUpdate(@RequestBody Role role){
         try {
             if (Objects.nonNull(role.getId())){
@@ -138,7 +138,7 @@ public class RoleController {
      */
     @ApiOperation("根据关键字进行分页查询")
     @PostMapping
-    @RonghuaPermission(name = "根据关键字进行分页查询",description = "根据关键字进行分页查询")
+    @JiaXinPermission(name = "根据关键字进行分页查询权限",description = "根据关键字进行分页查询权限")
     public AjaxResult queryDataByKeyword(@RequestBody RoleQuery query){
         try {
             PageList<Role> pageList = roleService.pageList(query);
@@ -150,7 +150,7 @@ public class RoleController {
     }
 
     @ApiOperation("获取权限树")
-    @RonghuaPermission(name = "获取权限树")
+    @JiaXinPermission(name = "获取权限树权限")
     @GetMapping("/getPermissionTree")
     public AjaxResult getPermissionTree(){
         try {
@@ -163,7 +163,7 @@ public class RoleController {
     }
 
     @ApiOperation("设置权限")
-    @RonghuaPermission(name = "设置权限")
+    @JiaXinPermission(name = "设置权限")
     @PutMapping("/setPermission")
     public AjaxResult setPermission(@RequestBody Map map){
         try {
@@ -177,7 +177,7 @@ public class RoleController {
         }
     }
     @ApiOperation("通过角色id获取权限标识")
-    @RonghuaPermission(name = "通过角色id获取权限标识")
+//    @JiaXinPermission(name = "通过角色id获取权限标识")
     @GetMapping("/getPermissionsSnsByRoleId/{roleId}")
     public AjaxResult getPermissionsSnsByRoleId(@PathVariable("roleId") Long roleId){
         try {
@@ -190,7 +190,7 @@ public class RoleController {
     }
 
     @ApiOperation("获取菜单树")
-    @RonghuaPermission(name = "获取菜单树")
+//    @JiaXinPermission(name = "获取菜单树")
     @GetMapping("/getMenuTree")
     public AjaxResult getMenuTree(){
         try {
@@ -203,7 +203,7 @@ public class RoleController {
     }
 
     @ApiOperation("设置菜单")
-    @RonghuaPermission(name = "设置菜单")
+    @JiaXinPermission(name = "设置菜单")
     @PutMapping("/setMenu")
     public AjaxResult setMenu(@RequestBody Map map){
         try {
@@ -217,7 +217,7 @@ public class RoleController {
         }
     }
     @ApiOperation("通过角色id获取菜单ids")
-    @RonghuaPermission(name = "通过角色id获取菜单ids")
+//    @JiaXinPermission(name = "通过角色id获取菜单ids")
     @GetMapping("/getMenuIdsByRoleId/{roleId}")
     public AjaxResult getMenuIdsByRoleId(@PathVariable("roleId") Long roleId){
         try {

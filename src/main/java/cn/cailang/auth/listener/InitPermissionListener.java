@@ -1,8 +1,7 @@
 package cn.cailang.auth.listener;
 
-import cn.cailang.auth.annotation.RonghuaPermission;
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.auth.domain.Permission;
-import cn.cailang.auth.mapper.PermissionMapper;
 import cn.cailang.auth.service.IPermissionService;
 import cn.cailang.base.utils.ClassUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Objects;
@@ -26,7 +23,7 @@ import java.util.Objects;
  * @Version 1.0
  **/
 //@WebListener
-//@Component
+@Component
 public class InitPermissionListener implements ServletContextListener {
     @Value("${auth.permission.controller-package}")
     private String controllerPackage;
@@ -42,13 +39,13 @@ public class InitPermissionListener implements ServletContextListener {
 
         classList.forEach(aClass -> {
             //判断当前类是否有@RonghuaPermission注解
-            RonghuaPermission ronghuaPermission = (RonghuaPermission) aClass.getAnnotation(RonghuaPermission.class);
-            if (Objects.isNull(ronghuaPermission)) {
+            JiaXinPermission jiaXinPermission = (JiaXinPermission) aClass.getAnnotation(JiaXinPermission.class);
+            if (Objects.isNull(jiaXinPermission)) {
                 //如果没有此注解，则跳过，不需要权限
                 return;
             }
-            String name = ronghuaPermission.name();
-            String description = ronghuaPermission.description();
+            String name = jiaXinPermission.name();
+            String description = jiaXinPermission.description();
             RequestMapping requestMapping = (RequestMapping) aClass.getAnnotation(RequestMapping.class);
             //类上的url
             String url = requestMapping.value()[0];
@@ -66,7 +63,7 @@ public class InitPermissionListener implements ServletContextListener {
             Method[] methods = aClass.getMethods();
 
             for (Method method : methods) {
-                RonghuaPermission methodAnnotation = method.getAnnotation(RonghuaPermission.class);
+                JiaXinPermission methodAnnotation = method.getAnnotation(JiaXinPermission.class);
                 if (Objects.isNull(methodAnnotation)) {
                     //如果没有@RonghuaPermission注解，则不需要权限
                     continue;

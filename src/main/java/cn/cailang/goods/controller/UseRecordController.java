@@ -1,5 +1,6 @@
 package cn.cailang.goods.controller;
 
+import cn.cailang.auth.annotation.JiaXinPermission;
 import cn.cailang.base.utils.AjaxResult;
 import cn.cailang.base.utils.PageList;
 import cn.cailang.device.domain.Devices;
@@ -10,11 +11,14 @@ import cn.cailang.goods.dto.UseRecordPageInfoDTO;
 import cn.cailang.goods.query.GoodsQuery;
 import cn.cailang.goods.service.IGoodsService;
 import cn.cailang.goods.service.IUseRecordService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@JiaXinPermission(name = "物资设备领用管理权限",description = "物资设备领用管理权限")
+@Api(value = "物资设备领用管理",description="物资设备领用相关的功能")
 @RestController
 @RequestMapping("/useRecord")
 public class UseRecordController {
@@ -31,8 +35,10 @@ public class UseRecordController {
      * @param product  传递的实体
      * @return Ajaxresult转换结果
      */
-    @PutMapping
-    public AjaxResult addOrUpdate(@RequestBody UseRecord product){
+    @ApiOperation("物资领用")
+    @JiaXinPermission(name = "物资领用权限",description = "物资领用权限")
+    @PutMapping("/goods")
+    public AjaxResult addOrUpdateGoods(@RequestBody UseRecord product){
         try {
             if( product.getId()!=null){
                     productService.update(product);
@@ -51,7 +57,32 @@ public class UseRecordController {
                         goods.setUseCount(count+useCount);
                         goodsService.update(goods);
                     }
-                }else {
+                }
+                productService.insert(product);
+            }
+            return AjaxResult.me();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AjaxResult.me().setSuccess(false).setMessage("保存对象失败！"+e.getMessage());
+        }
+    }
+
+    /**
+     * 保存和修改公用的
+     * @param product  传递的实体
+     * @return Ajaxresult转换结果
+     */
+    @ApiOperation("设备领用")
+    @JiaXinPermission(name = "设备领用权限",description = "设备领用权限")
+    @PutMapping("/device")
+    public AjaxResult addOrUpdateDevice(@RequestBody UseRecord product){
+        try {
+            if( product.getId()!=null){
+                productService.update(product);
+            }
+            else{
+                Integer count = product.getCount();
+                if (product.getType()==2) {
                     Devices goods = devicesService.selectById(product.getGoodsId());
                     Integer count1 = goods.getCount();
                     Integer useCount = goods.getUseCount();
@@ -76,6 +107,8 @@ public class UseRecordController {
     * @param id
     * @return
     */
+    @ApiOperation("物资设备领用记录删除")
+//    @JiaXinPermission(name = "物资设备领用记录删除权限",description = "物资设备领用记录删除权限")
     @DeleteMapping(value="/{id}")
     public AjaxResult delete(@PathVariable("id") Long id){
         try {
@@ -92,6 +125,8 @@ public class UseRecordController {
     * @param ids
     * @return
     */
+    @ApiOperation("物资设备领用记录批量删除")
+//    @JiaXinPermission(name = "物资设备领用记录批量删除权限",description = "物资设备领用记录批量删除权限")
     @PatchMapping()
     public AjaxResult batchDelete(@RequestBody List<Long> ids){
         try {
@@ -104,6 +139,8 @@ public class UseRecordController {
     }
 	
     //获取
+    @ApiOperation("物资设备领用记录根据id查询")
+//    @JiaXinPermission(name = "物资设备领用记录根据id查询权限",description = "物资设备领用记录根据id查询权限")
     @GetMapping("/{id}")
     public AjaxResult get(@PathVariable("id")Long id)
     {
@@ -121,6 +158,8 @@ public class UseRecordController {
     * 查看所有的信息
     * @return
     */
+    @ApiOperation("物资设备领用记录查询所有信息")
+//    @JiaXinPermission(name = "物资设备领用记录查询所有信息权限",description = "物资设备领用记录查询所有信息权限")
     @GetMapping
     public AjaxResult list(){
 
@@ -137,6 +176,8 @@ public class UseRecordController {
      * 查看所有的信息
      * @return
      */
+    @ApiOperation("物资设备领用记录根据操作者查询")
+    @JiaXinPermission(name = "物资设备领用记录查询权限",description = "物资设备领用记录查询权限")
     @PostMapping("/operatorId")
     public AjaxResult listForOperator(@RequestBody UseRecordPageInfoDTO dto){
 
@@ -156,6 +197,8 @@ public class UseRecordController {
     * @param query 查询对象
     * @return PageList 分页对象
     */
+    @ApiOperation("物资设备领用记录关键词分页查询")
+    @JiaXinPermission(name = "物资设备领用记录关键词分页查询权限",description = "物资设备领用记录关键词分页查询权限")
     @PostMapping
     public AjaxResult json(@RequestBody GoodsQuery query)
     {

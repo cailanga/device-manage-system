@@ -15,6 +15,6 @@ mybatis:
     map-underscore-to-camel-case: true
 auth:
   permission:
-    controller-package: cn.cailang.org.controller,cn.cailang.auth.controller
+    controller-package: cn.cailang.org.controller,cn.cailang.auth.controller,cn.cailang.device.controller,cn.cailang.goods.controller,cn.cailang.notice.controller,cn.cailang.sys.controller,cn.cailang.record.controller,cn.cailang.seller.controller,cn.cailang.statistics.controller
 backup:
   filePath: D:\\device_manager_system_backup\\
