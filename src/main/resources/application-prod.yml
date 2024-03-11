@@ -1,13 +1,29 @@
 server:
   port: 8081
 spring:
-
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.1.190:3306/pzhxy_device_manager?useSSL=false&characterEncoding=utf8
     username: root
     password: root
-
+    type: com.alibaba.druid.pool.DruidDataSource
+    # Druid连接池相关配置
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      filters: stat,wall
+      max-pool-prepared-statement-per-connection-size: 20
+      # 设置Druid登录密码
+      stat-view-servlet:
+        login-username: admin
+        login-password: 123456
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,classpath:/static/upload/headImage/
   servlet:
