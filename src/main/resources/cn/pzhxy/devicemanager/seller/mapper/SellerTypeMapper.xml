@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pzhxy.devicemanager.seller.mapper.SellerTypeMapper">
+    <!--保存对象-->
+    <insert id="insert" parameterType="SellerType" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into t_seller_type(
+                            `name`,
+                            `description`,
+                            `parent_id`
+        ) values(
+                                   #{name},
+                                   #{description},
+                                   #{parentId}
+        )
+    </insert>
+    <!--删除对象-->
+    <delete id="deleteById" parameterType="long">
+        delete from t_seller_type where id = #{id}
+    </delete>
+
+    <!--更新对象-->
+    <update id="update" parameterType="SellerType">
+        update t_seller_type
+        set
+
+                            `name` =#{name},
+                            `description` =#{description},
+                            `parent_id` =#{parentId}
+        where id = #{id}
+    </update>
+    <!--加载对象-->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="long">
+        select * from t_seller_type where id = #{id}
+    </select>
+    <!--加载所有对象-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from t_seller_type
+    </select>
+    <!--//查询总数=参数（查询对象），返回值：long-->
+    <select id="queryTotal" parameterType="SellerTypeQuery" resultType="long">
+        select count(*) from t_seller_type c
+        left join t_seller_type p on c.parent_id = p.id
+        <include refid="whereSql"/>
+    </select>
+    <!--//查询当前页数据=参数（查询对象），返回值:List-->
+    <select id="queryPageList" parameterType="SellerTypeQuery" resultMap="BaseResultMap">
+        select c.*,p.id pid,p.name pname from t_seller_type c
+        left join t_seller_type p on c.parent_id = p.id
+        <include refid="whereSql"/>
+        limit #{start},#{pageSize}
+    </select>
+    <select id="selectFirstTypes" resultType="cn.pzhxy.devicemanager.seller.domain.SellerType">
+        select * from t_seller_type where parent_id is null or parent_id = 0
+    </select>
+
+
+    <sql id="whereSql">
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                and (
+                    c.name like concat('%',#{keyword},'%')
+                    or c.description like concat('%',#{keyword},'%')
+                    )
+            </if>
+        </where>
+    </sql>
+
+    <!--//批量删除-->
+    <delete id="batchDelete" parameterType="arraylist">
+        delete from t_seller_type where id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.pzhxy.devicemanager.seller.domain.SellerType">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="description" property="description" />
+        <result column="parent_id" property="parentId" />
+        <association property="parent" javaType="sellerType">
+            <id column="pid" property="id"/>
+            <result column="pname" property="name"/>
+        </association>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, description, parent_id AS parentId
+    </sql>
+
+</mapper>

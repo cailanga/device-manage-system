@@ -9,12 +9,12 @@ spring:
   jpa:
     show-sql: true
 mybatis:
-  type-aliases-package: cn.cailang.*.domain,cn.cailang.*.query
+  type-aliases-package: cn.pzhxy.devicemanager.*.domain,cn.pzhxy.devicemanager.*.query
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
 auth:
   permission:
-    controller-package: cn.cailang.org.controller,cn.cailang.auth.controller,cn.cailang.device.controller,cn.cailang.goods.controller,cn.cailang.notice.controller,cn.cailang.sys.controller,cn.cailang.record.controller,cn.cailang.seller.controller,cn.cailang.statistics.controller
+    controller-package: cn.pzhxy.devicemanager.org.controller,cn.pzhxy.devicemanager.auth.controller,cn.pzhxy.devicemanager.device.controller,cn.pzhxy.devicemanager.goods.controller,cn.pzhxy.devicemanager.notice.controller,cn.pzhxy.devicemanager.sys.controller,cn.pzhxy.devicemanager.record.controller,cn.pzhxy.devicemanager.seller.controller,cn.pzhxy.devicemanager.statistics.controller
 backup:
   filePath: D:\\device_manager_system_backup\\

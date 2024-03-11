@@ -3,9 +3,8 @@ package ${package.Controller};
 import ${package.Service}.${table.serviceName};
 import ${package.Entity}.${entity};
 import ${cfg.parent}.query.${entity}Query;
-import cn.cailang.base.utils.AjaxResult;
-import cn.cailang.base.utils.PageList;
-import io.swagger.annotations.ApiOperation;
+import cn.pzhxy.devicemanager.base.utils.AjaxResult;
+import cn.pzhxy.devicemanager.base.utils.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

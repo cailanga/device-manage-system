@@ -1,5 +1,5 @@
 package ${cfg.parent}.query;
-import cn.cailang.base.query.BaseQuery;
+import cn.pzhxy.devicemanager.base.query.BaseQuery;
 
 /**
  *

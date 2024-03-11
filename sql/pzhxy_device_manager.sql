@@ -942,7 +942,7 @@ CREATE TABLE `t_sys_scheduledcron`  (
 -- ----------------------------
 -- Records of t_sys_scheduledcron
 -- ----------------------------
-INSERT INTO `t_sys_scheduledcron` VALUES (12, 'cn.cailang.sys.Scheduled.DBBackupTask@2', '10 0/1 * * * ?', 'test', 2);
-INSERT INTO `t_sys_scheduledcron` VALUES (13, 'cn.cailang.sys.Scheduled.DBBackupTask', '0 0/1 * * * ?', 'test', 2);
+INSERT INTO `t_sys_scheduledcron` VALUES (12, 'Scheduled.sys.cn.pzhxy.devicemanager.DBBackupTask@2', '10 0/1 * * * ?', 'test', 2);
+INSERT INTO `t_sys_scheduledcron` VALUES (13, 'Scheduled.sys.cn.pzhxy.devicemanager.DBBackupTask', '0 0/1 * * * ?', 'test', 2);
 
 SET FOREIGN_KEY_CHECKS = 1;
