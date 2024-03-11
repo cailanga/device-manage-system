@@ -8,6 +8,17 @@ spring:
     time-zone: GMT+8
   jpa:
     show-sql: true
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /swagger.json
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
 mybatis:
   type-aliases-package: cn.pzhxy.devicemanager.*.domain,cn.pzhxy.devicemanager.*.query
   configuration:
