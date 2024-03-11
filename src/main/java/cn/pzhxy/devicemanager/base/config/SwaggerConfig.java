@@ -9,12 +9,12 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+//import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 //配置标签，代表该类是一个配置类
-@Configuration
+//@Configuration
 //开启Swagger
-@EnableSwagger2
+//@EnableSwagger2
 public class SwaggerConfig {
     //创建API接口文档
     @Bean

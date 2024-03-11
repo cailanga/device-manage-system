@@ -42,7 +42,7 @@
       <version>5.1.47</version>
     </dependency>
     <!--swagger-->
-    <dependency>
+    <!--<dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger2</artifactId>
       <version>2.9.2</version>
@@ -51,6 +51,14 @@
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger-ui</artifactId>
       <version>2.9.2</version>
+    </dependency>-->
+    <!-- 包含了ui界面 -->
+    <dependency>
+      <groupId>com.github.xiaoymin</groupId>
+      <artifactId>knife4j-spring-boot-starter</artifactId>
+      <!-- 2.x基于springfox2.x，3.x基于springfox3.x-->
+<!--      <version>2.0.9</version>-->
+      <version>3.0.3</version>
     </dependency>
     <!--代码生成器-->
     <dependency>

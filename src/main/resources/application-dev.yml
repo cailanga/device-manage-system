@@ -17,3 +17,10 @@ spring:
       max-file-size: 10MB
       # 请求最大字节数，包括文件和表单数据，默认为10MB
       max-request-size: 20MB
+#swagger全局配置
+knife4j:
+  enable: true  #是否开启Swagger
+  basic:
+    enable: true  #进入界面是否需要账号密码
+    username: admin
+    password: 123456

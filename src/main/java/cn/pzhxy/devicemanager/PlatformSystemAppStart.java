@@ -38,6 +38,7 @@ public class PlatformSystemAppStart implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns("/login","/logout")
                 .excludePathPatterns("/upload/headImage/**") //头像资源放行
-                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");//swagger资源放行
+                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**")//swagger资源放行
+                .excludePathPatterns("/doc.html/**");//knife4j资源放行
     }
 }
