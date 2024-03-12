@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 08/03/2024 22:18:49
+ Date: 12/03/2024 20:07:49
 */
 
 SET NAMES utf8mb4;
@@ -48,7 +48,7 @@ CREATE TABLE `t_auth_menu`  (
   `parent_id` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK24897F76799044`(`parent_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 63 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 82 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_auth_menu
@@ -61,17 +61,6 @@ INSERT INTO `t_auth_menu` VALUES (25, '组织机构管理', '/', 'fa fa-bar-char
 INSERT INTO `t_auth_menu` VALUES (26, '员工管理', '/employee', '', 25);
 INSERT INTO `t_auth_menu` VALUES (27, '部门管理', '/department', '', 25);
 INSERT INTO `t_auth_menu` VALUES (28, '系统管理', '/', 'fa fa-bar-chart', NULL);
-INSERT INTO `t_auth_menu` VALUES (39, '物资设备', '/', 'fa fa-bar-chart', NULL);
-INSERT INTO `t_auth_menu` VALUES (40, '采购入库', '/procure', '', 39);
-INSERT INTO `t_auth_menu` VALUES (41, '物资', '/goods', '', 39);
-INSERT INTO `t_auth_menu` VALUES (42, '物资类型', '/goodsType', '', 39);
-INSERT INTO `t_auth_menu` VALUES (43, '物资操作日志', '/goodsOperaterLog', '', 39);
-INSERT INTO `t_auth_menu` VALUES (44, '待审核物资', '/checkingGoods', '', 39);
-INSERT INTO `t_auth_menu` VALUES (45, '设备', '/device', '', 39);
-INSERT INTO `t_auth_menu` VALUES (46, '设备类型', '/deviceType', '', 39);
-INSERT INTO `t_auth_menu` VALUES (47, '设备操作日志', '/devicesOperaterLog', '', 39);
-INSERT INTO `t_auth_menu` VALUES (48, '待审核设备', '/checkingDevices', '', 39);
-INSERT INTO `t_auth_menu` VALUES (49, '领用记录', '/useRecord', '', 39);
 INSERT INTO `t_auth_menu` VALUES (50, '商家管理', '/seller', '', 25);
 INSERT INTO `t_auth_menu` VALUES (51, '商家类型', '/sellerType', '', 25);
 INSERT INTO `t_auth_menu` VALUES (52, '统计信息', '/', 'fa fa-bar-chart', NULL);
@@ -84,6 +73,25 @@ INSERT INTO `t_auth_menu` VALUES (58, '物资信息统计', '/goodsShow', '', 52
 INSERT INTO `t_auth_menu` VALUES (59, '通知信息', '/notice', '', 53);
 INSERT INTO `t_auth_menu` VALUES (61, '待审核通知', '/checkingNotice', '', 53);
 INSERT INTO `t_auth_menu` VALUES (62, '通知操作日志', '/noticeOperaterLog', '', 53);
+INSERT INTO `t_auth_menu` VALUES (63, '系统接口文档', '/interfaceDoc', '', 28);
+INSERT INTO `t_auth_menu` VALUES (64, '数据监控', '/dbMonitor', '', 28);
+INSERT INTO `t_auth_menu` VALUES (65, '设备管理', '/', 'fa fa-bar-chart', NULL);
+INSERT INTO `t_auth_menu` VALUES (66, '设备', '/device', '', 65);
+INSERT INTO `t_auth_menu` VALUES (67, '可领用设备', '/canUseDevice', '', 65);
+INSERT INTO `t_auth_menu` VALUES (68, '物资管理', '/', 'fa fa-bar-chart', NULL);
+INSERT INTO `t_auth_menu` VALUES (69, '领用记录', '/', 'fa fa-bar-chart', NULL);
+INSERT INTO `t_auth_menu` VALUES (70, '个人领用记录', '/useRecordByPerson', '', 69);
+INSERT INTO `t_auth_menu` VALUES (71, '领用记录', '/useRecord', '', 69);
+INSERT INTO `t_auth_menu` VALUES (72, '物资', '/goods', '', 68);
+INSERT INTO `t_auth_menu` VALUES (73, '可领用物资', '/canUseGoods', '', 68);
+INSERT INTO `t_auth_menu` VALUES (74, '采购入库', '/device/procure', '', 65);
+INSERT INTO `t_auth_menu` VALUES (75, '设备类型', '/deviceType', '', 65);
+INSERT INTO `t_auth_menu` VALUES (76, '设备操作日志', '/deviceOperaterLog', '', 65);
+INSERT INTO `t_auth_menu` VALUES (77, '待审核设备', '/checkingDevice', '', 65);
+INSERT INTO `t_auth_menu` VALUES (78, '采购入库', '/goods/procure', '', 68);
+INSERT INTO `t_auth_menu` VALUES (79, '物资类型', '/goodsType', '', 68);
+INSERT INTO `t_auth_menu` VALUES (80, '物资操作日志', '/goodsOperaterLog', '', 68);
+INSERT INTO `t_auth_menu` VALUES (81, '待审核物资', '/checkingGoods', '', 68);
 
 -- ----------------------------
 -- Table structure for t_auth_permission
@@ -97,54 +105,135 @@ CREATE TABLE `t_auth_permission`  (
   `sn` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `parent_id` bigint(20) NULL DEFAULT NULL COMMENT '父级权限的id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1560 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5701 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_auth_permission
 -- ----------------------------
-INSERT INTO `t_auth_permission` VALUES (1517, '部门管理', '/department', '部门管理权限', 'DepartmentController', NULL);
-INSERT INTO `t_auth_permission` VALUES (1518, '根据关键字进行分页查询', '/department', '根据关键字进行分页查询', 'DepartmentController:queryDataByKeyword', 1517);
-INSERT INTO `t_auth_permission` VALUES (1519, '通过id查询部门信息', '/department/{id}', '通过id查询部门信息', 'DepartmentController:selectById', 1517);
-INSERT INTO `t_auth_permission` VALUES (1520, '根据id删除部门信息', '/department/{id}', '根据id删除部门信息', 'DepartmentController:deleteById', 1517);
-INSERT INTO `t_auth_permission` VALUES (1521, '查询所有部门信息', '/department', '查询所有部门信息', 'DepartmentController:selectAll', 1517);
-INSERT INTO `t_auth_permission` VALUES (1522, '批量删除', '/department', '批量删除', 'DepartmentController:batchDelete', 1517);
-INSERT INTO `t_auth_permission` VALUES (1523, '新增或修改部门信息', '/department', '新增或修改部门信息', 'DepartmentController:addOrUpdate', 1517);
-INSERT INTO `t_auth_permission` VALUES (1524, '查询部门树', '/department/tree', '查询部门树', 'DepartmentController:queryFirstDeptAndChildren', 1517);
-INSERT INTO `t_auth_permission` VALUES (1525, '员工管理', '/employee', '员工管理权限', 'EmployeeController', NULL);
-INSERT INTO `t_auth_permission` VALUES (1526, '头像图片删除', '/employee/deleteHeadImage', '头像图片删除', 'EmployeeController:deleteFile', 1525);
-INSERT INTO `t_auth_permission` VALUES (1527, '根据关键字进行分页查询', '/employee', '根据关键字进行分页查询', 'EmployeeController:queryDataByKeyword', 1525);
-INSERT INTO `t_auth_permission` VALUES (1528, '通过id查询员工信息', '/employee/{id}', '通过id查询员工信息', 'EmployeeController:selectById', 1525);
-INSERT INTO `t_auth_permission` VALUES (1529, '根据id删除员工信息', '/employee/{id}', '根据id删除员工信息', 'EmployeeController:deleteById', 1525);
-INSERT INTO `t_auth_permission` VALUES (1530, '查询所有员工信息', '/employee', '查询所有员工信息', 'EmployeeController:selectAll', 1525);
-INSERT INTO `t_auth_permission` VALUES (1531, '根据ids批量删除员工信息', '/employee', '根据ids批量删除员工信息', 'EmployeeController:batchDelete', 1525);
-INSERT INTO `t_auth_permission` VALUES (1532, '新增或修改员工信息', '/employee', '新增或修改员工信息', 'EmployeeController:addOrUpdate', 1525);
-INSERT INTO `t_auth_permission` VALUES (1533, '设置员工角色', '/employee/setEmployeeRole', '设置员工角色', 'EmployeeController:setEmployeeRole', 1525);
-INSERT INTO `t_auth_permission` VALUES (1534, '头像图片文件上传', '/employee/uploadHeadImage', '头像图片文件上传', 'EmployeeController:uploadHeadImage', 1525);
-INSERT INTO `t_auth_permission` VALUES (1535, '根据员工id获取其角色ids', '/employee/getEmpRolesByEmplId/{employeeId}', '根据员工id获取其角色ids', 'EmployeeController:getEmpRolesByEmplId', 1525);
-INSERT INTO `t_auth_permission` VALUES (1536, '菜单管理', '/menu', '菜单管理权限', 'MenuController', NULL);
-INSERT INTO `t_auth_permission` VALUES (1537, '根据关键字进行分页查询', '/menu', '根据关键字进行分页查询', 'MenuController:queryDataByKeyword', 1536);
-INSERT INTO `t_auth_permission` VALUES (1538, '根据员工id获取菜单树', '/menu/getMenuTree/{employeeId}', '', 'MenuController:getMenuTreeByEmpId', 1536);
-INSERT INTO `t_auth_permission` VALUES (1539, '通过id查询菜单信息', '/menu/{id}', '通过id查询菜单信息', 'MenuController:selectById', 1536);
-INSERT INTO `t_auth_permission` VALUES (1540, '根据id删除菜单信息', '/menu/{id}', '根据id删除菜单信息', 'MenuController:deleteById', 1536);
-INSERT INTO `t_auth_permission` VALUES (1541, '查询所有菜单信息', '/menu', '查询所有菜单信息', 'MenuController:selectAll', 1536);
-INSERT INTO `t_auth_permission` VALUES (1542, '根据ids批量删除菜单信息', '/menu', '根据ids批量删除菜单信息', 'MenuController:batchDelete', 1536);
-INSERT INTO `t_auth_permission` VALUES (1543, '新增或修改菜单信息', '/menu', '新增或修改菜单信息', 'MenuController:addOrUpdate', 1536);
-INSERT INTO `t_auth_permission` VALUES (1544, '权限管理', '/permission', '权限管理', 'PermissionController', NULL);
-INSERT INTO `t_auth_permission` VALUES (1545, '通过员工id获取权限', '/permission/getPermissionsByEmployeeId/{employeeId}', '', 'PermissionController:getPermissionsByEmployeeId', 1544);
-INSERT INTO `t_auth_permission` VALUES (1546, '根据关键字进行分页查询', '/permission/pageList', '根据关键字进行分页查询', 'PermissionController:pageList', 1544);
-INSERT INTO `t_auth_permission` VALUES (1547, '角色管理', '/role', '角色管理权限', 'RoleController', NULL);
-INSERT INTO `t_auth_permission` VALUES (1548, '设置权限', '/role/setPermission', '', 'RoleController:setPermission', 1547);
-INSERT INTO `t_auth_permission` VALUES (1549, '根据关键字进行分页查询', '/role', '根据关键字进行分页查询', 'RoleController:queryDataByKeyword', 1547);
-INSERT INTO `t_auth_permission` VALUES (1550, '通过角色id获取菜单ids', '/role/getMenuIdsByRoleId/{roleId}', '', 'RoleController:getMenuIdsByRoleId', 1547);
-INSERT INTO `t_auth_permission` VALUES (1551, '获取权限树', '/role/getPermissionTree', '', 'RoleController:getPermissionTree', 1547);
-INSERT INTO `t_auth_permission` VALUES (1552, '通过角色id获取权限标识', '/role/getPermissionsSnsByRoleId/{roleId}', '', 'RoleController:getPermissionsSnsByRoleId', 1547);
-INSERT INTO `t_auth_permission` VALUES (1553, '通过id查询角色信息', '/role/{id}', '通过id查询角色信息', 'RoleController:selectById', 1547);
-INSERT INTO `t_auth_permission` VALUES (1554, '根据id删除角色信息', '/role/{id}', '根据id删除角色信息', 'RoleController:deleteById', 1547);
-INSERT INTO `t_auth_permission` VALUES (1555, '查询所有角色信息', '/role', '查询所有角色信息', 'RoleController:selectAll', 1547);
-INSERT INTO `t_auth_permission` VALUES (1556, '根据ids批量删除角色信息', '/role', '根据ids批量删除角色信息', 'RoleController:batchDelete', 1547);
-INSERT INTO `t_auth_permission` VALUES (1557, '获取菜单树', '/role/getMenuTree', '', 'RoleController:getMenuTree', 1547);
-INSERT INTO `t_auth_permission` VALUES (1558, '新增或修改角色信息', '/role', '新增或修改角色信息', 'RoleController:addOrUpdate', 1547);
-INSERT INTO `t_auth_permission` VALUES (1559, '设置菜单', '/role/setMenu', '', 'RoleController:setMenu', 1547);
+INSERT INTO `t_auth_permission` VALUES (5577, '部门管理', '/department', '部门管理权限', 'DepartmentController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5578, '根据关键字进行分页查询权限', '/department', '根据关键字进行分页查询权限', 'DepartmentController:queryDataByKeyword', 5577);
+INSERT INTO `t_auth_permission` VALUES (5579, '新增或修改部门信息权限', '/department', '新增或修改部门信息权限', 'DepartmentController:addOrUpdate', 5577);
+INSERT INTO `t_auth_permission` VALUES (5580, '删除部门信息权限', '/department/{id}', '删除部门信息权限', 'DepartmentController:deleteById', 5577);
+INSERT INTO `t_auth_permission` VALUES (5581, '批量删除权限', '/department', '批量删除权限', 'DepartmentController:batchDelete', 5577);
+INSERT INTO `t_auth_permission` VALUES (5582, '员工管理', '/employee', '员工管理权限', 'EmployeeController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5583, '根据关键字进行分页查询权限', '/employee', '根据关键字进行分页查询权限', 'EmployeeController:queryDataByKeyword', 5582);
+INSERT INTO `t_auth_permission` VALUES (5584, '新增或修改员工信息权限', '/employee', '新增或修改员工信息权限', 'EmployeeController:addOrUpdate', 5582);
+INSERT INTO `t_auth_permission` VALUES (5585, '删除员工信息权限', '/employee/{id}', '删除员工信息权限', 'EmployeeController:deleteById', 5582);
+INSERT INTO `t_auth_permission` VALUES (5586, '批量删除员工信息权限', '/employee', '批量删除员工信息权限', 'EmployeeController:batchDelete', 5582);
+INSERT INTO `t_auth_permission` VALUES (5587, '设置员工角色权限', '/employee/setEmployeeRole', '设置员工角色权限', 'EmployeeController:setEmployeeRole', 5582);
+INSERT INTO `t_auth_permission` VALUES (5588, '菜单管理权限', '/menu', '菜单管理权限', 'MenuController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5589, '根据关键字进行分页查询权限', '/menu', '根据关键字进行分页查询权限', 'MenuController:queryDataByKeyword', 5588);
+INSERT INTO `t_auth_permission` VALUES (5590, '新增或修改菜单信息权限', '/menu', '新增或修改菜单信息权限', 'MenuController:addOrUpdate', 5588);
+INSERT INTO `t_auth_permission` VALUES (5591, '删除菜单信息权限', '/menu/{id}', '删除菜单信息权限', 'MenuController:deleteById', 5588);
+INSERT INTO `t_auth_permission` VALUES (5592, '批量删除菜单信息权限', '/menu', '批量删除菜单信息权限', 'MenuController:batchDelete', 5588);
+INSERT INTO `t_auth_permission` VALUES (5593, '权限管理权限', '/permission', '权限管理权限', 'PermissionController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5594, '根据关键字进行分页查询权限', '/permission/pageList', '根据关键字进行分页查询权限', 'PermissionController:pageList', 5593);
+INSERT INTO `t_auth_permission` VALUES (5595, '角色管理权限', '/role', '角色管理权限', 'RoleController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5596, '设置权限', '/role/setPermission', '', 'RoleController:setPermission', 5595);
+INSERT INTO `t_auth_permission` VALUES (5597, '根据关键字进行分页查询权限', '/role', '根据关键字进行分页查询权限', 'RoleController:queryDataByKeyword', 5595);
+INSERT INTO `t_auth_permission` VALUES (5598, '获取权限树权限', '/role/getPermissionTree', '', 'RoleController:getPermissionTree', 5595);
+INSERT INTO `t_auth_permission` VALUES (5599, '新增或修改角色信息权限', '/role', '新增或修改角色信息权限', 'RoleController:addOrUpdate', 5595);
+INSERT INTO `t_auth_permission` VALUES (5600, '删除角色信息权限', '/role/{id}', '删除角色信息权限', 'RoleController:deleteById', 5595);
+INSERT INTO `t_auth_permission` VALUES (5601, '批量删除角色信息权限', '/role', '批量删除角色信息权限', 'RoleController:batchDelete', 5595);
+INSERT INTO `t_auth_permission` VALUES (5602, '设置菜单', '/role/setMenu', '', 'RoleController:setMenu', 5595);
+INSERT INTO `t_auth_permission` VALUES (5603, '设备管理', '/device', '设备管理权限', 'DevicesController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5604, '根据关键字分页查询设备信息权限', '/device', '根据关键字分页查询设备信息权限', 'DevicesController:json', 5603);
+INSERT INTO `t_auth_permission` VALUES (5605, '通过部门获取设备信息权限', '/device/byDept', '通过部门获取设备信息权限', 'DevicesController:jsonByDept', 5603);
+INSERT INTO `t_auth_permission` VALUES (5606, '根据设备类型获取设备信息权限', '/device/devicesByTypeId/{id}', '根据设备类型获取设备信息权限', 'DevicesController:getByTypeId', 5603);
+INSERT INTO `t_auth_permission` VALUES (5607, '设置设备可领用部门权限', '/device/setCanUseDept', '设置设备可领用部门权限', 'DevicesController:setDeviceUseDept', 5603);
+INSERT INTO `t_auth_permission` VALUES (5608, '设备信息操作日志权限', '/devicesOperaterLog', '设备信息操作日志权限', 'DevicesOperaterLogController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5609, '设备日志关键字分页查询权限', '/devicesOperaterLog', '设备日志关键字分页查询权限', 'DevicesOperaterLogController:json', 5608);
+INSERT INTO `t_auth_permission` VALUES (5610, '设备类型管理权限', '/deviceType', '设备类型管理权限', 'DevicesTypeController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5611, '设备类型删除权限', '/deviceType/{id}', '设备类型删除权限', 'DevicesTypeController:delete', 5610);
+INSERT INTO `t_auth_permission` VALUES (5612, '设备类型关键字分页查询权限', '/deviceType', '设备类型关键字分页查询权限', 'DevicesTypeController:json', 5610);
+INSERT INTO `t_auth_permission` VALUES (5613, '设备类型添加或修改权限', '/deviceType', '设备类型添加或修改权限', 'DevicesTypeController:addOrUpdate', 5610);
+INSERT INTO `t_auth_permission` VALUES (5614, '设备类型批量删除权限', '/deviceType', '设备类型批量删除权限', 'DevicesTypeController:batchDelete', 5610);
+INSERT INTO `t_auth_permission` VALUES (5615, '采购设备管理权限', '/nowarehousingdevices', '采购设备管理权限', 'WarehousingDevicesController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5616, '设备日志关键字分页查询权限', '/nowarehousingdevices/{id}', '设备日志关键字分页查询权限', 'WarehousingDevicesController:get', 5615);
+INSERT INTO `t_auth_permission` VALUES (5617, '设备删除权限', '/nowarehousingdevices/{id}', '设备删除权限', 'WarehousingDevicesController:delete', 5615);
+INSERT INTO `t_auth_permission` VALUES (5618, '待审核设备处理权限', '/nowarehousingdevices/handle', '待审核设备处理权限', 'WarehousingDevicesController:handle', 5615);
+INSERT INTO `t_auth_permission` VALUES (5619, '采购设备关键字分页查询权限', '/nowarehousingdevices', '采购设备关键字分页查询权限', 'WarehousingDevicesController:json', 5615);
+INSERT INTO `t_auth_permission` VALUES (5620, '采购设备新增或修改权限', '/nowarehousingdevices', '采购设备新增或修改权限', 'WarehousingDevicesController:addOrUpdate', 5615);
+INSERT INTO `t_auth_permission` VALUES (5621, '设备批量删除权限', '/nowarehousingdevices', '设备批量删除权限', 'WarehousingDevicesController:batchDelete', 5615);
+INSERT INTO `t_auth_permission` VALUES (5622, '设备入库权限', '/nowarehousingdevices/warehousing', '设备入库权限', 'WarehousingDevicesController:batchWarehousing', 5615);
+INSERT INTO `t_auth_permission` VALUES (5623, '设备入库待审核信息查询权限', '/nowarehousingdevices/checking', '设备入库待审核信息查询权限', 'WarehousingDevicesController:jsonForChecking', 5615);
+INSERT INTO `t_auth_permission` VALUES (5624, '物资管理权限', '/goods', '物资管理权限', 'GoodsController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5625, '物资信息关键字分页查询权限', '/goods', '物资信息关键字分页查询权限', 'GoodsController:json', 5624);
+INSERT INTO `t_auth_permission` VALUES (5626, '通过部门获取物资信息权限', '/goods/byDept', '通过部门获取物资信息权限', 'GoodsController:jsonByDept', 5624);
+INSERT INTO `t_auth_permission` VALUES (5627, '物资信息根据类型获取权限', '/goods/goodsByTypeId/{id}', '物资信息根据获取权限', 'GoodsController:getByTypeId', 5624);
+INSERT INTO `t_auth_permission` VALUES (5628, '设置物资可领用部门权限', '/goods/setCanUseDept', '设置物资可领用部门权限', 'GoodsController:setGoodsUseDept', 5624);
+INSERT INTO `t_auth_permission` VALUES (5629, '物资操作日志管理权限', '/goodsOperaterLog', '物资操作日志管理权限', 'GoodsOperaterLogController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5630, '物资操作日志关键字分页查询权限', '/goodsOperaterLog', '物资操作日志关键字分页查询权限', 'GoodsOperaterLogController:json', 5629);
+INSERT INTO `t_auth_permission` VALUES (5631, '物资类型管理权限', '/goodsType', '物资类型管理权限', 'GoodsTypeController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5632, '物资类型删除权限', '/goodsType/{id}', '物资类型删除权限', 'GoodsTypeController:delete', 5631);
+INSERT INTO `t_auth_permission` VALUES (5633, '物资类型关键字分页获取权限', '/goodsType', '物资类型关键字分页获取权限', 'GoodsTypeController:json', 5631);
+INSERT INTO `t_auth_permission` VALUES (5634, '物资类型新增或修改权限', '/goodsType', '物资类型新增或修改权限', 'GoodsTypeController:addOrUpdate', 5631);
+INSERT INTO `t_auth_permission` VALUES (5635, '物资类型批量删除权限', '/goodsType', '物资类型批量删除权限', 'GoodsTypeController:batchDelete', 5631);
+INSERT INTO `t_auth_permission` VALUES (5636, '采购物资管理权限', '/nowarehousinggoods', '采购物资管理权限', 'WarehousingGoodsController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5637, '采购物资删除权限', '/nowarehousinggoods/{id}', '采购物资删除权限', 'WarehousingGoodsController:delete', 5636);
+INSERT INTO `t_auth_permission` VALUES (5638, '待审核物资处理权限', '/nowarehousinggoods/handle', '待审核物资处理权限', 'WarehousingGoodsController:handle', 5636);
+INSERT INTO `t_auth_permission` VALUES (5639, '采购物资关键字分页查询权限', '/nowarehousinggoods', '采购物资关键字分页查询权限', 'WarehousingGoodsController:json', 5636);
+INSERT INTO `t_auth_permission` VALUES (5640, '采购物资新增或修改权限', '/nowarehousinggoods', '采购物资新增或修改权限', 'WarehousingGoodsController:addOrUpdate', 5636);
+INSERT INTO `t_auth_permission` VALUES (5641, '采购物资批量删除权限', '/nowarehousinggoods', '采购物资批量删除权限', 'WarehousingGoodsController:batchDelete', 5636);
+INSERT INTO `t_auth_permission` VALUES (5642, '采购物资入库权限', '/nowarehousinggoods/warehousing', '采购物资入库权限', 'WarehousingGoodsController:batchWarehousing', 5636);
+INSERT INTO `t_auth_permission` VALUES (5643, '待审核物资查询权限', '/nowarehousinggoods/checking', '待审核物资查询权限', 'WarehousingGoodsController:jsonForChecking', 5636);
+INSERT INTO `t_auth_permission` VALUES (5644, '通知管理权限', '/notice', '通知管理权限', 'NoticeController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5645, '通知删除权限', '/notice/{id}', '通知删除权限', 'NoticeController:delete', 5644);
+INSERT INTO `t_auth_permission` VALUES (5646, '通知待审核处理权限', '/notice/handle', '通知待审核处理权限', 'NoticeController:handle', 5644);
+INSERT INTO `t_auth_permission` VALUES (5647, '通知关键字分页查询权限', '/notice', '通知关键字分页查询权限', 'NoticeController:json', 5644);
+INSERT INTO `t_auth_permission` VALUES (5648, '获取通知可见的角色信息权限', '/notice/noticeRolesByNoticeId/{id}', '获取通知可见的角色信息权限', 'NoticeController:noticeRolesByNoticeId', 5644);
+INSERT INTO `t_auth_permission` VALUES (5649, '通知新增或修改权限', '/notice', '通知新增或修改权限', 'NoticeController:addOrUpdate', 5644);
+INSERT INTO `t_auth_permission` VALUES (5650, '通知批量删除权限', '/notice', '通知批量删除权限', 'NoticeController:batchDelete', 5644);
+INSERT INTO `t_auth_permission` VALUES (5651, '设置通知可见的角色权限', '/notice/setNoticeRole', '设置通知可见的角色权限', 'NoticeController:setNoticeRole', 5644);
+INSERT INTO `t_auth_permission` VALUES (5652, '通知待审核查询权限', '/notice/checking', '通知待审核查询权限', 'NoticeController:jsonForChecking', 5644);
+INSERT INTO `t_auth_permission` VALUES (5653, '通知操作日志管理权限', '/noticeOperaterLog', '通知操作日志管理权限', 'NoticeOperaterLogController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5654, '通知操作日志关键字分页查询权限', '/noticeOperaterLog', '通知操作日志关键字分页查询权限', 'NoticeOperaterLogController:json', 5653);
+INSERT INTO `t_auth_permission` VALUES (5655, '系统备份管理权限', '/backup', '系统备份管理权限', 'BackupController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5656, '删除备份权限', '/backup/{id}', '删除备份权限', 'BackupController:delete', 5655);
+INSERT INTO `t_auth_permission` VALUES (5657, '备份关键字分页查询权限', '/backup', '备份关键字分页查询权限', 'BackupController:json', 5655);
+INSERT INTO `t_auth_permission` VALUES (5658, '恢复备份权限', '/backup/restore/{id}', '恢复备份权限', 'BackupController:restore', 5655);
+INSERT INTO `t_auth_permission` VALUES (5659, '手动备份权限', '/backup/manual', '手动备份权限', 'BackupController:back', 5655);
+INSERT INTO `t_auth_permission` VALUES (5660, '备份操作日志管理权限', '/backupOperaterLog', '备份操作日志管理权限', 'BackupOperatorLogController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5661, '备份操作日志关键字分页查询权限', '/backupOperaterLog', '备份操作日志关键字分页查询权限', 'BackupOperatorLogController:json', 5660);
+INSERT INTO `t_auth_permission` VALUES (5662, '备份定时任务管理权限', '/task', '备份定时任务管理权限', 'SysScheduledCronController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5663, '删除定时任务权限', '/task/{id}', '删除定时任务权限', 'SysScheduledCronController:delete', 5662);
+INSERT INTO `t_auth_permission` VALUES (5664, '定时任务列表查看权限', '/task', '定时任务列表查看权限', 'SysScheduledCronController:taskList', 5662);
+INSERT INTO `t_auth_permission` VALUES (5665, '更新定时任务权限', '/task', '更新定时任务权限', 'SysScheduledCronController:updateTask', 5662);
+INSERT INTO `t_auth_permission` VALUES (5666, '启用或禁用定时任务权限', '/task', '启用或禁用定时任务权限', 'SysScheduledCronController:changeStatusTaskCron', 5662);
+INSERT INTO `t_auth_permission` VALUES (5667, '添加定时任务权限', '/task', '添加定时任务权限', 'SysScheduledCronController:changeStatusTaskCron', 5662);
+INSERT INTO `t_auth_permission` VALUES (5668, '报废记录管理权限', '/disable', '报废记录管理权限', 'DisableController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5669, '报废记录关键字分页查询权限', '/disable', '报废记录关键字分页查询权限', 'DisableController:json', 5668);
+INSERT INTO `t_auth_permission` VALUES (5670, '报废记录新增或修改权限', '/disable', '报废记录新增或修改权限', 'DisableController:addOrUpdate', 5668);
+INSERT INTO `t_auth_permission` VALUES (5671, '维修记录管理权限', '/maintain', '维修记录管理权限', 'MaintainController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5672, '维修记录关键字分页查询权限', '/maintain', '维修记录关键字分页查询权限', 'MaintainController:json', 5671);
+INSERT INTO `t_auth_permission` VALUES (5673, '维修记录新增或修改权限', '/maintain', '维修记录新增或修改权限', 'MaintainController:addOrUpdate', 5671);
+INSERT INTO `t_auth_permission` VALUES (5674, '物资设备领用管理权限', '/useRecord', '物资设备领用管理权限', 'UseRecordController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5675, '物资设备所有领用记录关键词分页查询权限', '/useRecord', '物资设备所有领用记录关键词分页查询权限', 'UseRecordController:json', 5674);
+INSERT INTO `t_auth_permission` VALUES (5676, '物资领用权限', '/useRecord/goods', '物资领用权限', 'UseRecordController:addOrUpdateGoods', 5674);
+INSERT INTO `t_auth_permission` VALUES (5677, '物资设备个人领用记录查询权限', '/useRecord/operatorId', '物资设备个人领用记录查询权限', 'UseRecordController:listForOperator', 5674);
+INSERT INTO `t_auth_permission` VALUES (5678, '设备领用权限', '/useRecord/device', '设备领用权限', 'UseRecordController:addOrUpdateDevice', 5674);
+INSERT INTO `t_auth_permission` VALUES (5679, '商家管理权限', '/seller', '商家管理权限', 'SellersController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5680, '商家删除权限', '/seller/{id}', '商家删除权限', 'SellersController:delete', 5679);
+INSERT INTO `t_auth_permission` VALUES (5681, '商家关键词分页查询权限', '/seller', '商家关键词分页查询权限', 'SellersController:json', 5679);
+INSERT INTO `t_auth_permission` VALUES (5682, '商家新增或修改权限', '/seller', '商家新增或修改权限', 'SellersController:addOrUpdate', 5679);
+INSERT INTO `t_auth_permission` VALUES (5683, '商家批量删除权限', '/seller', '商家批量删除权限', 'SellersController:batchDelete', 5679);
+INSERT INTO `t_auth_permission` VALUES (5684, '商家类型管理权限', '/sellerType', '商家类型管理权限', 'SellersTypeController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5685, '商家类型删除权限', '/sellerType/{id}', '商家类型删除权限', 'SellersTypeController:delete', 5684);
+INSERT INTO `t_auth_permission` VALUES (5686, '商家类型关键字分页查询权限', '/sellerType', '商家类型关键字分页查询权限', 'SellersTypeController:json', 5684);
+INSERT INTO `t_auth_permission` VALUES (5687, '商家类型新增或修改权限', '/sellerType', '商家类型新增或修改权限', 'SellersTypeController:addOrUpdate', 5684);
+INSERT INTO `t_auth_permission` VALUES (5688, '商家类型批量删除权限', '/sellerType', '商家类型批量删除权限', 'SellersTypeController:batchDelete', 5684);
+INSERT INTO `t_auth_permission` VALUES (5689, '设备统计信息查看权限', '/deviceShow', '设备统计信息查看权限', 'DeviceInfoShowController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5690, '设备数量总统计信息查看权限', '/deviceShow/totalDataInfo', '设备数量总统计信息查看权限', 'DeviceInfoShowController:totalDataInfo', 5689);
+INSERT INTO `t_auth_permission` VALUES (5691, '近期设备信息查看权限', '/deviceShow/device', '近期设备信息查看权限', 'DeviceInfoShowController:deviceInfo', 5689);
+INSERT INTO `t_auth_permission` VALUES (5692, '设备各状态数量查看权限', '/deviceShow/countsWithDevice', '设备各状态数量查看权限', 'DeviceInfoShowController:countsWithDevice', 5689);
+INSERT INTO `t_auth_permission` VALUES (5693, '设备价格趋势查看权限', '/deviceShow/devicePriceChange/{deviceId}', '设备价格趋势查看权限', 'DeviceInfoShowController:devicePriceChange', 5689);
+INSERT INTO `t_auth_permission` VALUES (5694, '设备类型统计查看权限', '/deviceShow/countsWithType', '设备类型统计查看权限', 'DeviceInfoShowController:getDeviceCountsWithTypeName', 5689);
+INSERT INTO `t_auth_permission` VALUES (5695, '物资统计信息查看权限', '/goodsShow', '物资统计信息查看权限', 'GoodsInfoShowController', NULL);
+INSERT INTO `t_auth_permission` VALUES (5696, '物资总统计信息查看权限', '/goodsShow/totalDataInfo', '物资总统计信息查看权限', 'GoodsInfoShowController:totalDataInfo', 5695);
+INSERT INTO `t_auth_permission` VALUES (5697, '物资价格变化趋势查看权限', '/goodsShow/goodsPriceChange/{goodsId}', '物资价格变化趋势查看权限', 'GoodsInfoShowController:goodsPriceChange', 5695);
+INSERT INTO `t_auth_permission` VALUES (5698, '物资使用情况查看权限', '/goodsShow/countsWithGoods', '物资使用情况查看权限', 'GoodsInfoShowController:countsWithGoods', 5695);
+INSERT INTO `t_auth_permission` VALUES (5699, '近期物资信息查看权限', '/goodsShow/goods', '近期物资信息查看权限', 'GoodsInfoShowController:goodsInfo', 5695);
+INSERT INTO `t_auth_permission` VALUES (5700, '物资类型统计信息查看权限', '/goodsShow/countsWithType', '物资类型统计信息查看权限', 'GoodsInfoShowController:getGoodsCountsWithTypeName', 5695);
 
 -- ----------------------------
 -- Table structure for t_auth_role
@@ -180,7 +269,7 @@ CREATE TABLE `t_auth_role_menu`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `role_id`(`role_id`) USING BTREE,
   INDEX `menu_id`(`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 282 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 675 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_auth_role_menu
@@ -191,38 +280,45 @@ INSERT INTO `t_auth_role_menu` VALUES (8, 2, 24);
 INSERT INTO `t_auth_role_menu` VALUES (9, 5, 32);
 INSERT INTO `t_auth_role_menu` VALUES (10, 5, 33);
 INSERT INTO `t_auth_role_menu` VALUES (11, 5, 34);
-INSERT INTO `t_auth_role_menu` VALUES (250, 1, 20);
-INSERT INTO `t_auth_role_menu` VALUES (251, 1, 21);
-INSERT INTO `t_auth_role_menu` VALUES (252, 1, 22);
-INSERT INTO `t_auth_role_menu` VALUES (253, 1, 23);
-INSERT INTO `t_auth_role_menu` VALUES (254, 1, 24);
-INSERT INTO `t_auth_role_menu` VALUES (255, 1, 25);
-INSERT INTO `t_auth_role_menu` VALUES (256, 1, 26);
-INSERT INTO `t_auth_role_menu` VALUES (257, 1, 27);
-INSERT INTO `t_auth_role_menu` VALUES (258, 1, 50);
-INSERT INTO `t_auth_role_menu` VALUES (259, 1, 51);
-INSERT INTO `t_auth_role_menu` VALUES (260, 1, 39);
-INSERT INTO `t_auth_role_menu` VALUES (261, 1, 40);
-INSERT INTO `t_auth_role_menu` VALUES (262, 1, 41);
-INSERT INTO `t_auth_role_menu` VALUES (263, 1, 42);
-INSERT INTO `t_auth_role_menu` VALUES (264, 1, 43);
-INSERT INTO `t_auth_role_menu` VALUES (265, 1, 44);
-INSERT INTO `t_auth_role_menu` VALUES (266, 1, 45);
-INSERT INTO `t_auth_role_menu` VALUES (267, 1, 46);
-INSERT INTO `t_auth_role_menu` VALUES (268, 1, 47);
-INSERT INTO `t_auth_role_menu` VALUES (269, 1, 48);
-INSERT INTO `t_auth_role_menu` VALUES (270, 1, 49);
-INSERT INTO `t_auth_role_menu` VALUES (271, 1, 52);
-INSERT INTO `t_auth_role_menu` VALUES (272, 1, 53);
-INSERT INTO `t_auth_role_menu` VALUES (273, 1, 54);
-INSERT INTO `t_auth_role_menu` VALUES (274, 1, 28);
-INSERT INTO `t_auth_role_menu` VALUES (275, 1, 55);
-INSERT INTO `t_auth_role_menu` VALUES (276, 1, 56);
-INSERT INTO `t_auth_role_menu` VALUES (277, 1, 57);
-INSERT INTO `t_auth_role_menu` VALUES (278, 1, 58);
-INSERT INTO `t_auth_role_menu` VALUES (279, 1, 59);
-INSERT INTO `t_auth_role_menu` VALUES (280, 1, 61);
-INSERT INTO `t_auth_role_menu` VALUES (281, 1, 62);
+INSERT INTO `t_auth_role_menu` VALUES (636, 1, 20);
+INSERT INTO `t_auth_role_menu` VALUES (637, 1, 21);
+INSERT INTO `t_auth_role_menu` VALUES (638, 1, 22);
+INSERT INTO `t_auth_role_menu` VALUES (639, 1, 23);
+INSERT INTO `t_auth_role_menu` VALUES (640, 1, 25);
+INSERT INTO `t_auth_role_menu` VALUES (641, 1, 26);
+INSERT INTO `t_auth_role_menu` VALUES (642, 1, 27);
+INSERT INTO `t_auth_role_menu` VALUES (643, 1, 50);
+INSERT INTO `t_auth_role_menu` VALUES (644, 1, 51);
+INSERT INTO `t_auth_role_menu` VALUES (645, 1, 28);
+INSERT INTO `t_auth_role_menu` VALUES (646, 1, 54);
+INSERT INTO `t_auth_role_menu` VALUES (647, 1, 55);
+INSERT INTO `t_auth_role_menu` VALUES (648, 1, 56);
+INSERT INTO `t_auth_role_menu` VALUES (649, 1, 63);
+INSERT INTO `t_auth_role_menu` VALUES (650, 1, 64);
+INSERT INTO `t_auth_role_menu` VALUES (651, 1, 52);
+INSERT INTO `t_auth_role_menu` VALUES (652, 1, 57);
+INSERT INTO `t_auth_role_menu` VALUES (653, 1, 58);
+INSERT INTO `t_auth_role_menu` VALUES (654, 1, 53);
+INSERT INTO `t_auth_role_menu` VALUES (655, 1, 59);
+INSERT INTO `t_auth_role_menu` VALUES (656, 1, 61);
+INSERT INTO `t_auth_role_menu` VALUES (657, 1, 62);
+INSERT INTO `t_auth_role_menu` VALUES (658, 1, 65);
+INSERT INTO `t_auth_role_menu` VALUES (659, 1, 66);
+INSERT INTO `t_auth_role_menu` VALUES (660, 1, 67);
+INSERT INTO `t_auth_role_menu` VALUES (661, 1, 74);
+INSERT INTO `t_auth_role_menu` VALUES (662, 1, 75);
+INSERT INTO `t_auth_role_menu` VALUES (663, 1, 76);
+INSERT INTO `t_auth_role_menu` VALUES (664, 1, 77);
+INSERT INTO `t_auth_role_menu` VALUES (665, 1, 68);
+INSERT INTO `t_auth_role_menu` VALUES (666, 1, 72);
+INSERT INTO `t_auth_role_menu` VALUES (667, 1, 73);
+INSERT INTO `t_auth_role_menu` VALUES (668, 1, 78);
+INSERT INTO `t_auth_role_menu` VALUES (669, 1, 79);
+INSERT INTO `t_auth_role_menu` VALUES (670, 1, 80);
+INSERT INTO `t_auth_role_menu` VALUES (671, 1, 81);
+INSERT INTO `t_auth_role_menu` VALUES (672, 1, 69);
+INSERT INTO `t_auth_role_menu` VALUES (673, 1, 70);
+INSERT INTO `t_auth_role_menu` VALUES (674, 1, 71);
 
 -- ----------------------------
 -- Table structure for t_auth_role_permission
@@ -236,108 +332,136 @@ CREATE TABLE `t_auth_role_permission`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FKAEE599B74D26E00F`(`role_id`) USING BTREE,
   INDEX `FKAEE599B7C854068F`(`permission_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 282 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 651 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_auth_role_permission
 -- ----------------------------
-INSERT INTO `t_auth_role_permission` VALUES (135, 1, NULL, 'DepartmentController');
-INSERT INTO `t_auth_role_permission` VALUES (136, 1, NULL, 'DepartmentController:queryDataByKeyword');
-INSERT INTO `t_auth_role_permission` VALUES (137, 1, NULL, 'DepartmentController:selectById');
-INSERT INTO `t_auth_role_permission` VALUES (138, 1, NULL, 'DepartmentController:deleteById');
-INSERT INTO `t_auth_role_permission` VALUES (139, 1, NULL, 'DepartmentController:selectAll');
-INSERT INTO `t_auth_role_permission` VALUES (140, 1, NULL, 'DepartmentController:batchDelete');
-INSERT INTO `t_auth_role_permission` VALUES (141, 1, NULL, 'DepartmentController:addOrUpdate');
-INSERT INTO `t_auth_role_permission` VALUES (142, 1, NULL, 'DepartmentController:queryFirstDeptAndChildren');
-INSERT INTO `t_auth_role_permission` VALUES (143, 1, NULL, 'EmployeeController');
-INSERT INTO `t_auth_role_permission` VALUES (144, 1, NULL, 'EmployeeController:deleteFile');
-INSERT INTO `t_auth_role_permission` VALUES (145, 1, NULL, 'EmployeeController:queryDataByKeyword');
-INSERT INTO `t_auth_role_permission` VALUES (146, 1, NULL, 'EmployeeController:selectById');
-INSERT INTO `t_auth_role_permission` VALUES (147, 1, NULL, 'EmployeeController:deleteById');
-INSERT INTO `t_auth_role_permission` VALUES (148, 1, NULL, 'EmployeeController:selectAll');
-INSERT INTO `t_auth_role_permission` VALUES (149, 1, NULL, 'EmployeeController:batchDelete');
-INSERT INTO `t_auth_role_permission` VALUES (150, 1, NULL, 'EmployeeController:addOrUpdate');
-INSERT INTO `t_auth_role_permission` VALUES (151, 1, NULL, 'EmployeeController:setEmployeeRole');
-INSERT INTO `t_auth_role_permission` VALUES (152, 1, NULL, 'EmployeeController:uploadHeadImage');
-INSERT INTO `t_auth_role_permission` VALUES (153, 1, NULL, 'EmployeeController:getEmpRolesByEmplId');
-INSERT INTO `t_auth_role_permission` VALUES (154, 1, NULL, 'MenuController');
-INSERT INTO `t_auth_role_permission` VALUES (155, 1, NULL, 'MenuController:queryDataByKeyword');
-INSERT INTO `t_auth_role_permission` VALUES (156, 1, NULL, 'MenuController:getMenuTreeByEmpId');
-INSERT INTO `t_auth_role_permission` VALUES (157, 1, NULL, 'MenuController:selectById');
-INSERT INTO `t_auth_role_permission` VALUES (158, 1, NULL, 'MenuController:deleteById');
-INSERT INTO `t_auth_role_permission` VALUES (159, 1, NULL, 'MenuController:selectAll');
-INSERT INTO `t_auth_role_permission` VALUES (160, 1, NULL, 'MenuController:batchDelete');
-INSERT INTO `t_auth_role_permission` VALUES (161, 1, NULL, 'MenuController:addOrUpdate');
-INSERT INTO `t_auth_role_permission` VALUES (162, 1, NULL, 'PermissionController');
-INSERT INTO `t_auth_role_permission` VALUES (163, 1, NULL, 'PermissionController:getPermissionsByEmployeeId');
-INSERT INTO `t_auth_role_permission` VALUES (164, 1, NULL, 'PermissionController:pageList');
-INSERT INTO `t_auth_role_permission` VALUES (165, 1, NULL, 'RoleController');
-INSERT INTO `t_auth_role_permission` VALUES (166, 1, NULL, 'RoleController:setPermission');
-INSERT INTO `t_auth_role_permission` VALUES (167, 1, NULL, 'RoleController:queryDataByKeyword');
-INSERT INTO `t_auth_role_permission` VALUES (168, 1, NULL, 'RoleController:getMenuIdsByRoleId');
-INSERT INTO `t_auth_role_permission` VALUES (169, 1, NULL, 'RoleController:getPermissionTree');
-INSERT INTO `t_auth_role_permission` VALUES (170, 1, NULL, 'RoleController:getPermissionsSnsByRoleId');
-INSERT INTO `t_auth_role_permission` VALUES (171, 1, NULL, 'RoleController:selectById');
-INSERT INTO `t_auth_role_permission` VALUES (172, 1, NULL, 'RoleController:deleteById');
-INSERT INTO `t_auth_role_permission` VALUES (173, 1, NULL, 'RoleController:selectAll');
-INSERT INTO `t_auth_role_permission` VALUES (174, 1, NULL, 'RoleController:batchDelete');
-INSERT INTO `t_auth_role_permission` VALUES (175, 1, NULL, 'RoleController:getMenuTree');
-INSERT INTO `t_auth_role_permission` VALUES (176, 1, NULL, 'RoleController:addOrUpdate');
-INSERT INTO `t_auth_role_permission` VALUES (177, 1, NULL, 'RoleController:setMenu');
-INSERT INTO `t_auth_role_permission` VALUES (178, 2, NULL, 'DepartmentController');
-INSERT INTO `t_auth_role_permission` VALUES (179, 2, NULL, 'DepartmentController:queryDataByKeyword');
-INSERT INTO `t_auth_role_permission` VALUES (180, 2, NULL, 'DepartmentController:selectById');
-INSERT INTO `t_auth_role_permission` VALUES (181, 2, NULL, 'DepartmentController:deleteById');
-INSERT INTO `t_auth_role_permission` VALUES (182, 2, NULL, 'DepartmentController:selectAll');
-INSERT INTO `t_auth_role_permission` VALUES (183, 2, NULL, 'DepartmentController:batchDelete');
-INSERT INTO `t_auth_role_permission` VALUES (184, 2, NULL, 'DepartmentController:addOrUpdate');
-INSERT INTO `t_auth_role_permission` VALUES (185, 2, NULL, 'DepartmentController:queryFirstDeptAndChildren');
-INSERT INTO `t_auth_role_permission` VALUES (186, 2, NULL, 'EmployeeController');
-INSERT INTO `t_auth_role_permission` VALUES (187, 2, NULL, 'EmployeeController:deleteFile');
-INSERT INTO `t_auth_role_permission` VALUES (188, 2, NULL, 'EmployeeController:queryDataByKeyword');
-INSERT INTO `t_auth_role_permission` VALUES (189, 2, NULL, 'EmployeeController:selectById');
-INSERT INTO `t_auth_role_permission` VALUES (190, 2, NULL, 'EmployeeController:deleteById');
-INSERT INTO `t_auth_role_permission` VALUES (191, 2, NULL, 'EmployeeController:selectAll');
-INSERT INTO `t_auth_role_permission` VALUES (192, 2, NULL, 'EmployeeController:batchDelete');
-INSERT INTO `t_auth_role_permission` VALUES (193, 2, NULL, 'EmployeeController:addOrUpdate');
-INSERT INTO `t_auth_role_permission` VALUES (194, 2, NULL, 'EmployeeController:setEmployeeRole');
-INSERT INTO `t_auth_role_permission` VALUES (195, 2, NULL, 'EmployeeController:uploadHeadImage');
-INSERT INTO `t_auth_role_permission` VALUES (196, 2, NULL, 'EmployeeController:getEmpRolesByEmplId');
-INSERT INTO `t_auth_role_permission` VALUES (197, 2, NULL, 'MenuController');
-INSERT INTO `t_auth_role_permission` VALUES (198, 2, NULL, 'MenuController:queryDataByKeyword');
-INSERT INTO `t_auth_role_permission` VALUES (199, 2, NULL, 'MenuController:getMenuTreeByEmpId');
-INSERT INTO `t_auth_role_permission` VALUES (200, 2, NULL, 'MenuController:selectById');
-INSERT INTO `t_auth_role_permission` VALUES (201, 2, NULL, 'MenuController:deleteById');
-INSERT INTO `t_auth_role_permission` VALUES (202, 2, NULL, 'MenuController:selectAll');
-INSERT INTO `t_auth_role_permission` VALUES (203, 2, NULL, 'MenuController:batchDelete');
-INSERT INTO `t_auth_role_permission` VALUES (204, 2, NULL, 'MenuController:addOrUpdate');
-INSERT INTO `t_auth_role_permission` VALUES (205, 2, NULL, 'PermissionController');
-INSERT INTO `t_auth_role_permission` VALUES (206, 2, NULL, 'PermissionController:getPermissionsByEmployeeId');
-INSERT INTO `t_auth_role_permission` VALUES (207, 2, NULL, 'PermissionController:pageList');
-INSERT INTO `t_auth_role_permission` VALUES (208, 2, NULL, 'RoleController');
-INSERT INTO `t_auth_role_permission` VALUES (209, 2, NULL, 'RoleController:setPermission');
-INSERT INTO `t_auth_role_permission` VALUES (210, 2, NULL, 'RoleController:queryDataByKeyword');
-INSERT INTO `t_auth_role_permission` VALUES (211, 2, NULL, 'RoleController:getMenuIdsByRoleId');
-INSERT INTO `t_auth_role_permission` VALUES (212, 2, NULL, 'RoleController:getPermissionTree');
-INSERT INTO `t_auth_role_permission` VALUES (213, 2, NULL, 'RoleController:getPermissionsSnsByRoleId');
-INSERT INTO `t_auth_role_permission` VALUES (214, 2, NULL, 'RoleController:selectById');
-INSERT INTO `t_auth_role_permission` VALUES (215, 2, NULL, 'RoleController:deleteById');
-INSERT INTO `t_auth_role_permission` VALUES (216, 2, NULL, 'RoleController:selectAll');
-INSERT INTO `t_auth_role_permission` VALUES (217, 2, NULL, 'RoleController:batchDelete');
-INSERT INTO `t_auth_role_permission` VALUES (218, 2, NULL, 'RoleController:getMenuTree');
-INSERT INTO `t_auth_role_permission` VALUES (219, 2, NULL, 'RoleController:addOrUpdate');
-INSERT INTO `t_auth_role_permission` VALUES (220, 2, NULL, 'RoleController:setMenu');
-INSERT INTO `t_auth_role_permission` VALUES (271, 5, NULL, 'MenuController');
-INSERT INTO `t_auth_role_permission` VALUES (272, 5, NULL, 'MenuController:queryDataByKeyword');
-INSERT INTO `t_auth_role_permission` VALUES (273, 5, NULL, 'MenuController:getMenuTreeByEmpId');
-INSERT INTO `t_auth_role_permission` VALUES (274, 5, NULL, 'MenuController:selectById');
-INSERT INTO `t_auth_role_permission` VALUES (275, 5, NULL, 'MenuController:deleteById');
-INSERT INTO `t_auth_role_permission` VALUES (276, 5, NULL, 'MenuController:selectAll');
-INSERT INTO `t_auth_role_permission` VALUES (277, 5, NULL, 'MenuController:batchDelete');
-INSERT INTO `t_auth_role_permission` VALUES (278, 5, NULL, 'MenuController:addOrUpdate');
-INSERT INTO `t_auth_role_permission` VALUES (279, 5, NULL, 'PermissionController');
-INSERT INTO `t_auth_role_permission` VALUES (280, 5, NULL, 'PermissionController:getPermissionsByEmployeeId');
-INSERT INTO `t_auth_role_permission` VALUES (281, 5, NULL, 'PermissionController:pageList');
+INSERT INTO `t_auth_role_permission` VALUES (526, 1, NULL, 'DepartmentController');
+INSERT INTO `t_auth_role_permission` VALUES (527, 1, NULL, 'DepartmentController:queryDataByKeyword');
+INSERT INTO `t_auth_role_permission` VALUES (528, 1, NULL, 'DepartmentController:batchDelete');
+INSERT INTO `t_auth_role_permission` VALUES (529, 1, NULL, 'DepartmentController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (530, 1, NULL, 'DepartmentController:deleteById');
+INSERT INTO `t_auth_role_permission` VALUES (531, 1, NULL, 'EmployeeController');
+INSERT INTO `t_auth_role_permission` VALUES (532, 1, NULL, 'EmployeeController:queryDataByKeyword');
+INSERT INTO `t_auth_role_permission` VALUES (533, 1, NULL, 'EmployeeController:batchDelete');
+INSERT INTO `t_auth_role_permission` VALUES (534, 1, NULL, 'EmployeeController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (535, 1, NULL, 'EmployeeController:deleteById');
+INSERT INTO `t_auth_role_permission` VALUES (536, 1, NULL, 'EmployeeController:setEmployeeRole');
+INSERT INTO `t_auth_role_permission` VALUES (537, 1, NULL, 'MenuController');
+INSERT INTO `t_auth_role_permission` VALUES (538, 1, NULL, 'MenuController:queryDataByKeyword');
+INSERT INTO `t_auth_role_permission` VALUES (539, 1, NULL, 'MenuController:batchDelete');
+INSERT INTO `t_auth_role_permission` VALUES (540, 1, NULL, 'MenuController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (541, 1, NULL, 'MenuController:deleteById');
+INSERT INTO `t_auth_role_permission` VALUES (542, 1, NULL, 'PermissionController');
+INSERT INTO `t_auth_role_permission` VALUES (543, 1, NULL, 'PermissionController:pageList');
+INSERT INTO `t_auth_role_permission` VALUES (544, 1, NULL, 'RoleController');
+INSERT INTO `t_auth_role_permission` VALUES (545, 1, NULL, 'RoleController:setPermission');
+INSERT INTO `t_auth_role_permission` VALUES (546, 1, NULL, 'RoleController:getPermissionTree');
+INSERT INTO `t_auth_role_permission` VALUES (547, 1, NULL, 'RoleController:queryDataByKeyword');
+INSERT INTO `t_auth_role_permission` VALUES (548, 1, NULL, 'RoleController:batchDelete');
+INSERT INTO `t_auth_role_permission` VALUES (549, 1, NULL, 'RoleController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (550, 1, NULL, 'RoleController:deleteById');
+INSERT INTO `t_auth_role_permission` VALUES (551, 1, NULL, 'RoleController:setMenu');
+INSERT INTO `t_auth_role_permission` VALUES (552, 1, NULL, 'DevicesController');
+INSERT INTO `t_auth_role_permission` VALUES (553, 1, NULL, 'DevicesController:json');
+INSERT INTO `t_auth_role_permission` VALUES (554, 1, NULL, 'DevicesController:getByTypeId');
+INSERT INTO `t_auth_role_permission` VALUES (555, 1, NULL, 'DevicesOperaterLogController');
+INSERT INTO `t_auth_role_permission` VALUES (556, 1, NULL, 'DevicesOperaterLogController:json');
+INSERT INTO `t_auth_role_permission` VALUES (557, 1, NULL, 'DevicesTypeController');
+INSERT INTO `t_auth_role_permission` VALUES (558, 1, NULL, 'DevicesTypeController:delete');
+INSERT INTO `t_auth_role_permission` VALUES (559, 1, NULL, 'DevicesTypeController:json');
+INSERT INTO `t_auth_role_permission` VALUES (560, 1, NULL, 'DevicesTypeController:batchDelete');
+INSERT INTO `t_auth_role_permission` VALUES (561, 1, NULL, 'DevicesTypeController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (562, 1, NULL, 'WarehousingDevicesController');
+INSERT INTO `t_auth_role_permission` VALUES (563, 1, NULL, 'WarehousingDevicesController:get');
+INSERT INTO `t_auth_role_permission` VALUES (564, 1, NULL, 'WarehousingDevicesController:delete');
+INSERT INTO `t_auth_role_permission` VALUES (565, 1, NULL, 'WarehousingDevicesController:handle');
+INSERT INTO `t_auth_role_permission` VALUES (566, 1, NULL, 'WarehousingDevicesController:json');
+INSERT INTO `t_auth_role_permission` VALUES (567, 1, NULL, 'WarehousingDevicesController:batchDelete');
+INSERT INTO `t_auth_role_permission` VALUES (568, 1, NULL, 'WarehousingDevicesController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (569, 1, NULL, 'WarehousingDevicesController:batchWarehousing');
+INSERT INTO `t_auth_role_permission` VALUES (570, 1, NULL, 'WarehousingDevicesController:jsonForChecking');
+INSERT INTO `t_auth_role_permission` VALUES (571, 1, NULL, 'GoodsController');
+INSERT INTO `t_auth_role_permission` VALUES (572, 1, NULL, 'GoodsController:json');
+INSERT INTO `t_auth_role_permission` VALUES (573, 1, NULL, 'GoodsController:getByTypeId');
+INSERT INTO `t_auth_role_permission` VALUES (574, 1, NULL, 'GoodsOperaterLogController');
+INSERT INTO `t_auth_role_permission` VALUES (575, 1, NULL, 'GoodsOperaterLogController:json');
+INSERT INTO `t_auth_role_permission` VALUES (576, 1, NULL, 'GoodsTypeController');
+INSERT INTO `t_auth_role_permission` VALUES (577, 1, NULL, 'GoodsTypeController:delete');
+INSERT INTO `t_auth_role_permission` VALUES (578, 1, NULL, 'GoodsTypeController:json');
+INSERT INTO `t_auth_role_permission` VALUES (579, 1, NULL, 'GoodsTypeController:batchDelete');
+INSERT INTO `t_auth_role_permission` VALUES (580, 1, NULL, 'GoodsTypeController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (581, 1, NULL, 'UseRecordController');
+INSERT INTO `t_auth_role_permission` VALUES (582, 1, NULL, 'UseRecordController:json');
+INSERT INTO `t_auth_role_permission` VALUES (583, 1, NULL, 'UseRecordController:addOrUpdateGoods');
+INSERT INTO `t_auth_role_permission` VALUES (584, 1, NULL, 'UseRecordController:listForOperator');
+INSERT INTO `t_auth_role_permission` VALUES (585, 1, NULL, 'UseRecordController:addOrUpdateDevice');
+INSERT INTO `t_auth_role_permission` VALUES (586, 1, NULL, 'WarehousingGoodsController');
+INSERT INTO `t_auth_role_permission` VALUES (587, 1, NULL, 'WarehousingGoodsController:delete');
+INSERT INTO `t_auth_role_permission` VALUES (588, 1, NULL, 'WarehousingGoodsController:handle');
+INSERT INTO `t_auth_role_permission` VALUES (589, 1, NULL, 'WarehousingGoodsController:json');
+INSERT INTO `t_auth_role_permission` VALUES (590, 1, NULL, 'WarehousingGoodsController:batchDelete');
+INSERT INTO `t_auth_role_permission` VALUES (591, 1, NULL, 'WarehousingGoodsController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (592, 1, NULL, 'WarehousingGoodsController:batchWarehousing');
+INSERT INTO `t_auth_role_permission` VALUES (593, 1, NULL, 'WarehousingGoodsController:jsonForChecking');
+INSERT INTO `t_auth_role_permission` VALUES (594, 1, NULL, 'NoticeController');
+INSERT INTO `t_auth_role_permission` VALUES (595, 1, NULL, 'NoticeController:delete');
+INSERT INTO `t_auth_role_permission` VALUES (596, 1, NULL, 'NoticeController:handle');
+INSERT INTO `t_auth_role_permission` VALUES (597, 1, NULL, 'NoticeController:json');
+INSERT INTO `t_auth_role_permission` VALUES (598, 1, NULL, 'NoticeController:batchDelete');
+INSERT INTO `t_auth_role_permission` VALUES (599, 1, NULL, 'NoticeController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (600, 1, NULL, 'NoticeController:jsonForChecking');
+INSERT INTO `t_auth_role_permission` VALUES (601, 1, NULL, 'NoticeController:setNoticeRole');
+INSERT INTO `t_auth_role_permission` VALUES (602, 1, NULL, 'NoticeController:noticeByPerson');
+INSERT INTO `t_auth_role_permission` VALUES (603, 1, NULL, 'NoticeController:noticeRolesByNoticeId');
+INSERT INTO `t_auth_role_permission` VALUES (604, 1, NULL, 'NoticeOperaterLogController');
+INSERT INTO `t_auth_role_permission` VALUES (605, 1, NULL, 'NoticeOperaterLogController:json');
+INSERT INTO `t_auth_role_permission` VALUES (606, 1, NULL, 'BackupController');
+INSERT INTO `t_auth_role_permission` VALUES (607, 1, NULL, 'BackupController:delete');
+INSERT INTO `t_auth_role_permission` VALUES (608, 1, NULL, 'BackupController:json');
+INSERT INTO `t_auth_role_permission` VALUES (609, 1, NULL, 'BackupController:restore');
+INSERT INTO `t_auth_role_permission` VALUES (610, 1, NULL, 'BackupController:back');
+INSERT INTO `t_auth_role_permission` VALUES (611, 1, NULL, 'BackupOperatorLogController');
+INSERT INTO `t_auth_role_permission` VALUES (612, 1, NULL, 'BackupOperatorLogController:json');
+INSERT INTO `t_auth_role_permission` VALUES (613, 1, NULL, 'SysScheduledCronController');
+INSERT INTO `t_auth_role_permission` VALUES (614, 1, NULL, 'SysScheduledCronController:delete');
+INSERT INTO `t_auth_role_permission` VALUES (615, 1, NULL, 'SysScheduledCronController:taskList');
+INSERT INTO `t_auth_role_permission` VALUES (616, 1, NULL, 'SysScheduledCronController:updateTask');
+INSERT INTO `t_auth_role_permission` VALUES (617, 1, NULL, 'SysScheduledCronController:changeStatusTaskCron');
+INSERT INTO `t_auth_role_permission` VALUES (618, 1, NULL, 'SysScheduledCronController:changeStatusTaskCron');
+INSERT INTO `t_auth_role_permission` VALUES (619, 1, NULL, 'DisableController');
+INSERT INTO `t_auth_role_permission` VALUES (620, 1, NULL, 'DisableController:json');
+INSERT INTO `t_auth_role_permission` VALUES (621, 1, NULL, 'DisableController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (622, 1, NULL, 'MaintainController');
+INSERT INTO `t_auth_role_permission` VALUES (623, 1, NULL, 'MaintainController:json');
+INSERT INTO `t_auth_role_permission` VALUES (624, 1, NULL, 'MaintainController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (625, 1, NULL, 'SellersController');
+INSERT INTO `t_auth_role_permission` VALUES (626, 1, NULL, 'SellersController:delete');
+INSERT INTO `t_auth_role_permission` VALUES (627, 1, NULL, 'SellersController:json');
+INSERT INTO `t_auth_role_permission` VALUES (628, 1, NULL, 'SellersController:batchDelete');
+INSERT INTO `t_auth_role_permission` VALUES (629, 1, NULL, 'SellersController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (630, 1, NULL, 'SellersTypeController');
+INSERT INTO `t_auth_role_permission` VALUES (631, 1, NULL, 'SellersTypeController:delete');
+INSERT INTO `t_auth_role_permission` VALUES (632, 1, NULL, 'SellersTypeController:json');
+INSERT INTO `t_auth_role_permission` VALUES (633, 1, NULL, 'SellersTypeController:batchDelete');
+INSERT INTO `t_auth_role_permission` VALUES (634, 1, NULL, 'SellersTypeController:addOrUpdate');
+INSERT INTO `t_auth_role_permission` VALUES (635, 1, NULL, 'DeviceInfoShowController');
+INSERT INTO `t_auth_role_permission` VALUES (636, 1, NULL, 'DeviceInfoShowController:countsWithDevice');
+INSERT INTO `t_auth_role_permission` VALUES (637, 1, NULL, 'DeviceInfoShowController:deviceInfo');
+INSERT INTO `t_auth_role_permission` VALUES (638, 1, NULL, 'DeviceInfoShowController:totalDataInfo');
+INSERT INTO `t_auth_role_permission` VALUES (639, 1, NULL, 'DeviceInfoShowController:getDeviceCountsWithTypeName');
+INSERT INTO `t_auth_role_permission` VALUES (640, 1, NULL, 'DeviceInfoShowController:devicePriceChange');
+INSERT INTO `t_auth_role_permission` VALUES (641, 1, NULL, 'GoodsInfoShowController');
+INSERT INTO `t_auth_role_permission` VALUES (642, 1, NULL, 'GoodsInfoShowController:goodsPriceChange');
+INSERT INTO `t_auth_role_permission` VALUES (643, 1, NULL, 'GoodsInfoShowController:countsWithGoods');
+INSERT INTO `t_auth_role_permission` VALUES (644, 1, NULL, 'GoodsInfoShowController:goodsInfo');
+INSERT INTO `t_auth_role_permission` VALUES (645, 1, NULL, 'GoodsInfoShowController:totalDataInfo');
+INSERT INTO `t_auth_role_permission` VALUES (646, 1, NULL, 'GoodsInfoShowController:getGoodsCountsWithTypeName');
+INSERT INTO `t_auth_role_permission` VALUES (647, 1, NULL, 'DevicesController:setDeviceUseDept');
+INSERT INTO `t_auth_role_permission` VALUES (648, 1, NULL, 'DevicesController:jsonByDept');
+INSERT INTO `t_auth_role_permission` VALUES (649, 1, NULL, 'GoodsController:jsonByDept');
+INSERT INTO `t_auth_role_permission` VALUES (650, 1, NULL, 'GoodsController:setGoodsUseDept');
 
 -- ----------------------------
 -- Table structure for t_device
@@ -362,8 +486,23 @@ CREATE TABLE `t_device`  (
 -- ----------------------------
 -- Records of t_device
 -- ----------------------------
-INSERT INTO `t_device` VALUES (1, '设备4', 0.00, '设备4', NULL, 8, 3, '2024-02-08 00:00:00', 2, 1, 0, '2024-03-04 21:40:30');
+INSERT INTO `t_device` VALUES (1, '设备4', 0.00, '设备4', NULL, 8, 3, '2024-02-08 00:00:00', 2, 1, 1, '2024-03-04 21:40:30');
 INSERT INTO `t_device` VALUES (2, '设备5', 0.00, '设备5', NULL, 8, 3, '2024-02-09 00:00:00', 32, 1, 0, '2024-03-03 23:31:15');
+
+-- ----------------------------
+-- Table structure for t_device_department
+-- ----------------------------
+DROP TABLE IF EXISTS `t_device_department`;
+CREATE TABLE `t_device_department`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `deviceId` bigint(20) NOT NULL COMMENT '设备id',
+  `deptId` bigint(20) NOT NULL COMMENT '部门id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_device_department
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_device_no_warehousing
@@ -479,12 +618,28 @@ CREATE TABLE `t_goods`  (
   `useCount` int(11) NULL DEFAULT 0 COMMENT '使用数量',
   `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_goods
 -- ----------------------------
-INSERT INTO `t_goods` VALUES (1, '物资1', 2000000.00, '物资1', NULL, 7, 3, 1, 0, '2024-03-07 09:07:25');
+INSERT INTO `t_goods` VALUES (1, '物资1', 2000000.00, '物资1', NULL, 7, NULL, 1, 1, '2024-03-07 09:07:25');
+INSERT INTO `t_goods` VALUES (2, '物资2', 1000000.00, '物资2', NULL, 7, 3, 1, 0, '2024-03-12 19:51:00');
+
+-- ----------------------------
+-- Table structure for t_goods_department
+-- ----------------------------
+DROP TABLE IF EXISTS `t_goods_department`;
+CREATE TABLE `t_goods_department`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `goodsId` bigint(20) NOT NULL COMMENT '物资id',
+  `deptId` bigint(20) NOT NULL COMMENT '部门id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_goods_department
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_goods_no_warehousing
@@ -508,7 +663,7 @@ CREATE TABLE `t_goods_no_warehousing`  (
 -- Records of t_goods_no_warehousing
 -- ----------------------------
 INSERT INTO `t_goods_no_warehousing` VALUES (1, '物资1', 2000000.00, '物资1', NULL, 7, 3, 1, 2, '2024-03-07 09:07:24');
-INSERT INTO `t_goods_no_warehousing` VALUES (2, '物资2', 1000000.00, '物资2', NULL, 7, 3, 1, 0, '2024-02-27 13:49:15');
+INSERT INTO `t_goods_no_warehousing` VALUES (2, '物资2', 1000000.00, '物资2', NULL, 7, 3, 1, 2, '2024-03-12 19:50:59');
 INSERT INTO `t_goods_no_warehousing` VALUES (3, '物资3', 1000000.00, '物资3', NULL, 4, 3, 1, 0, '2024-02-27 13:49:18');
 INSERT INTO `t_goods_no_warehousing` VALUES (5, '物资4', 0.00, '物资4', NULL, 7, 3, 1, 0, '2024-02-27 13:49:21');
 
@@ -528,13 +683,15 @@ CREATE TABLE `t_goods_operater_log`  (
   `goodsId` int(11) NULL DEFAULT NULL COMMENT '处理的物品的id',
   `goodsName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_goods_operater_log
 -- ----------------------------
 INSERT INTO `t_goods_operater_log` VALUES (1, '入库', '批量入库物资，物资id为1', 1, 'admin', '2024-03-07 09:07:12', NULL, NULL, 1, '物资1');
 INSERT INTO `t_goods_operater_log` VALUES (2, '审批', '', 1, 'admin', '2024-03-07 09:07:25', NULL, NULL, 1, '物资1');
+INSERT INTO `t_goods_operater_log` VALUES (3, '入库', '批量入库物资，物资id为2', 1, 'admin', '2024-03-12 19:50:53', NULL, NULL, 2, '物资2');
+INSERT INTO `t_goods_operater_log` VALUES (4, '审批', '审批通过：', 1, 'admin', '2024-03-12 19:51:00', NULL, NULL, 2, '物资2');
 
 -- ----------------------------
 -- Table structure for t_goods_type
@@ -575,11 +732,13 @@ CREATE TABLE `t_goods_use_record`  (
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   `type` int(11) NULL DEFAULT NULL COMMENT '1物资，2设备',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_goods_use_record
 -- ----------------------------
+INSERT INTO `t_goods_use_record` VALUES (1, 1, 1, 1, 1, 1, '/1', NULL, 2);
+INSERT INTO `t_goods_use_record` VALUES (2, 1, 1, 1, 1, 1, '/1', NULL, 1);
 
 -- ----------------------------
 -- Table structure for t_maintain
@@ -942,7 +1101,7 @@ CREATE TABLE `t_sys_scheduledcron`  (
 -- ----------------------------
 -- Records of t_sys_scheduledcron
 -- ----------------------------
-INSERT INTO `t_sys_scheduledcron` VALUES (12, 'Scheduled.sys.cn.pzhxy.devicemanager.DBBackupTask@2', '10 0/1 * * * ?', 'test', 2);
-INSERT INTO `t_sys_scheduledcron` VALUES (13, 'Scheduled.sys.cn.pzhxy.devicemanager.DBBackupTask', '0 0/1 * * * ?', 'test', 2);
+INSERT INTO `t_sys_scheduledcron` VALUES (12, 'cn.cailang.sys.Scheduled.DBBackupTask@2', '10 0/1 * * * ?', 'test', 2);
+INSERT INTO `t_sys_scheduledcron` VALUES (13, 'cn.cailang.sys.Scheduled.DBBackupTask', '0 0/1 * * * ?', 'test', 2);
 
 SET FOREIGN_KEY_CHECKS = 1;
