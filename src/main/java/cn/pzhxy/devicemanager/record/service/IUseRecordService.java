@@ -1,9 +1,9 @@
-package cn.pzhxy.devicemanager.goods.service;
+package cn.pzhxy.devicemanager.record.service;
 
 import cn.pzhxy.devicemanager.base.service.IBaseService;
 import cn.pzhxy.devicemanager.base.utils.PageList;
-import cn.pzhxy.devicemanager.goods.domain.UseRecord;
-import cn.pzhxy.devicemanager.goods.dto.UseRecordPageInfoDTO;
+import cn.pzhxy.devicemanager.record.domain.UseRecord;
+import cn.pzhxy.devicemanager.record.dto.UseRecordPageInfoDTO;
 
 /**
  * <p>

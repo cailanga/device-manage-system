@@ -1,8 +1,8 @@
-package cn.pzhxy.devicemanager.goods.mapper;
+package cn.pzhxy.devicemanager.record.mapper;
 
 import cn.pzhxy.devicemanager.base.mapper.BaseMapper;
-import cn.pzhxy.devicemanager.goods.domain.UseRecord;
-import cn.pzhxy.devicemanager.goods.dto.UseRecordPageInfoDTO;
+import cn.pzhxy.devicemanager.record.domain.UseRecord;
+import cn.pzhxy.devicemanager.record.dto.UseRecordPageInfoDTO;
 
 import java.util.List;
 

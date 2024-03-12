@@ -1,4 +1,4 @@
-package cn.pzhxy.devicemanager.goods.query;
+package cn.pzhxy.devicemanager.record.query;
 import cn.pzhxy.devicemanager.base.query.BaseQuery;
 
 /**

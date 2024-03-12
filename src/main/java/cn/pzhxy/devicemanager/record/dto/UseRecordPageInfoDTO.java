@@ -1,4 +1,4 @@
-package cn.pzhxy.devicemanager.goods.dto;
+package cn.pzhxy.devicemanager.record.dto;
 
 import cn.pzhxy.devicemanager.base.query.BaseQuery;
 import lombok.Data;

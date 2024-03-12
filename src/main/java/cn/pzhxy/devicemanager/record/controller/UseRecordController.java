@@ -1,4 +1,4 @@
-package cn.pzhxy.devicemanager.goods.controller;
+package cn.pzhxy.devicemanager.record.controller;
 
 import cn.pzhxy.devicemanager.auth.annotation.JiaXinPermission;
 import cn.pzhxy.devicemanager.base.utils.AjaxResult;
@@ -6,11 +6,11 @@ import cn.pzhxy.devicemanager.base.utils.PageList;
 import cn.pzhxy.devicemanager.device.domain.Devices;
 import cn.pzhxy.devicemanager.device.service.IDevicesService;
 import cn.pzhxy.devicemanager.goods.domain.Goods;
-import cn.pzhxy.devicemanager.goods.domain.UseRecord;
-import cn.pzhxy.devicemanager.goods.dto.UseRecordPageInfoDTO;
+import cn.pzhxy.devicemanager.record.domain.UseRecord;
+import cn.pzhxy.devicemanager.record.dto.UseRecordPageInfoDTO;
 import cn.pzhxy.devicemanager.goods.query.GoodsQuery;
 import cn.pzhxy.devicemanager.goods.service.IGoodsService;
-import cn.pzhxy.devicemanager.goods.service.IUseRecordService;
+import cn.pzhxy.devicemanager.record.service.IUseRecordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -176,8 +176,8 @@ public class UseRecordController {
      * 查看所有的信息
      * @return
      */
-    @ApiOperation("物资设备领用记录根据操作者查询")
-    @JiaXinPermission(name = "物资设备领用记录查询权限",description = "物资设备领用记录查询权限")
+    @ApiOperation("物资设备个人领用记录根据操作者查询")
+    @JiaXinPermission(name = "物资设备个人领用记录查询权限",description = "物资设备个人领用记录查询权限")
     @PostMapping("/operatorId")
     public AjaxResult listForOperator(@RequestBody UseRecordPageInfoDTO dto){
 
@@ -197,8 +197,8 @@ public class UseRecordController {
     * @param query 查询对象
     * @return PageList 分页对象
     */
-    @ApiOperation("物资设备领用记录关键词分页查询")
-    @JiaXinPermission(name = "物资设备领用记录关键词分页查询权限",description = "物资设备领用记录关键词分页查询权限")
+    @ApiOperation("物资设备所有领用记录关键词分页查询")
+    @JiaXinPermission(name = "物资设备所有领用记录关键词分页查询权限",description = "物资设备所有领用记录关键词分页查询权限")
     @PostMapping
     public AjaxResult json(@RequestBody GoodsQuery query)
     {

@@ -4,6 +4,8 @@ import cn.pzhxy.devicemanager.auth.annotation.JiaXinPermission;
 import cn.pzhxy.devicemanager.base.utils.AjaxResult;
 import cn.pzhxy.devicemanager.base.utils.PageList;
 import cn.pzhxy.devicemanager.goods.domain.Goods;
+import cn.pzhxy.devicemanager.goods.dto.GoodsCanUseDeptDTO;
+import cn.pzhxy.devicemanager.goods.dto.GoodsDeptDTO;
 import cn.pzhxy.devicemanager.goods.query.GoodsQuery;
 import cn.pzhxy.devicemanager.goods.service.IGoodsService;
 import io.swagger.annotations.Api;
@@ -11,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 @JiaXinPermission(name = "物资管理权限",description = "物资管理权限")
@@ -148,4 +151,54 @@ public class GoodsController {
         }
     }
 
+    /**
+     * 设置物资可领用部门
+     */
+    @ApiOperation("设置物资可领用部门")
+    @JiaXinPermission(name = "设置物资可领用部门权限",description = "设置物资可领用部门权限")
+    @PostMapping("/setCanUseDept")
+    public AjaxResult setGoodsUseDept(@RequestBody GoodsCanUseDeptDTO dto, HttpServletRequest request)
+    {
+        try {
+            productService.setCanUseDept(dto,request);
+            return AjaxResult.me();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AjaxResult.me().setSuccess(false).setMessage("设置物资可领用部门失败！"+e.getMessage());
+        }
+    }
+
+    /**
+     * 一般登陆者通过部门来获取对应物资信息
+     */
+    @ApiOperation("通过部门获取物资信息")
+    @JiaXinPermission(name = "通过部门获取物资信息权限",description = "通过部门获取物资信息权限")
+    @PostMapping("/byDept")
+    public AjaxResult jsonByDept(@RequestBody GoodsQuery query, HttpServletRequest request)
+    {
+        try {
+            PageList<Goods> pageList = productService.pageListByDept(query,request);
+            return AjaxResult.me().setResultObject(pageList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AjaxResult.me().setSuccess(false).setMessage("获取数据失败！"+e.getMessage());
+        }
+    }
+
+    /**
+     * 一般登陆者通过部门来获取对应物资信息
+     */
+    @ApiOperation("通过物资获取部门信息")
+//    @JiaXinPermission(name = "通过物资获取部门信息权限",description = "通过物资获取部门信息权限")
+    @GetMapping("/byGoods/{goodsId}")
+    public AjaxResult jsonByDept(@PathVariable("goodsId")Long goodsId)
+    {
+        try {
+            List<GoodsDeptDTO> goodsDeptDTOS = productService.selectDeptIdsByGoodsId(goodsId);
+            return AjaxResult.me().setResultObject(goodsDeptDTOS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AjaxResult.me().setSuccess(false).setMessage("获取数据失败！"+e.getMessage());
+        }
+    }
 }

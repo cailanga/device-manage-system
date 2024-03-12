@@ -1,7 +1,8 @@
-package cn.pzhxy.devicemanager.goods.domain;
+package cn.pzhxy.devicemanager.record.domain;
 
 import cn.pzhxy.devicemanager.base.domain.BaseDomain;
 import cn.pzhxy.devicemanager.device.domain.Devices;
+import cn.pzhxy.devicemanager.goods.domain.Goods;
 import cn.pzhxy.devicemanager.org.domain.Employee;
 import lombok.Data;
 
