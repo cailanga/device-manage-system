@@ -18,4 +18,5 @@
 ![输入图片说明](img/8.png)
 ![输入图片说明](img/9.png)
 
-前端系统链接：https://gitee.com/cailanga/device-manage-system-front
+前端系统链接：https://github.com/cailanga/device-manage-system-front
+https://gitee.com/cailanga/device-manage-system-front
